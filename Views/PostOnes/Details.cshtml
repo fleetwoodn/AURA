@@ -1,0 +1,48 @@
+﻿@model AURA.Models.PostOne
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>PostOne</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OneZero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OneZero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OneStag)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OneStag)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OneAgen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OneAgen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OnePart)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OnePart)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OneTitl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OneTitl)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.OneId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

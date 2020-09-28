@@ -1,0 +1,83 @@
+﻿@model IEnumerable<AURA.Models.PostFou>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FouZero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FouDigit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FouName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FouPhon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FouEmai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FouAddr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FouPost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FouOrg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FouNote)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FouZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FouDigit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FouName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FouPhon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FouEmai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FouAddr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FouPost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FouOrg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FouNote)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FouId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FouId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FouId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

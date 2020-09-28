@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AURA.Models.PostEig>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EigZero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EigDigit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EigAgen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EigRole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EigLoad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EigNote)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EigZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EigDigit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EigAgen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EigRole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EigLoad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EigNote)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EigId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EigId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EigId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

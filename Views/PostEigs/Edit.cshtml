@@ -1,0 +1,59 @@
+﻿@model AURA.Models.PostEig
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>PostEig</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EigId" />
+            <div class="form-group">
+                <label asp-for="EigZero" class="control-label"></label>
+                <input asp-for="EigZero" class="form-control" />
+                <span asp-validation-for="EigZero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EigDigit" class="control-label"></label>
+                <input asp-for="EigDigit" class="form-control" />
+                <span asp-validation-for="EigDigit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EigAgen" class="control-label"></label>
+                <input asp-for="EigAgen" class="form-control" />
+                <span asp-validation-for="EigAgen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EigRole" class="control-label"></label>
+                <input asp-for="EigRole" class="form-control" />
+                <span asp-validation-for="EigRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EigLoad" class="control-label"></label>
+                <input asp-for="EigLoad" class="form-control" />
+                <span asp-validation-for="EigLoad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EigNote" class="control-label"></label>
+                <input asp-for="EigNote" class="form-control" />
+                <span asp-validation-for="EigNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

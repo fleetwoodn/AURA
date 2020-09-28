@@ -16,6 +16,7 @@ namespace AURA.Data
 
         }
 
+        public DbSet<PostZero> PostZeros { get; set; }
         public DbSet<PostOne> PostOnes { get; set; }
         public DbSet<PostThr> PostThrs { get; set; }
         public DbSet<PostFou> PostFous { get; set; }

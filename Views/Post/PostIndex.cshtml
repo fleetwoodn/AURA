@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AURA.Models.PostOne>
+
+@{
+    ViewData["Title"] = "PostIndex";
+}
+
+<h1>PostIndex</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OneZero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OneStag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OneAgen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OnePart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OneTitl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneStag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneAgen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OnePart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneTitl)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OneId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OneId">Details</a> |
+                @*<a asp-action="Delete" asp-route-id="@item.OneId">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

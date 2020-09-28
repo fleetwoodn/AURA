@@ -1,0 +1,51 @@
+﻿@model AURA.Models.PostNin
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PostNin</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NinZero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NinZero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NinDigit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NinDigit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NinFile)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NinFile)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NinCapt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NinCapt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NinNote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NinNote)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="NinId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<AURA.Models.PostSix>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SixZero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SixDigit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SixDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SixType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SixDeta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SixAmou)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SixStat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SixNote)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SixZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SixDigit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SixDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SixType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SixDeta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SixAmou)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SixStat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SixNote)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SixId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SixId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SixId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

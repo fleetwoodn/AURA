@@ -1,0 +1,72 @@
+﻿@model AURA.Models.PostFou
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>PostFou</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouZero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouZero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouDigit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouDigit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouPhon)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouPhon)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouEmai)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouEmai)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouAddr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouAddr)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouPost)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouPost)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouOrg)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouOrg)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouNote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouNote)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.FouId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

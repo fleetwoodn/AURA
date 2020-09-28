@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AURA.Models.PostNin>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NinZero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NinDigit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NinFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NinCapt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NinNote)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NinZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NinDigit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NinFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NinCapt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NinNote)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NinId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NinId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NinId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

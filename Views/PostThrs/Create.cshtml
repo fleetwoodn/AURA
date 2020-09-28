@@ -1,0 +1,48 @@
+﻿@model AURA.Models.PostThr
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PostThr</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ThrZero" class="control-label"></label>
+                <input asp-for="ThrZero" class="form-control" />
+                <span asp-validation-for="ThrZero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrDigit" class="control-label"></label>
+                <input asp-for="ThrDigit" class="form-control" />
+                <span asp-validation-for="ThrDigit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrDate" class="control-label"></label>
+                <input asp-for="ThrDate" class="form-control" />
+                <span asp-validation-for="ThrDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrText" class="control-label"></label>
+                <input asp-for="ThrText" class="form-control" />
+                <span asp-validation-for="ThrText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,119 @@
+﻿@model AURA.Models.PostSev
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>PostSev</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SevId" />
+            <div class="form-group">
+                <label asp-for="SevZero" class="control-label"></label>
+                <input asp-for="SevZero" class="form-control" />
+                <span asp-validation-for="SevZero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevDigit" class="control-label"></label>
+                <input asp-for="SevDigit" class="form-control" />
+                <span asp-validation-for="SevDigit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevInvo" class="control-label"></label>
+                <input asp-for="SevInvo" class="form-control" />
+                <span asp-validation-for="SevInvo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevDate" class="control-label"></label>
+                <input asp-for="SevDate" class="form-control" />
+                <span asp-validation-for="SevDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevDesc" class="control-label"></label>
+                <input asp-for="SevDesc" class="form-control" />
+                <span asp-validation-for="SevDesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevAmou" class="control-label"></label>
+                <input asp-for="SevAmou" class="form-control" />
+                <span asp-validation-for="SevAmou" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevAc1" class="control-label"></label>
+                <input asp-for="SevAc1" class="form-control" />
+                <span asp-validation-for="SevAc1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevAc2" class="control-label"></label>
+                <input asp-for="SevAc2" class="form-control" />
+                <span asp-validation-for="SevAc2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevAcf" class="control-label"></label>
+                <input asp-for="SevAcf" class="form-control" />
+                <span asp-validation-for="SevAcf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevSign" class="control-label"></label>
+                <input asp-for="SevSign" class="form-control" />
+                <span asp-validation-for="SevSign" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevPart" class="control-label"></label>
+                <input asp-for="SevPart" class="form-control" />
+                <span asp-validation-for="SevPart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevCust" class="control-label"></label>
+                <input asp-for="SevCust" class="form-control" />
+                <span asp-validation-for="SevCust" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevStat" class="control-label"></label>
+                <input asp-for="SevStat" class="form-control" />
+                <span asp-validation-for="SevStat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevPaym" class="control-label"></label>
+                <input asp-for="SevPaym" class="form-control" />
+                <span asp-validation-for="SevPaym" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevRefe" class="control-label"></label>
+                <input asp-for="SevRefe" class="form-control" />
+                <span asp-validation-for="SevRefe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevHidd" class="control-label"></label>
+                <input asp-for="SevHidd" class="form-control" />
+                <span asp-validation-for="SevHidd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevChec" class="control-label"></label>
+                <input asp-for="SevChec" class="form-control" />
+                <span asp-validation-for="SevChec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevNote" class="control-label"></label>
+                <input asp-for="SevNote" class="form-control" />
+                <span asp-validation-for="SevNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

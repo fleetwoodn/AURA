@@ -1,0 +1,54 @@
+﻿@model AURA.Models.PostEig
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>PostEig</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EigZero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EigZero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EigDigit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EigDigit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EigAgen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EigAgen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EigRole)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EigRole)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EigLoad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EigLoad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EigNote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EigNote)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EigId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
