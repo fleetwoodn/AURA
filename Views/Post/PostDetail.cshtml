@@ -10,23 +10,23 @@
     <h4>PostOne</h4>
     <hr />
     <dl class="row">
-        
+
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OneZero)
         </dd>
-        
+
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OneStag)
         </dd>
-        
+
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OneAgen)
         </dd>
-        
+
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OnePart)
         </dd>
-        
+
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OneTitl)
         </dd>
@@ -34,6 +34,317 @@
 </div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@ViewBag.OneId">Edit</a> |
-    <a asp-action="PostIndex">Back to List</a>
+    <a asp-action="OneEdit" asp-route-id="@ViewBag.OneId">Edit</a> |
 </div>
+
+@*LIST OF THR*@
+<hr />
+<p>
+    <a asp-action="ThrCreate">Create New</a>
+</p>
+<table class="table">
+
+    <tbody>
+        @foreach (var item in Model.PostThrs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDigit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+                <td>
+                    <a asp-action="ThrEdit" asp-route-id="@item.ThrId">Edit</a> |
+                    <a asp-action="ThrDetails" asp-route-id="@item.ThrId">Details</a> |
+                    <a asp-action="ThrDelete" asp-route-id="@item.ThrId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*list of fou*@
+<hr />
+<p>
+    <a asp-action="FouCreate">Create New</a>
+</p>
+<table class="table">
+
+    <tbody>
+        @foreach (var item in Model.PostFous)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FouZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FouDigit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FouName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FouPhon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FouEmai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FouAddr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FouPost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FouOrg)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FouNote)
+                </td>
+                <td>
+                    <a asp-action="FouEdit" asp-route-id="@item.FouId">Edit</a> |
+                    <a asp-action="FouDetails" asp-route-id="@item.FouId">Details</a> |
+                    <a asp-action="FouDelete" asp-route-id="@item.FouId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*list of fiv*@
+<hr />
+<p>
+    <a asp-action="FivCreate">Create New</a>
+</p>
+<table class="table">
+
+    <tbody>
+        @foreach (var item in Model.PostFivs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FivZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FivDigit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FivPrio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FivCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FivText)
+                </td>
+                <td>
+                    <a asp-action="FivEdit" asp-route-id="@item.FivId">Edit</a> |
+                    <a asp-action="FivDetails" asp-route-id="@item.FivId">Details</a> |
+                    <a asp-action="FivDelete" asp-route-id="@item.FivId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*list of six*@
+<hr />
+<p>
+    <a asp-action="SixCreate">Create New</a>
+</p>
+<table class="table">
+
+    <tbody>
+        @foreach (var item in Model.PostSixs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SixZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SixDigit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SixDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SixType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SixDeta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SixAmou)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SixStat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SixNote)
+                </td>
+                <td>
+                    <a asp-action="SixEdit" asp-route-id="@item.SixId">Edit</a> |
+                    <a asp-action="SixDetails" asp-route-id="@item.SixId">Details</a> |
+                    <a asp-action="SixDelete" asp-route-id="@item.SixId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*list of sev*@
+
+<p>
+    <a asp-action="SevCreate">Create New</a>
+</p>
+<table class="table">
+
+    <tbody>
+        @foreach (var item in Model.PostSevs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevDigit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevInvo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevDesc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevAmou)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevAc1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevAc2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevAcf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevSign)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevPart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevCust)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevStat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevPaym)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevRefe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevHidd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevChec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SevNote)
+                </td>
+                <td>
+                    <a asp-action="SevEdit" asp-route-id="@item.SevId">Edit</a> |
+                    <a asp-action="SevDetails" asp-route-id="@item.SevId">Details</a> |
+                    <a asp-action="SevDelete" asp-route-id="@item.SevId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*list of eig*@
+<hr />
+<p>
+    <a asp-action="EigCreate">Create New</a>
+</p>
+<table class="table">
+
+    <tbody>
+        @foreach (var item in Model.PostEigs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigDigit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigAgen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigRole)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigLoad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigNote)
+                </td>
+                <td>
+                    <a asp-action="EigEdit" asp-route-id="@item.EigId">Edit</a> |
+                    <a asp-action="EigDetails" asp-route-id="@item.EigId">Details</a> |
+                    <a asp-action="EigDelete" asp-route-id="@item.EigId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*list of nin*@
+<hr />
+<p>
+    <a asp-action="NinCreate">Create New</a>
+</p>
+<table class="table">
+    
+    <tbody>
+        @foreach (var item in Model.PostNins)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NinZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NinDigit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NinFile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NinCapt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NinNote)
+                </td>
+                <td>
+                    <a asp-action="NinEdit" asp-route-id="@item.NinId">Edit</a> |
+                    <a asp-action="NinDetails" asp-route-id="@item.NinId">Details</a> |
+                    <a asp-action="NinDelete" asp-route-id="@item.NinId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

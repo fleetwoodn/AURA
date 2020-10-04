@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AURA.Migrations
 {
     [DbContext(typeof(PostContext))]
-    [Migration("20200927234252_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201004215643_PostOneCreateIssue")]
+    partial class PostOneCreateIssue
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -188,7 +188,7 @@ namespace AURA.Migrations
                         .HasColumnType("nvarchar(5)")
                         .HasMaxLength(5);
 
-                    b.Property<string>("OneTitle")
+                    b.Property<string>("OneTitl")
                         .HasColumnType("nvarchar(160)")
                         .HasMaxLength(160);
 

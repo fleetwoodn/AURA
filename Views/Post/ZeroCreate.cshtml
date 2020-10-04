@@ -1,0 +1,40 @@
+﻿@model AURA.Models.PostZero
+
+@{
+    ViewData["Title"] = "CreateZero";
+}
+
+<h1>CreateZero</h1>
+
+<h4>PostZero</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateZero">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Zero" class="control-label"></label>
+                <input asp-for="Zero" class="form-control" />
+                <span asp-validation-for="Zero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZeroDate" class="control-label"></label>
+                <input asp-for="ZeroDate" class="form-control" />
+                <span asp-validation-for="ZeroDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZeroAgen" class="control-label"></label>
+                <input asp-for="ZeroAgen" class="form-control" />
+                <span asp-validation-for="ZeroAgen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

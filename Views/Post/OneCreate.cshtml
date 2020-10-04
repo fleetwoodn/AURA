@@ -1,0 +1,52 @@
+﻿@model AURA.Models.PostOne
+
+@{
+    ViewData["Title"] = "CreateOne";
+}
+
+    <b>@ViewBag.Zero</b>
+
+<h1>CreateOne</h1>
+
+<h4>PostOne</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="OneCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OneZero" class="control-label"></label>
+                <input asp-for="OneZero" class="form-control" value="@ViewBag.Zero" readonly="readonly" />
+                <span asp-validation-for="OneZero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OneStag" class="control-label"></label>
+                <input asp-for="OneStag" class="form-control" />
+                <span asp-validation-for="OneStag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OneAgen" class="control-label"></label>
+                <input asp-for="OneAgen" class="form-control" />
+                <span asp-validation-for="OneAgen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OnePart" class="control-label"></label>
+                <input asp-for="OnePart" class="form-control" />
+                <span asp-validation-for="OnePart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OneTitl" class="control-label"></label>
+                <input asp-for="OneTitl" class="form-control" />
+                <span asp-validation-for="OneTitl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="PostIndex">Back to List</a>
+</div>
+
