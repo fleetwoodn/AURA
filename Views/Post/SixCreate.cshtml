@@ -14,12 +14,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="SixZero" class="control-label"></label>
-                <input asp-for="SixZero" class="form-control" />
+                <input asp-for="SixZero" class="form-control" readonly="readonly" value="@ViewBag.zero" />
                 <span asp-validation-for="SixZero" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SixDigit" class="control-label"></label>
-                <input asp-for="SixDigit" class="form-control" />
+                <input asp-for="SixDigit" class="form-control" readonly="readonly" value="0" />
                 <span asp-validation-for="SixDigit" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,6 +60,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="PostDetail" asp-route-zero="@ViewBag.zero">Back to Detail</a>
 </div>
 

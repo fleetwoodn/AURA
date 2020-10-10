@@ -15,12 +15,12 @@
             <input type="hidden" asp-for="FouId" />
             <div class="form-group">
                 <label asp-for="FouZero" class="control-label"></label>
-                <input asp-for="FouZero" class="form-control" />
+                <input asp-for="FouZero" class="form-control" readonly="readonly" />
                 <span asp-validation-for="FouZero" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FouDigit" class="control-label"></label>
-                <input asp-for="FouDigit" class="form-control" />
+                <input asp-for="FouDigit" class="form-control" readonly="readonly"/>
                 <span asp-validation-for="FouDigit" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -66,6 +66,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="PostDetail" asp-route-zero="@Model.FouZero">Back to Detail</a>
 </div>
 

@@ -54,7 +54,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitle")] PostOne postOne)
+        public async Task<IActionResult> Create([Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitl")] PostOne postOne)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitle")] PostOne postOne)
+        public async Task<IActionResult> Edit(int id, [Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitl")] PostOne postOne)
         {
             if (id != postOne.OneId)
             {

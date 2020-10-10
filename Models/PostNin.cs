@@ -18,7 +18,7 @@ namespace AURA.Models
         public string NinZero { get; set; }
 
         [Display(Name = "Number")]
-        public string NinDigit { get; set; }
+        public int NinDigit { get; set; }
 
         [Display(Name = "File Upload")]
         public string NinFile { get; set; }

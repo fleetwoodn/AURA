@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AURA.Migrations
 {
     [DbContext(typeof(PostContext))]
-    [Migration("20201004215643_PostOneCreateIssue")]
-    partial class PostOneCreateIssue
+    [Migration("20201008232315_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,8 +33,8 @@ namespace AURA.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<string>("EigDigit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EigDigit")
+                        .HasColumnType("int");
 
                     b.Property<string>("EigLoad")
                         .HasColumnType("nvarchar(3)")
@@ -69,8 +69,8 @@ namespace AURA.Migrations
                         .HasColumnType("nvarchar(1)")
                         .HasMaxLength(1);
 
-                    b.Property<string>("FivDigit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FivDigit")
+                        .HasColumnType("int");
 
                     b.Property<string>("FivPrio")
                         .IsRequired()
@@ -101,8 +101,8 @@ namespace AURA.Migrations
                         .HasColumnType("nvarchar(60)")
                         .HasMaxLength(60);
 
-                    b.Property<string>("FouDigit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FouDigit")
+                        .HasColumnType("int");
 
                     b.Property<string>("FouEmai")
                         .HasColumnType("nvarchar(45)")
@@ -148,8 +148,8 @@ namespace AURA.Migrations
                         .HasColumnType("nvarchar(160)")
                         .HasMaxLength(160);
 
-                    b.Property<string>("NinDigit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("NinDigit")
+                        .HasColumnType("int");
 
                     b.Property<string>("NinFile")
                         .HasColumnType("nvarchar(max)");
@@ -231,8 +231,8 @@ namespace AURA.Migrations
                     b.Property<string>("SevDesc")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SevDigit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SevDigit")
+                        .HasColumnType("int");
 
                     b.Property<string>("SevHidd")
                         .HasColumnType("nvarchar(max)");
@@ -253,6 +253,9 @@ namespace AURA.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SevSign")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SevStage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SevStat")
@@ -283,8 +286,8 @@ namespace AURA.Migrations
                     b.Property<string>("SixDeta")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SixDigit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SixDigit")
+                        .HasColumnType("int");
 
                     b.Property<string>("SixNote")
                         .HasColumnType("nvarchar(160)")
@@ -316,8 +319,8 @@ namespace AURA.Migrations
                     b.Property<DateTime>("ThrDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ThrDigit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ThrDigit")
+                        .HasColumnType("int");
 
                     b.Property<string>("ThrText")
                         .IsRequired()

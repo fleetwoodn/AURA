@@ -15,18 +15,21 @@
             <input type="hidden" asp-for="NinId" />
             <div class="form-group">
                 <label asp-for="NinZero" class="control-label"></label>
-                <input asp-for="NinZero" class="form-control" />
+                <input asp-for="NinZero" class="form-control" readonly="readonly" />
                 <span asp-validation-for="NinZero" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NinDigit" class="control-label"></label>
-                <input asp-for="NinDigit" class="form-control" />
+                <input asp-for="NinDigit" class="form-control" readonly="readonly" />
                 <span asp-validation-for="NinDigit" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="NinFile" class="control-label"></label>
                 <input asp-for="NinFile" class="form-control" />
                 <span asp-validation-for="NinFile" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <img src="~/NinFileUploads/" />
             </div>
             <div class="form-group">
                 <label asp-for="NinCapt" class="control-label"></label>
@@ -46,6 +49,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="PostDetail" asp-route-zero="@Model.NinZero">Back to Detail</a>
 </div>
 

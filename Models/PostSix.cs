@@ -18,7 +18,7 @@ namespace AURA.Models
         public string SixZero { get; set; }
 
         [Display(Name = "Number")]
-        public string SixDigit { get; set; }
+        public int SixDigit { get; set; }
 
         //[Required] enter this programmatically, so no need for required tag
         [Display(Name = "Entry Date")]

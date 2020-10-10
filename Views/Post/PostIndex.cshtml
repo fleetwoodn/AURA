@@ -7,7 +7,7 @@
 <h1>PostIndex</h1>
 
 <p>
-    <a asp-action="CreateZero">Create New</a>
+    <a asp-action="OneCreate">NEW POST</a>
 </p>
 <table class="table">
     <thead>
@@ -50,7 +50,7 @@
             </td>
             <td>
                 @*<a asp-action="Edit" asp-route-id="@item.OneId">Edit</a> |*@
-                <a asp-action="PostDetail" asp-route-id="@item.OneId">Details</a>
+                <a asp-action="PostDetail" asp-route-zero="@item.OneZero">Details</a>
                 @*<a asp-action="Delete" asp-route-id="@item.OneId">Delete</a>*@
             </td>
         </tr>

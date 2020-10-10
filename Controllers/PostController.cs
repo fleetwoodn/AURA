@@ -38,18 +38,18 @@ namespace AURA.Controllers
         }
 
         //get: post detail
-        public async Task<IActionResult> PostDetail(int? id, string zero)
+        [ActionName("PostDetail")]
+        public async Task<IActionResult> PostDetail(string zero)
         {
-            ViewBag.OneId = id;
+            //ViewBag.OneId = id;
 
             if (zero == null)
             {
                 return NotFound();
             }
 
-            PostOne postOne = _context.PostOnes.Find(id);
-            //PostOne postOne = _context.PostOnes.Select(m => m.OneZero == zero); //this is the correct concept, but not sure how to proceed
-            //var OneStag = _context.PostOnes.Select(m => m.OneZero == zero)
+            //PostOne postOne = _context.PostOnes.Find(id);
+            PostOne postOne = _context.PostOnes.FirstOrDefault(m => m.OneZero == zero); 
             
             var uThr = _context.PostThrs.Where(m => m.ThrZero == zero).ToList();
             var uFou = _context.PostFous.Where(m => m.FouZero == zero).ToList();
@@ -61,6 +61,7 @@ namespace AURA.Controllers
 
             var viewModel = new PostDetailVM
             {
+                OneId = postOne.OneId.ToString(),
                 OneZero = postOne.OneZero,
                 OneStag = postOne.OneStag,
                 OneAgen = postOne.OneAgen,
@@ -81,9 +82,55 @@ namespace AURA.Controllers
             return View(viewModel);
 
         }
-        //post zero****************************************************************************************************************************************
+        //***************************+++++++++++++++++++++ test area
 
-        // GET: PostZeroes/Create
+        [ActionName("PostDetaila")]
+        public async Task<IActionResult> PostDetaila(string zero = "201004-0")
+        {
+            //ViewBag.OneId = id;
+
+            if (zero == null)
+            {
+                return NotFound();
+            }
+
+            //PostOne postOne = _context.PostOnes.Find(id);
+            PostOne postOne = _context.PostOnes.FirstOrDefault(m => m.OneZero == zero);
+
+            var uThr = _context.PostThrs.Where(m => m.ThrZero == zero).ToList();
+            var uFou = _context.PostFous.Where(m => m.FouZero == zero).ToList();
+            var uFiv = _context.PostFivs.Where(m => m.FivZero == zero).ToList();
+            var uSix = _context.PostSixs.Where(m => m.SixZero == zero).ToList();
+            var uSev = _context.PostSevs.Where(m => m.SevZero == zero).ToList();
+            var uEig = _context.PostEigs.Where(m => m.EigZero == zero).ToList();
+            var uNin = _context.PostNins.Where(m => m.NinZero == zero).ToList();
+
+            var viewModel = new PostDetailVM
+            {
+                OneId = postOne.OneId.ToString(),
+                OneZero = postOne.OneZero,
+                OneStag = postOne.OneStag,
+                OneAgen = postOne.OneAgen,
+                OnePart = postOne.OnePart,
+                OneTitl = postOne.OneTitl,
+
+
+                PostThrs = uThr,
+                PostFous = uFou,
+                PostFivs = uFiv,
+                PostSixs = uSix,
+                PostSevs = uSev,
+                PostEigs = uEig,
+                PostNins = uNin,
+
+            };
+
+            return View(viewModel);
+        }
+
+            //post zero****************************************************************************************************************************************
+
+            // GET: PostZeroes/Create
         public IActionResult ZeroCreate()
         {
             return View();
@@ -119,14 +166,6 @@ namespace AURA.Controllers
         //post one****************************************************************************************************************************************
 
         // GET: PostOnes/Create
-        //public IActionResult OneCreate(string zero = "201004-0") //remove value
-        //{
-        //    ViewBag.Zero = zero;
-
-
-        //    return View();
-        //}
-
         public IActionResult OneCreate(string zero)
         {
            
@@ -148,8 +187,10 @@ namespace AURA.Controllers
                 postZero.ZeroDate = DateTime.Now;
 
                 string uDate = DateTime.Now.ToString("yyMMdd");
-                string uDigit = _context.PostZeros.Count(d => d.ZeroDate == postZero.ZeroDate).ToString();
+                string uDigit = _context.PostZeros.Count(d => d.ZeroDate.Date == postZero.ZeroDate.Date).ToString(); //awesome
                 postZero.Zero = uDate + "-" + uDigit;
+
+
 
                 ///postZero.ZeroAgent = User.Identity.Name; //we will apply this once the authentication is complete
                 postZero.ZeroAgen = "njn-1";
@@ -188,7 +229,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> OneEdit(int id, [Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitle")] PostOne postOne)
+        public async Task<IActionResult> OneEdit(int id, [Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitl")] PostOne postOne)
         {
             if (id != postOne.OneId)
             {
@@ -204,7 +245,7 @@ namespace AURA.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostOneExists(postOne.OneId)) //Error on this. not sure
+                    if (!PostOneExists(postOne.OneId)) 
                     {
                         return NotFound();
                     }
@@ -230,6 +271,12 @@ namespace AURA.Controllers
         {
             ViewBag.zero = zero;
 
+            //ViewBag.dig = (_context.PostThrs
+            //    .Where(m => m.ThrZero == zero)
+            //    .Select(x => int.Parse(x.ThrDigit))
+            //    .DefaultIfEmpty(0).Max() + 1)
+            //    .ToString();
+
             return View();
         }
 
@@ -238,8 +285,21 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ThrCreate([Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrText")] PostThr postThr)
+        public async Task<IActionResult> ThrCreate([Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrText")] PostThr postThr, string zero)
         {
+            //var Dig = _context.PostThrs.Count(n => n.ThrZero == postThr.ThrZero);
+
+            
+            //if (!(Dig > 0))
+            if (!(_context.PostThrs.Count(n => n.ThrZero == postThr.ThrZero) > 0))
+            {
+                postThr.ThrDigit = 1;
+            }
+            else
+            {
+                postThr.ThrDigit = _context.PostThrs.Where(m => m.ThrZero == postThr.ThrZero).Max(x => x.ThrDigit) + 1;
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(postThr);
@@ -351,6 +411,16 @@ namespace AURA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FouCreate([Bind("FouId,FouZero,FouDigit,FouName,FouPhon,FouEmai,FouAddr,FouPost,FouOrg,FouNote")] PostFou postFou, string zero)
         {
+
+            if (!(_context.PostFous.Count(n => n.FouZero == postFou.FouZero) > 0))
+            {
+                postFou.FouDigit = 1;
+            }
+            else
+            {
+                postFou.FouDigit = _context.PostFous.Where(m => m.FouZero == postFou.FouZero).Max(x => x.FouDigit) + 1;
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(postFou);
@@ -448,8 +518,10 @@ namespace AURA.Controllers
         //post fiv****************************************************************************************************************************************
 
         // GET: PostFivs/Create
-        public IActionResult FivCreate()
+        public IActionResult FivCreate(string zero)
         {
+            ViewBag.zero = zero;
+
             return View();
         }
 
@@ -460,6 +532,16 @@ namespace AURA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FivCreate([Bind("FivId,FivZero,FivDigit,FivPrio,FivCode,FivText")] PostFiv postFiv, string zero)
         {
+            if (!(_context.PostFivs.Count(n => n.FivZero == postFiv.FivZero) > 0))
+            {
+                postFiv.FivDigit = 1;
+            }
+            else
+            {
+                postFiv.FivDigit = _context.PostFivs.Where(m => m.FivZero == postFiv.FivZero).Max(x => x.FivDigit) + 1;
+            }
+            
+
             if (ModelState.IsValid)
             {
                 _context.Add(postFiv);
@@ -571,6 +653,16 @@ namespace AURA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SixCreate([Bind("SixId,SixZero,SixDigit,SixDate,SixType,SixDeta,SixAmou,SixStat,SixNote")] PostSix postSix)
         {
+            if (!(_context.PostSixs.Count(n => n.SixZero == postSix.SixZero) > 0))
+            {
+                postSix.SixDigit = 1;
+            }
+            else
+            {
+                postSix.SixDigit = _context.PostSixs.Where(m => m.SixZero == postSix.SixZero).Max(x => x.SixDigit) + 1;
+            }
+            
+            
             if (ModelState.IsValid)
             {
                 _context.Add(postSix);
@@ -682,6 +774,16 @@ namespace AURA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SevCreate([Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
         {
+            if (!(_context.PostSevs.Count(n => n.SevZero == postSev.SevZero) > 0))
+            {
+                postSev.SevDigit = 1;
+            }
+            else
+            {
+                postSev.SevDigit = _context.PostSevs.Where(m => m.SevZero == postSev.SevZero).Max(x => x.SevDigit) + 1;
+            }
+            
+
             if (ModelState.IsValid)
             {
                 _context.Add(postSev);
@@ -793,6 +895,17 @@ namespace AURA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EigCreate([Bind("EigId,EigZero,EigDigit,EigAgen,EigRole,EigLoad,EigNote")] PostEig postEig)
         {
+            if (!(_context.PostEigs.Count(n => n.EigZero == postEig.EigZero) > 0))
+            {
+                postEig.EigDigit = 1;
+            }
+            else
+            {
+                postEig.EigDigit = _context.PostEigs.Where(m => m.EigZero == postEig.EigZero).Max(x => x.EigDigit) + 1;
+            }
+
+            
+
             if (ModelState.IsValid)
             {
                 _context.Add(postEig);
@@ -904,6 +1017,17 @@ namespace AURA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> NinCreate([Bind("NinId,NinZero,NinDigit,NinFile,NinCapt,NinNote")] PostNin postNin, IFormFile uploadFile)
         {
+            
+            if (!(_context.PostNins.Count(n => n.NinZero == postNin.NinZero) > 0))
+            {
+                postNin.NinDigit = 1;
+            }
+            else
+            {
+                postNin.NinDigit = _context.PostNins.Count(d => d.NinZero == postNin.NinZero);
+            }
+            
+
             if (uploadFile != null && uploadFile.Length > 0)
             {
                 var fileTime = DateTime.UtcNow.ToString("yyMMddHHmmss");

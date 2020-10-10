@@ -7,6 +7,7 @@ namespace AURA.ViewModels
 {
     public class PostDetailVM
     {
+        public string OneId { get; set; }
         public string OneZero { get; set; }
         public string OneStag { get; set; }
         public string OneAgen { get; set; }

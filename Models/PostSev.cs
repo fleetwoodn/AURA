@@ -19,7 +19,7 @@ namespace AURA.Models
         public string SevZero { get; set; }
 
         [Display(Name = "Number")]
-        public string SevDigit { get; set; }
+        public int SevDigit { get; set; }
 
         [Display(Name = "Invoice")]
         public string SevInvo { get; set; }
@@ -44,6 +44,9 @@ namespace AURA.Models
 
         [Display(Name = "Agent Sign")]
         public string SevSign { get; set; }
+
+        [Display(Name = "Stage")]
+        public string SevStage { get; set; } //make sure you reference this...
 
         [Display(Name = "Party ID")]
         public string SevPart { get; set; }

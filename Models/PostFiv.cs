@@ -18,7 +18,7 @@ namespace AURA.Models
         public string FivZero { get; set; }
 
         [Display(Name = "Number")]
-        public string FivDigit { get; set; }
+        public int FivDigit { get; set; }
 
         [Required]
         [Display(Name = "Priority Number")]

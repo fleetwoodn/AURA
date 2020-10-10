@@ -4,121 +4,135 @@
     ViewData["Title"] = "PostDetail";
 }
 
-<h1>PostDetail</h1>
+<head>
+    <style>
+        table {
+            background-color: lightblue;
+        }
+
+        tr {
+        }
+
+        .table td {
+            padding: 0rem;
+        }
+        p {
+            padding:0rem;
+            margin-bottom:0rem;
+        }
+    </style>
+
+</head>
+
+<h1>@Model.OneZero</h1>
 
 <div>
-    <h4>PostOne</h4>
     <hr />
     <dl class="row">
 
-        <dd class="col-sm-10">
-            @Html.HiddenFor(model => model.OneId)
-        </dd>
+        @*<dd class="col-sm-10">
+                @Html.HiddenFor(model => model.OneId)
+            </dd>
 
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OneZero)
-        </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OneZero)
+            </dd>
 
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OneStag)
-        </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OneStag)
+            </dd>
 
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OneAgen)
-        </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OneAgen)
+            </dd>
 
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OnePart)
-        </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OnePart)
+            </dd>
 
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OneTitl)
-        </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OneTitl)
+            </dd>*@
+
     </dl>
 </div>
 
+@*<div>
+        <table>
+            <tr>
+                <td>@Html.DisplayFor(model => model.OneZero)</td>
+
+                <td>@Html.DisplayFor(model => model.OneStag)</td>
+                <td>@Html.DisplayFor(model => model.OneAgen)</td>
+                <td>@Html.DisplayFor(model => model.OnePart)</td>
+                <td>@Html.DisplayFor(model => model.OneTitl)</td>
+            </tr>
+        </table>
+    </div>*@
+<p>
+    <span>
+
+    </span>
+    <span>
+        @Html.DisplayFor(model => model.OneStag) | @Html.DisplayFor(model => model.OneAgen) | @Html.DisplayFor(model => model.OnePart)
+    </span>
+
+</p>
+<p>
+    @Html.DisplayFor(model => model.OneTitl)
+</p>
+
 <div>
-    <a asp-action="OneEdit" asp-route-id="@Model.OneId" asp-route-zero="@Model.OneZero">Edit</a> |
+    <a asp-action="OneEdit" asp-route-id="@Model.OneId" asp-route-zero="@Model.OneZero">Edit 1/</a> |
 </div>
 
 @*LIST OF THR*@
 <hr />
 
 <p>
+    <span><b>TIMEFRAMES</b></span>
     <a asp-action="ThrCreate" asp-route-zero="@Model.OneZero">ADD 3/</a>
 </p>
-<table class="table">
+@foreach (var item in Model.PostThrs)
+{
+<p>
+    <span><a asp-action="ThrEdit" asp-route-id="@item.ThrId">Edit</a></span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.ThrDigit)</span><nbsp> </nbsp>.
+    <span>@Html.DisplayFor(modelItem => item.ThrDate)|</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.ThrText)</span>
+</p>
 
-    <tbody>
-        @foreach (var item in Model.PostThrs)
-        {
-        <tr>
-            <td>
-                <a asp-action="ThrEdit" asp-route-id="@item.ThrId">Edit</a> |
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.ThrDigit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThrDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThrText)
-            </td>
+}
 
-        </tr>
-        }
-    </tbody>
-</table>
 
 @*list of fou*@
 <hr />
 <p>
+    <span><b>CONTACTS</b></span>
     <a asp-action="FouCreate" asp-route-zero="@Model.OneZero">ADD 4/</a>
 </p>
-<table class="table">
-
-    <tbody>
-        @foreach (var item in Model.PostFous)
-        {
-            <tr>
-                <td>
-                    <a asp-action="FouEdit" asp-route-id="@item.FouId">Edit</a> |
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FouDigit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FouName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FouPhon)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FouEmai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FouAddr)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FouPost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FouOrg)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FouNote)
-                </td>
-            
-        </tr>
-        }
-    </tbody>
-</table>
+@foreach (var item in Model.PostFous)
+{
+<p>
+    <span><a asp-action="FouEdit" asp-route-id="@item.FouId">Edit</a></span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.FouDigit)</span><nbsp> </nbsp>.
+    <span>@Html.DisplayFor(modelItem => item.FouName)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.FouPhon)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.FouEmai)</span>
+</p>
+<p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>@Html.DisplayFor(modelItem => item.FouAddr)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.FouPost)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.FouOrg)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.FouNote)</span>
+</p>
+}
 
 @*list of fiv*@
 <hr />
 <p>
+    <span><b>REMARKS</b></span>
     <a asp-action="FivCreate" asp-route-zero="@Model.OneZero">ADD 5/</a>
 </p>
 <table class="table">
@@ -142,7 +156,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FivText)
                 </td>
-                
+
             </tr>
         }
     </tbody>
@@ -151,6 +165,7 @@
 @*list of six*@
 <hr />
 <p>
+    <span><b>PAYMENTS</b></span>
     <a asp-action="SixCreate" asp-route-zero="@Model.OneZero">ADD 6/</a>
 </p>
 <table class="table">
@@ -183,7 +198,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.SixNote)
                 </td>
-                
+
             </tr>
         }
     </tbody>
@@ -192,6 +207,7 @@
 @*list of sev*@
 <hr />
 <p>
+    <span><b>ACCOUNTING</b></span>
     <a asp-action="SevCreate" asp-route-zero="@Model.OneZero">ADD 7/</a>
 </p>
 <table class="table">
@@ -257,7 +273,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.SevNote)
                 </td>
-            
+
             </tr>
         }
     </tbody>
@@ -266,6 +282,7 @@
 @*list of eig*@
 <hr />
 <p>
+    <span><b>AGENTS</b></span>
     <a asp-action="EigCreate" asp-route-zero="@Model.OneZero">ADD 8/</a>
 </p>
 <table class="table">
@@ -292,7 +309,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EigNote)
                 </td>
-                
+
             </tr>
         }
     </tbody>
@@ -301,10 +318,11 @@
 @*list of nin*@
 <hr />
 <p>
+    <span><b>ATTACHMENTS</b></span>
     <a asp-action="NinCreate" asp-route-zero="@Model.OneZero">ADD 9/</a>
 </p>
 <table class="table">
-    
+
     <tbody>
         @foreach (var item in Model.PostNins)
         {
@@ -324,7 +342,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.NinNote)
                 </td>
-                
+
             </tr>
         }
     </tbody>

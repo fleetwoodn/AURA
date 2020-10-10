@@ -14,12 +14,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FouZero" class="control-label"></label>
-                <input asp-for="FouZero" class="form-control" />
+                <input asp-for="FouZero" class="form-control" value="@ViewBag.zero" readonly="readonly" />
                 <span asp-validation-for="FouZero" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FouDigit" class="control-label"></label>
-                <input asp-for="FouDigit" class="form-control" />
+                <input asp-for="FouDigit" class="form-control" value="0" readonly="readonly" />
                 <span asp-validation-for="FouDigit" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -65,6 +65,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="PostDetail" asp-route-zero="@ViewBag.zero">Back to Detail</a>
 </div>
 

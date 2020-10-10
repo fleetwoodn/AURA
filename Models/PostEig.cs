@@ -18,7 +18,7 @@ namespace AURA.Models
         public string EigZero { get; set; }
 
         [Display(Name = "Number")]
-        public string EigDigit { get; set; }
+        public int EigDigit { get; set; }
 
         //[ForeignKey("Agents")] to come later
         [Required]

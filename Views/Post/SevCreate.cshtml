@@ -14,12 +14,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="SevZero" class="control-label"></label>
-                <input asp-for="SevZero" class="form-control" />
+                <input asp-for="SevZero" class="form-control" readonly="readonly" value="@ViewBag.zero" />
                 <span asp-validation-for="SevZero" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevDigit" class="control-label"></label>
-                <input asp-for="SevDigit" class="form-control" />
+                <input asp-for="SevDigit" class="form-control" readonly="readonly" value="0" />
                 <span asp-validation-for="SevDigit" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -61,6 +61,11 @@
                 <label asp-for="SevSign" class="control-label"></label>
                 <input asp-for="SevSign" class="form-control" />
                 <span asp-validation-for="SevSign" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SevStage" class="control-label"></label>
+                <input asp-for="SevStage" class="form-control" />
+                <span asp-validation-for="SevStage" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevPart" class="control-label"></label>
@@ -110,6 +115,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="PostDetail" asp-route-zero="@ViewBag.zero">Back to Detail</a>
 </div>
 

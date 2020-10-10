@@ -4,6 +4,8 @@
     ViewData["Title"] = "ThrCreate";
 }
 
+
+
 <h1>ThrCreate</h1>
 
 <h4>PostThr</h4>
@@ -14,12 +16,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ThrZero" class="control-label"></label>
-                <input asp-for="ThrZero" class="form-control" />
+                <input asp-for="ThrZero" class="form-control" readonly="readonly" value="@ViewBag.Zero"/>
                 <span asp-validation-for="ThrZero" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ThrDigit" class="control-label"></label>
-                <input asp-for="ThrDigit" class="form-control" />
+                <input asp-for="ThrDigit" class="form-control" readonly="readonly" value="0" />
                 <span asp-validation-for="ThrDigit" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -40,6 +42,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="PostDetail" asp-route-zero="@Model.ThrZero">Back to List</a>*@
+    <a asp-action="PostDetail" asp-route-zero="@ViewBag.Zero">Back to Detail</a>
 </div>
 

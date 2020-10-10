@@ -21,7 +21,7 @@ namespace AURA.Models
 
         //this to set programmatically or in db
         [Display(Name = "Number")]
-        public string ThrDigit { get; set; }
+        public int ThrDigit { get; set; }
 
         [Required]
         [Display(Name = "TimeFrame")]

@@ -40,6 +40,6 @@ namespace AURA.Models
 
         [StringLength(160)]
         [Display(Name = "Title")]
-        public string OneTitl { get; set; } //this needs to change to "OneTitl". NN droprecreateDB
+        public string OneTitl { get; set; } 
     }
 }

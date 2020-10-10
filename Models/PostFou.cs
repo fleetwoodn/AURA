@@ -18,7 +18,7 @@ namespace AURA.Models
         public string FouZero { get; set; }
 
         [Display(Name = "Number")]
-        public string FouDigit { get; set; }
+        public int FouDigit { get; set; }
 
         [Display(Name = "Full Name")]
         [StringLength(45)]
