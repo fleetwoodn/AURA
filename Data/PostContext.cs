@@ -25,6 +25,16 @@ namespace AURA.Data
         public DbSet<PostSev> PostSevs { get; set; }
         public DbSet<PostEig> PostEigs { get; set; }
         public DbSet<PostNin> PostNins { get; set; }
+        
+        //Accounting Tables
+        public DbSet<AURA.Models.ProductList> ProductList { get; set; }
+        public DbSet<AURA.Models.BookAccounts> BookAccounts { get; set; }
+        public DbSet<AURA.Models.FractionList> FractionLists { get; set; }
+        public DbSet<AURA.Models.Journal> Journals { get; set; }
+        
+        //Employee tables
+        public DbSet<AURA.Models.Agents> Agents { get; set; }
+        //public DbSet<AURA.Models.AgentsAddress> AgentsAddresses { get; set; }
 
     }
 }

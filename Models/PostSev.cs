@@ -31,7 +31,7 @@ namespace AURA.Models
         public string SevDesc { get; set; }
 
         [Display(Name = "Amount")]
-        public string SevAmou { get; set; }
+        public decimal SevAmou { get; set; }
 
         [Display(Name = "Ac1")]
         public string SevAc1 { get; set; }

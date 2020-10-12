@@ -97,8 +97,8 @@
 {
 <p>
     <span><a asp-action="ThrEdit" asp-route-id="@item.ThrId">Edit</a></span><nbsp> </nbsp>|
-    <span>@Html.DisplayFor(modelItem => item.ThrDigit)</span><nbsp> </nbsp>.
-    <span>@Html.DisplayFor(modelItem => item.ThrDate)|</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.ThrDigit)</span>.<nbsp> </nbsp>
+    <span>@Html.DisplayFor(modelItem => item.ThrDate)</span><nbsp> </nbsp>|
     <span>@Html.DisplayFor(modelItem => item.ThrText)</span>
 </p>
 
@@ -115,13 +115,13 @@
 {
 <p>
     <span><a asp-action="FouEdit" asp-route-id="@item.FouId">Edit</a></span><nbsp> </nbsp>|
-    <span>@Html.DisplayFor(modelItem => item.FouDigit)</span><nbsp> </nbsp>.
+    <span>@Html.DisplayFor(modelItem => item.FouDigit)</span>.<nbsp> </nbsp>
     <span>@Html.DisplayFor(modelItem => item.FouName)</span><nbsp> </nbsp>|
     <span>@Html.DisplayFor(modelItem => item.FouPhon)</span><nbsp> </nbsp>|
     <span>@Html.DisplayFor(modelItem => item.FouEmai)</span>
 </p>
 <p>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span>@Html.DisplayFor(modelItem => item.FouAddr)</span><nbsp> </nbsp>|
     <span>@Html.DisplayFor(modelItem => item.FouPost)</span><nbsp> </nbsp>|
     <span>@Html.DisplayFor(modelItem => item.FouOrg)</span><nbsp> </nbsp>|
@@ -135,32 +135,17 @@
     <span><b>REMARKS</b></span>
     <a asp-action="FivCreate" asp-route-zero="@Model.OneZero">ADD 5/</a>
 </p>
-<table class="table">
 
-    <tbody>
-        @foreach (var item in Model.PostFivs)
-        {
-            <tr>
-                <td>
-                    <a asp-action="FivEdit" asp-route-id="@item.FivId">Edit</a> |
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FivDigit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FivPrio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FivCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FivText)
-                </td>
-
-            </tr>
-        }
-    </tbody>
-</table>
+@foreach (var item in Model.PostFivs)
+{
+    <p>
+        <span><a asp-action="FivEdit" asp-route-id="@item.FivId">Edit</a></span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.FivDigit)</span>.<nbsp> </nbsp>
+        <span>@Html.DisplayFor(modelItem => item.FivPrio)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.FivCode)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.FivText)</span>
+    </p>
+}
 
 @*list of six*@
 <hr />
@@ -168,41 +153,17 @@
     <span><b>PAYMENTS</b></span>
     <a asp-action="SixCreate" asp-route-zero="@Model.OneZero">ADD 6/</a>
 </p>
-<table class="table">
-
-    <tbody>
-        @foreach (var item in Model.PostSixs)
-        {
-            <tr>
-                <td>
-                    <a asp-action="SixEdit" asp-route-id="@item.SixId">Edit</a> |
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SixDigit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SixDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SixType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SixDeta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SixAmou)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SixStat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SixNote)
-                </td>
-
-            </tr>
-        }
-    </tbody>
-</table>
+@foreach (var item in Model.PostSixs)
+{
+<p>
+    <span><a asp-action="SixEdit" asp-route-id="@item.SixId">Edit</a></span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SixDigit)</span>.<nbsp> </nbsp>
+    <span>@Html.DisplayFor(modelItem => item.SixDate)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SixType)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SixAmou)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SixStat)</span><nbsp> </nbsp>|
+</p>
+}
 
 @*list of sev*@
 <hr />
@@ -210,74 +171,21 @@
     <span><b>ACCOUNTING</b></span>
     <a asp-action="SevCreate" asp-route-zero="@Model.OneZero">ADD 7/</a>
 </p>
-<table class="table">
 
-    <tbody>
-        @foreach (var item in Model.PostSevs)
-        {
-            <tr>
-                <td>
-                    <a asp-action="SevEdit" asp-route-id="@item.SevId">Edit</a> |
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevDigit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevInvo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevDesc)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevAmou)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevAc1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevAc2)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevAcf)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevSign)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevStage)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevPart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevCust)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevStat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevPaym)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevRefe)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevHidd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevChec)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SevNote)
-                </td>
+@foreach (var item in Model.PostSevs)
+{
+<p>
+    <span><a asp-action="SevEdit" asp-route-id="@item.SevId">Edit</a></span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SevDigit)</span>.<nbsp> </nbsp>
+    <span>@Html.DisplayFor(modelItem => item.SevInvo)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SevDate)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SevDesc)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SevAmou)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SevSign)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.SevNote)</span><nbsp> </nbsp>|
+</p>
+}
 
-            </tr>
-        }
-    </tbody>
-</table>
 
 @*list of eig*@
 <hr />
@@ -285,35 +193,19 @@
     <span><b>AGENTS</b></span>
     <a asp-action="EigCreate" asp-route-zero="@Model.OneZero">ADD 8/</a>
 </p>
-<table class="table">
 
-    <tbody>
-        @foreach (var item in Model.PostEigs)
-        {
-            <tr>
-                <td>
-                    <a asp-action="EigEdit" asp-route-id="@item.EigId">Edit</a> |
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EigDigit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EigAgen)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EigRole)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EigLoad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EigNote)
-                </td>
+@foreach (var item in Model.PostEigs)
+{
+<p>
+    <span><a asp-action="EigEdit" asp-route-id="@item.EigId">Edit</a></span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.EigDigit)</span>.<nbsp> </nbsp>
+    <span>@Html.DisplayFor(modelItem => item.EigAgen)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.EigRole)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.EigLoad)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.EigNote)</span><nbsp> </nbsp>|
+</p>
+}
 
-            </tr>
-        }
-    </tbody>
-</table>
 
 @*list of nin*@
 <hr />
@@ -321,29 +213,14 @@
     <span><b>ATTACHMENTS</b></span>
     <a asp-action="NinCreate" asp-route-zero="@Model.OneZero">ADD 9/</a>
 </p>
-<table class="table">
 
-    <tbody>
-        @foreach (var item in Model.PostNins)
-        {
-            <tr>
-                <td>
-                    <a asp-action="NinEdit" asp-route-id="@item.NinId">Edit</a> |
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NinDigit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NinFile)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NinCapt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NinNote)
-                </td>
+@foreach (var item in Model.PostNins)
+{
+<p>
+    <span><a asp-action="NinEdit" asp-route-id="@item.NinId">Edit</a></span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.NinDigit)</span>.<nbsp> </nbsp>
+    <span>@Html.DisplayFor(modelItem => item.NinCapt)</span><nbsp> </nbsp>|
+    <span>@Html.DisplayFor(modelItem => item.NinNote)</span><nbsp> </nbsp>|
+</p>
+}
 
-            </tr>
-        }
-    </tbody>
-</table>

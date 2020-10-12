@@ -772,7 +772,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SevCreate([Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
+        public async Task<IActionResult> SevCreate([Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevStage,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
         {
             if (!(_context.PostSevs.Count(n => n.SevZero == postSev.SevZero) > 0))
             {
@@ -791,6 +791,84 @@ namespace AURA.Controllers
                 return RedirectToAction(nameof(PostDetail), new { zero = postSev.SevZero });
             }
             return View(postSev);
+        }
+
+        // GET: PostSevBuilder
+        public IActionResult SevBuilder(string zero, string stage, string part)
+        {
+            ViewBag.zero = zero;
+            ViewBag.stage = stage;
+            ViewBag.part = part;
+
+            //PostSev postSev = _context
+
+            var viewModel = new SevBuilderVM
+            {
+                ProductLists = _context.ProductList.ToList()
+
+            };
+
+
+            return View(viewModel);
+        }
+
+        //post: sevbuilder
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SevBuilder([Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevStage,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
+        {
+            //SevZero
+            //postSev.SevZero = 
+
+            //SevDigit
+            if (!(_context.PostSevs.Count(n => n.SevZero == postSev.SevZero) > 0))
+            {
+                postSev.SevDigit = 1;
+            }
+            else
+            {
+                postSev.SevDigit = _context.PostSevs.Where(m => m.SevZero == postSev.SevZero).Max(x => x.SevDigit) + 1;
+            }
+            //SevInvo
+                //grab from invoice table
+            //SevDate
+
+            postSev.SevDate = DateTime.Now;
+            //SevDesc
+                //grab from other table...??combobox
+            //SevAmou
+                //from form
+            //SevAc1
+            postSev.SevAc1 = "1100";
+            //SevAc2
+                //from other table ??combobox
+            //SevAcf
+                //from other table ??combobox
+            //SevSign
+                //user.identity
+            postSev.SevSign = "njn1";
+            //SevStage
+                //from string passed
+            //SevPart
+                //from string passed
+            //SevCust
+                //from string passed
+            //SevStat
+            postSev.SevStat = "OPEN";
+            //SevPaym
+            postSev.SevPaym = "FALSE";
+            //SevRefe
+                //nothing
+            //SevHidd
+                //from form
+            //SevChec
+                //nothing
+            //SevNote
+                //from form
+
+
+
+            return View();
         }
 
         // GET: PostSevs/Edit/5
@@ -814,7 +892,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SevEdit(int id, [Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
+        public async Task<IActionResult> SevEdit(int id, [Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevStage,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
         {
             if (id != postSev.SevId)
             {

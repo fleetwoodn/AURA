@@ -10,22 +10,22 @@ using AURA.Models;
 
 namespace AURA.Controllers
 {
-    public class PostSevsController : Controller
+    public class ProductListsController : Controller
     {
         private readonly PostContext _context;
 
-        public PostSevsController(PostContext context)
+        public ProductListsController(PostContext context)
         {
             _context = context;
         }
 
-        // GET: PostSevs
+        // GET: ProductLists
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PostSevs.ToListAsync());
+            return View(await _context.ProductList.ToListAsync());
         }
 
-        // GET: PostSevs/Details/5
+        // GET: ProductLists/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace AURA.Controllers
                 return NotFound();
             }
 
-            var postSev = await _context.PostSevs
-                .FirstOrDefaultAsync(m => m.SevId == id);
-            if (postSev == null)
+            var productList = await _context.ProductList
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (productList == null)
             {
                 return NotFound();
             }
 
-            return View(postSev);
+            return View(productList);
         }
 
-        // GET: PostSevs/Create
+        // GET: ProductLists/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: PostSevs/Create
+        // POST: ProductLists/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevStage,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
+        public async Task<IActionResult> Create([Bind("ProductId,AccountNumber,FractionId,ProductDescription,ListPrice,EntryDate,ExpiryDate,Note")] ProductList productList)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(postSev);
+                _context.Add(productList);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(postSev);
+            return View(productList);
         }
 
-        // GET: PostSevs/Edit/5
+        // GET: ProductLists/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace AURA.Controllers
                 return NotFound();
             }
 
-            var postSev = await _context.PostSevs.FindAsync(id);
-            if (postSev == null)
+            var productList = await _context.ProductList.FindAsync(id);
+            if (productList == null)
             {
                 return NotFound();
             }
-            return View(postSev);
+            return View(productList);
         }
 
-        // POST: PostSevs/Edit/5
+        // POST: ProductLists/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevStage,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,AccountNumber,FractionId,ProductDescription,ListPrice,EntryDate,ExpiryDate,Note")] ProductList productList)
         {
-            if (id != postSev.SevId)
+            if (id != productList.ProductId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace AURA.Controllers
             {
                 try
                 {
-                    _context.Update(postSev);
+                    _context.Update(productList);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostSevExists(postSev.SevId))
+                    if (!ProductListExists(productList.ProductId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace AURA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(postSev);
+            return View(productList);
         }
 
-        // GET: PostSevs/Delete/5
+        // GET: ProductLists/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace AURA.Controllers
                 return NotFound();
             }
 
-            var postSev = await _context.PostSevs
-                .FirstOrDefaultAsync(m => m.SevId == id);
-            if (postSev == null)
+            var productList = await _context.ProductList
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (productList == null)
             {
                 return NotFound();
             }
 
-            return View(postSev);
+            return View(productList);
         }
 
-        // POST: PostSevs/Delete/5
+        // POST: ProductLists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var postSev = await _context.PostSevs.FindAsync(id);
-            _context.PostSevs.Remove(postSev);
+            var productList = await _context.ProductList.FindAsync(id);
+            _context.ProductList.Remove(productList);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PostSevExists(int id)
+        private bool ProductListExists(int id)
         {
-            return _context.PostSevs.Any(e => e.SevId == id);
+            return _context.ProductList.Any(e => e.ProductId == id);
         }
     }
 }
