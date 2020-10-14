@@ -1,0 +1,168 @@
+﻿@model AURA.ViewModels.WeekCalendarVM
+
+
+<p>
+    <h2>
+        Week Calendar
+    </h2>
+</p>
+
+<table>
+    <tr>
+        <th>@ViewBag.Thr00</th>
+    </tr>
+    @foreach (var item in Model.Thr00)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrText)
+            </td>
+            <td>
+                <a asp-action="PostDetail" asp-route-zero="@item.ThrZero">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<table>
+    <tr>
+        <th>@ViewBag.Thr01</th>
+    </tr>
+    @foreach (var item in Model.Thr01)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrText)
+            </td>
+            <td>
+                <a asp-action="PostDetail" asp-route-zero="@item.ThrZero">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<table>
+    <tr>
+        <th>@ViewBag.Thr02</th>
+    </tr>
+    @foreach (var item in Model.Thr02)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrText)
+            </td>
+            <td>
+                <a asp-action="PostDetail" asp-route-zero="@item.ThrZero">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<table>
+    <tr>
+        <th>@ViewBag.Thr03</th>
+    </tr>
+    @foreach (var item in Model.Thr03)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrText)
+            </td>
+            <td>
+                <a asp-action="PostDetail" asp-route-zero="@item.ThrZero">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<table>
+    <tr>
+        <th>@ViewBag.Thr04</th>
+    </tr>
+    @foreach (var item in Model.Thr04)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrText)
+            </td>
+            <td>
+                <a asp-action="PostDetail" asp-route-zero="@item.ThrZero">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<table>
+    <tr>
+        <th>@ViewBag.Thr05</th>
+    </tr>
+    @foreach (var item in Model.Thr05)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrText)
+            </td>
+            <td>
+                <a asp-action="PostDetail" asp-route-zero="@item.ThrZero">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<table>
+    <tr>
+        <th>@ViewBag.Thr06</th>
+    </tr>
+    @foreach (var item in Model.Thr06)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrText)
+            </td>
+            <td>
+                <a asp-action="PostDetail" asp-route-zero="@item.ThrZero">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<table>
+    <tr>
+        <th>@ViewBag.Thr07</th>
+    </tr>
+    @foreach (var item in Model.Thr07)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrText)
+            </td>
+            <td>
+                <a asp-action="PostDetail" asp-route-zero="@item.ThrZero">Details</a>
+            </td>
+        </tr>
+    }
+</table>

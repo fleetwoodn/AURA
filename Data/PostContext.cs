@@ -34,7 +34,12 @@ namespace AURA.Data
         
         //Employee tables
         public DbSet<AURA.Models.Agents> Agents { get; set; }
-        //public DbSet<AURA.Models.AgentsAddress> AgentsAddresses { get; set; }
+        public DbSet<AURA.Models.AgentsAddress> AgentsAddresses { get; set; }
+        public DbSet<AURA.Models.AgentsPhone> AgentsPhones { get; set; }
+        public DbSet<AURA.Models.AgentsEmail> AgentsEmails { get; set; }
+        public DbSet<AURA.Models.AgentsRoles> AgentsRoles { get; set; }
+        public DbSet<AURA.Models.AgentsRemarks> AgentsRemarks { get; set; }
+        public DbSet<AURA.Models.AgentsPayment> AgentsPayments { get; set; }
 
     }
 }

@@ -1,8 +1,11 @@
-﻿@model AURA.Models.PostThr
+﻿@model AURA.ViewModels.ThreeDayAvailabilityVM
 
-@{
-    ViewData["Title"] = "ThrCreate";
-}
+@*@model AURA.Models.PostThr
+
+    @{
+        ViewData["Title"] = "ThrCreate";
+    }*@
+
 
 
 
@@ -16,7 +19,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ThrZero" class="control-label"></label>
-                <input asp-for="ThrZero" class="form-control" readonly="readonly" value="@ViewBag.Zero"/>
+                <input asp-for="ThrZero" class="form-control" readonly="readonly" value="@ViewBag.Zero" />
                 <span asp-validation-for="ThrZero" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -46,3 +49,173 @@
     <a asp-action="PostDetail" asp-route-zero="@ViewBag.Zero">Back to Detail</a>
 </div>
 
+<hr />
+
+<form asp-controller="Post" asp-action="ThrCreate">
+    <p>
+        <input type="text" name="dateString" method="get"/>
+        <input type="submit" value="SEARCH AVAILABILITY" />
+    </p>
+</form>
+
+<hr />
+<div>
+    <h4>@ViewBag.dateX</h4>
+    <table>
+        @foreach (var item in Model.Thr0X)
+        {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrText)
+            </td>
+            
+        </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.dateY</h4>
+    <table>
+        @foreach (var item in Model.Thr0Y)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.dateZ</h4>
+    <table>
+        @foreach (var item in Model.Thr0Z)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.date0</h4>
+    <table>
+        @foreach (var item in Model.Thr00)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.date1</h4>
+    <table>
+        @foreach (var item in Model.Thr01)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.date2</h4>
+    <table>
+        @foreach (var item in Model.Thr02)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.date3</h4>
+    <table>
+        @foreach (var item in Model.Thr03)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>

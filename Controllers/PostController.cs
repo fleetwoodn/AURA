@@ -31,8 +31,16 @@ namespace AURA.Controllers
         }
 
         //get: postindex
-        public async Task<IActionResult> PostIndex()
+        public async Task<IActionResult> PostIndex(string searchString)
         {
+            var titles = from m in _context.PostOnes
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                titles = titles.Where(s => s.OneTitl.Contains(searchString));
+            }
+
             return View(await _context.PostOnes.ToListAsync());
             
         }
@@ -267,17 +275,50 @@ namespace AURA.Controllers
         //post thr****************************************************************************************************************************************
 
         // GET: PostThrs/Create
-        public IActionResult ThrCreate(string zero)
+        public IActionResult ThrCreate(string zero, string dateString)
         {
             ViewBag.zero = zero;
 
-            //ViewBag.dig = (_context.PostThrs
-            //    .Where(m => m.ThrZero == zero)
-            //    .Select(x => int.Parse(x.ThrDigit))
-            //    .DefaultIfEmpty(0).Max() + 1)
-            //    .ToString();
+            if (String.IsNullOrEmpty(dateString))
+            {
+                dateString = DateTime.Now.ToString("yyyy-MM-dd");
+            }
 
-            return View();
+            DateTime mDate = System.DateTime.Parse(dateString);
+
+            DateTime dateX = mDate.AddDays(-3);
+            ViewBag.dateX = dateX.ToString("yy-MM-dd");
+
+            DateTime dateY = mDate.AddDays(-2);
+            ViewBag.dateY = dateY.ToString("yy-MM-dd");
+
+            DateTime dateZ = mDate.AddDays(-1);
+            ViewBag.dateZ = dateZ.ToString("yy-MM-dd");
+
+            DateTime date0 = mDate;
+            ViewBag.date0 = mDate.ToString("yy-MM-dd");
+
+            DateTime date1 = mDate.AddDays(1);
+            ViewBag.date1 = date1.ToString("yy-MM-dd");
+
+            DateTime date2 = mDate.AddDays(2);
+            ViewBag.date2 = date2.ToString("yy-MM-dd");
+
+            DateTime date3 = mDate.AddDays(3);
+            ViewBag.date3 = date3.ToString("yy-MM-dd");
+
+            var viewModel = new ThreeDayAvailabilityVM
+            {
+                Thr0X = _context.PostThrs.Where(m => m.ThrDate.Date == dateX),
+                Thr0Y = _context.PostThrs.Where(m => m.ThrDate.Date == dateY),
+                Thr0Z = _context.PostThrs.Where(m => m.ThrDate.Date == dateZ),
+                Thr00 = _context.PostThrs.Where(m => m.ThrDate.Date == date0),
+                Thr01 = _context.PostThrs.Where(m => m.ThrDate.Date == date1),
+                Thr02 = _context.PostThrs.Where(m => m.ThrDate.Date == date2),
+                Thr03 = _context.PostThrs.Where(m => m.ThrDate.Date == date3),
+            };
+
+            return View(viewModel);
         }
 
         // POST: PostThrs/Create
@@ -841,7 +882,7 @@ namespace AURA.Controllers
             //SevAc1
             postSev.SevAc1 = "1100";
             //SevAc2
-                //from other table ??combobox
+            postSev.SevAc2 =     //from other table ??combobox
             //SevAcf
                 //from other table ??combobox
             //SevSign

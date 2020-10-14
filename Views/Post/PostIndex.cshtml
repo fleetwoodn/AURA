@@ -9,6 +9,12 @@
 <p>
     <a asp-action="OneCreate">NEW POST</a>
 </p>
+<form asp-controller="Post" asp-action="PostIndex" method="get">
+    <p>
+        Title Search : <input type="text" name="searchString" />
+        <input type="submit" value="Search Titles" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
