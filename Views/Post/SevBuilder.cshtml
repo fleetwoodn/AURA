@@ -1,4 +1,4 @@
-﻿@model AURA.ViewModels.SevBuilderVM
+﻿@model AURA.Models.ProductList
 
 @{
     ViewData["Title"] = "SevBuilder";
@@ -6,55 +6,83 @@
 
 <h1>SevBuilder</h1>
 
-<h4>PostSev</h4>
+<h4>ProductList</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="SevBuilder">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
             <div class="form-group">
-                <label asp-for="SevZero" class="control-label"></label>
-                <input asp-for="SevZero" class="form-control" readonly="readonly" value="@ViewBag.zero" />
-                <span asp-validation-for="SevZero" class="text-danger"></span>
+                <input type="hidden" asp-for="AccountNumber" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="SevDigit" class="control-label"></label>
-                <input asp-for="SevDigit" class="form-control" readonly="readonly" value="0" />
-                <span asp-validation-for="SevDigit" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="SevDesc" class="control-label"></label>
-                <input asp-for="SevDesc" class="form-control" />
-                <span asp-validation-for="SevDesc" class="text-danger"></span>
+                <input type="hidden" asp-for="FractionId" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="SevAmou" class="control-label"></label>
-                <input asp-for="SevAmou" class="form-control" />
-                <span asp-validation-for="SevAmou" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="SevAc2" class="control-label"></label>
-                <input asp-for="SevAc2" class="form-control" />
-                <span asp-validation-for="SevAc2" class="text-danger"></span>
+                <input type="hidden" asp-for="ProductDescription" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="SevAcf" class="control-label"></label>
-                <input asp-for="SevAcf" class="form-control" />
-                <span asp-validation-for="SevAcf" class="text-danger"></span>
+                <input type="hidden" asp-for="ListPrice" class="form-control" />
             </div>
-           
             <div class="form-group">
-                <label asp-for="SevHidd" class="control-label"></label>
-                <input asp-for="SevHidd" class="form-control" />
-                <span asp-validation-for="SevHidd" class="text-danger"></span>
+                <input type="hidden" asp-for="EntryDate" class="form-control" />
             </div>
-            
             <div class="form-group">
-                <label asp-for="SevNote" class="control-label"></label>
-                <input asp-for="SevNote" class="form-control" />
-                <span asp-validation-for="SevNote" class="text-danger"></span>
+                <input type="hidden" asp-for="ExpiryDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Note" class="form-control" />
+            </div>
+            @*<div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>*@
+        </form>
+    </div>
+</div>
+
+<hr />
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SevBuilder">
+            <div class="form-group">
+                <input type="text" id="SevZero" name="SevZero" readonly="readonly" value="@ViewBag.zero" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevDigit" name="SevDigit" readonly="readonly" value="0" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevDesc" name="SevDesc" class="form-control" value="@Html.DisplayFor(model => model.ProductDescription)" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevAmou" name="SevAmou" class="form-control" value="@Html.DisplayFor(model => model.ListPrice)" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevAc1" name="SevAc1" class="form-control" value="1100" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevAc2" name="SevAc2" class="form-control" value="@Html.DisplayFor(model => model.AccountNumber)" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevAcf" name="SevAcf" class="form-control" value="@Html.DisplayFor(model => model.FractionId)" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevSign" name="SevSign" class="form-control" value="" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevStage" name="SevStage" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevPart" name="SevPart" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevCust" name="SevCust" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="SevNote" name="SevNote" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -63,35 +91,3 @@
     </div>
 </div>
 
-<table class="table">
-    
-    <tbody>
-        @foreach (var item in Model.ProductLists)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AccountNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FractionId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ListPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EntryDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExpiryDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Note)
-                </td>
-                
-            </tr>
-        }
-    </tbody>
-</table>

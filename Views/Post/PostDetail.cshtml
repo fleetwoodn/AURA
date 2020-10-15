@@ -192,7 +192,8 @@
 @*list of sev*@
 <hr />
 <p>
-    <a asp-action="SevCreate" asp-route-zero="@Model.OneZero">ADD 7/</a>
+    @*<a asp-action="SevCreate" asp-route-zero="@Model.OneZero" asp-route-stage="@Model.OneStag" asp-route-partyid="@Model.OnePart">ADD 7/</a>*@
+    <a asp-action="SevProductList" asp-route-zero="@Model.OneZero" asp-route-stage="@Model.OneStag" asp-route-partyid="@Model.OnePart">ADD 7/</a>
 </p>
 <table class="table">
 

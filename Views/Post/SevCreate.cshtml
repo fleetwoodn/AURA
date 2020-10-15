@@ -27,62 +27,63 @@
                 <input asp-for="SevInvo" class="form-control" />
                 <span asp-validation-for="SevInvo" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="SevDate" class="control-label"></label>
                 <input asp-for="SevDate" class="form-control" />
                 <span asp-validation-for="SevDate" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="SevDesc" class="control-label"></label>
-                <input asp-for="SevDesc" class="form-control" />
+                <input asp-for="SevDesc" class="form-control" value="@ViewBag.productDescription"/>
                 <span asp-validation-for="SevDesc" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevAmou" class="control-label"></label>
-                <input asp-for="SevAmou" class="form-control" />
+                <input asp-for="SevAmou" class="form-control" value="@ViewBag.listPrice"/>
                 <span asp-validation-for="SevAmou" class="text-danger"></span>
+                <span class="text-danger"><b>CHECK AMOUNTS!</b></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevAc1" class="control-label"></label>
-                <input asp-for="SevAc1" class="form-control" />
+                <input asp-for="SevAc1" class="form-control" value="@ViewBag.Ac1"/>
                 <span asp-validation-for="SevAc1" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevAc2" class="control-label"></label>
-                <input asp-for="SevAc2" class="form-control" />
+                <input asp-for="SevAc2" class="form-control" value="@ViewBag.accountNumber"/>
                 <span asp-validation-for="SevAc2" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevAcf" class="control-label"></label>
-                <input asp-for="SevAcf" class="form-control" />
+                <input asp-for="SevAcf" class="form-control" value="@ViewBag.fractionId"/>
                 <span asp-validation-for="SevAcf" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevSign" class="control-label"></label>
-                <input asp-for="SevSign" class="form-control" />
+                <input asp-for="SevSign" class="form-control" value="@ViewBag.Sign"/>
                 <span asp-validation-for="SevSign" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevStage" class="control-label"></label>
-                <input asp-for="SevStage" class="form-control" />
+                <input asp-for="SevStage" class="form-control" value="@ViewBag.stage"/>
                 <span asp-validation-for="SevStage" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevPart" class="control-label"></label>
-                <input asp-for="SevPart" class="form-control" />
+                <input asp-for="SevPart" class="form-control" value="@ViewBag.partyid"/>
                 <span asp-validation-for="SevPart" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevCust" class="control-label"></label>
-                <input asp-for="SevCust" class="form-control" />
+                <input asp-for="SevCust" class="form-control" value="@ViewBag.partyid" />
                 <span asp-validation-for="SevCust" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SevStat" class="control-label"></label>
-                <input asp-for="SevStat" class="form-control" />
+                <input asp-for="SevStat" class="form-control" value="OPEN"/>
                 <span asp-validation-for="SevStat" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="SevPaym" class="control-label"></label>
                 <input asp-for="SevPaym" class="form-control" />
                 <span asp-validation-for="SevPaym" class="text-danger"></span>
@@ -101,7 +102,7 @@
                 <label asp-for="SevChec" class="control-label"></label>
                 <input asp-for="SevChec" class="form-control" />
                 <span asp-validation-for="SevChec" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="SevNote" class="control-label"></label>
                 <input asp-for="SevNote" class="form-control" />

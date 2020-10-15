@@ -801,9 +801,24 @@ namespace AURA.Controllers
         //post sev****************************************************************************************************************************************
 
         // GET: PostSevs/Create
-        public IActionResult SevCreate(string zero)
+        public IActionResult SevCreate(string zero, string stage, string partyid, string accountNumber, string fractionId, string productDescription, string listPrice)
         {
+            //asp-route-zero="@ViewBag.zero" asp-route-stage="@ViewBag.stage" asp-route-partyid="@ViewBag.partyid" 
+            //asp-route-accountNumber="@item.AccountNumber" asp-route-fractionId="@item.FractionId" asp-route-productDescription="@item.ProductDescription" 
+            //asp-route-listPrice="@item.ListPrice"
+
             ViewBag.zero = zero;
+            ViewBag.stage = stage;
+            ViewBag.partyid = partyid; 
+            ViewBag.accountNumber = accountNumber;
+            ViewBag.fractionId = fractionId;
+            ViewBag.productDescription = productDescription;
+            ViewBag.listPrice = listPrice;
+
+            ViewBag.Ac1 = "1100";
+            //ViewBag.Sign = User.Identity; //after authentication
+            ViewBag.Sign = "njn-1";
+
 
             return View();
         }
@@ -834,99 +849,60 @@ namespace AURA.Controllers
             return View(postSev);
         }
 
-        // GET: PostSevBuilder
-        public IActionResult SevBuilder(string zero, string stage, string part)
+        // get: PostSevProductList
+
+        public async Task<IActionResult> SevProductList(string zero, string stage, string partyid)
         {
             ViewBag.zero = zero;
             ViewBag.stage = stage;
-            ViewBag.part = part;
+            ViewBag.partyid = partyid;
 
-            //PostSev postSev = _context
-
-            var viewModel = new SevBuilderVM
-            {
-                ProductLists = _context.ProductList.ToList()
-
-            };
-
-
-            return View(viewModel);
+            return View(await _context.ProductList.ToListAsync());
         }
 
-        //post: sevbuilder
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SevBuilder([Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevStage,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
-        {
-            //SevZero
-            //postSev.SevZero = 
+        //get: SevBuilder
 
-            //SevDigit
-            if (!(_context.PostSevs.Count(n => n.SevZero == postSev.SevZero) > 0))
-            {
-                postSev.SevDigit = 1;
-            }
-            else
-            {
-                postSev.SevDigit = _context.PostSevs.Where(m => m.SevZero == postSev.SevZero).Max(x => x.SevDigit) + 1;
-            }
-            //SevInvo
-                //grab from invoice table
-            //SevDate
+        //public async Task<IActionResult> SevBuilder(int? id, string zero, string stage, string partyid)
+        //{
+        //    ViewBag.zero = zero;
 
-            postSev.SevDate = DateTime.Now;
-            //SevDesc
-                //grab from other table...??combobox
-            //SevAmou
-                //from form
-            //SevAc1
-            postSev.SevAc1 = "1100";
-            //SevAc2
-            postSev.SevAc2 =     //from other table ??combobox
-            //SevAcf
-                //from other table ??combobox
-            //SevSign
-                //user.identity
-            postSev.SevSign = "njn1";
-            //SevStage
-                //from string passed
-            //SevPart
-                //from string passed
-            //SevCust
-                //from string passed
-            //SevStat
-            postSev.SevStat = "OPEN";
-            //SevPaym
-            postSev.SevPaym = "FALSE";
-            //SevRefe
-                //nothing
-            //SevHidd
-                //from form
-            //SevChec
-                //nothing
-            //SevNote
-                //from form
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
+        //    var productList = await _context.ProductList.FindAsync(id);
+        //    if (productList == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(productList);
 
+        //}
 
-            return View();
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> SevBuilder(PostSev postSev, string SevZero, string SevDesc, string SevAmou, string SevAc1, string SevAc2, string SevAcf, string SevSign, string SevStage, string SevPart, string SevCust, string SevNote)
+        //{
 
-        // GET: PostSevs/Edit/5
-        public async Task<IActionResult> SevEdit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //    return View();
+        //}
 
-            var postSev = await _context.PostSevs.FindAsync(id);
-            if (postSev == null)
-            {
-                return NotFound();
-            }
-            return View(postSev);
-        }
+        //// GET: PostSevs/Edit/5
+        //public async Task<IActionResult> SevEdit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var postSev = await _context.PostSevs.FindAsync(id);
+        //    if (postSev == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(postSev);
+        //}
 
         // POST: PostSevs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
