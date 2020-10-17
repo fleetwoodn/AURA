@@ -92,8 +92,8 @@ namespace AURA.Controllers
         }
         //***************************+++++++++++++++++++++ test area
 
-        [ActionName("PostDetaila")]
-        public async Task<IActionResult> PostDetaila(string zero = "201004-0")
+        [ActionName("PostDetailb")]
+        public async Task<IActionResult> PostDetailb(string zero = "201004-0")
         {
             //ViewBag.OneId = id;
 
@@ -185,7 +185,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> OneCreate([Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitle")] PostOne postOne, string zero, PostZero postZero)
+        public async Task<IActionResult> OneCreate([Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitl")] PostOne postOne, string zero, PostZero postZero)
         {
             //postOne.OneZero = zero;
 

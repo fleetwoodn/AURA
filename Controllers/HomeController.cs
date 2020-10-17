@@ -28,6 +28,26 @@ namespace AURA.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Pricing()
+        {
+            return View();
+        }
+
+        public IActionResult AboutPosts()
+        {
+            return View();
+        }
+
+        public IActionResult AboutUsers()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

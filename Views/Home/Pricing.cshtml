@@ -1,0 +1,131 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<ul>
+    <li>
+
+    </li>
+</ul>
+
+<h3>Pricing Instructions</h3>
+
+<ol>
+    <li>
+        <h4>Get Contacts</h4>
+        <p>
+            Like name, phone, email.
+        </p>
+    </li>
+    <li>
+        <h4>Get Routes</h4>
+        <p>
+            Pick address, drop address, what floor. Establish the total mileage, originating from home base [Greenpoint].
+            All these elements go into pricing a move.
+        </p>
+    </li>
+    <li>
+        <h4>Get Large Items</h4>
+        <p>
+            Large items are items that require 2 people to lift, may be bulky, and may need disassembly. The number 
+            of items here help determine the amount of time needed to load and unload. A mattress, a box spring, and
+            a frame are 3 separate items.
+            Enter into 'I' remark.
+        </p>        
+    </li>
+    <li>
+        <h4>Get Fragile Items</h4>
+        <p>
+            Fragiles are items like TV's, mirrors, paintings.
+            Enter into 'I' remark.
+        </p>
+    </li>
+    <li>
+        <h4>Get Small Items</h4>
+        <p>
+            Small items are items that may be moved by 1 or 2 people. Examples would be end tables, or dining chairs.
+            Enter into 'I' remark.
+        </p>
+    </li>
+    <li>
+        <h4>Get Box Inventory</h4>
+        <p>
+            Boxes vary alot, and affect the move. Are they moving boxes? Are the plastic totes[or tubs?]? How large are they?
+            A large moving box is anything larger that 18in x 18in x 18in. Be sure to record the number of each.
+            Enter into 'I' remark.
+        </p>
+    </li>
+    <li>
+        <h4>Special Items</h4>
+        <p>
+            Once we had to move a decorative motorcycle from the fourth floor down the stairs. Maybe a treadmill...
+            Enter into 'I' remark.
+        </p>
+    </li>
+    <li>
+        <h4>Calculate Load Time</h4>
+        <p>
+            Assuming that Large Items = L, Fragile Items = F, Small Items = S, and Boxes = B
+            We ignore
+            ---
+            (L*15)+(F*10)+(S*5)+(B*2) = Number of minutes to load/unload
+            ---
+            Assume we have a couch[L], a mattress[L], a box spring[L], a bed frame[L], a mirror[F], a small coffee 
+            table[S], and 10 boxes[B]. Then we get:
+            (4*15)+(1*10)+(1*5)+(10*3) == 95 minutes to load/unload is our estimate. Times by 2 to get 190 minutes.
+        </p>
+    </li>
+    <li>
+        <h4>Calculate Vehicle Distance</h4>
+        <p>
+            Get the total mileage the vehicle will need to travel, starting at home base. For example, someone moving from
+            5 W 86th Street to 108 E 72nd Street, the itinerary should be 83 Greenpoint Avenue, to 5 W 86th Street, to 108 E
+            72nd Street, to 83 Greenpoint Avenue. The total mileage is 13.2 miles.
+            Multiply this figure by 1.5, and round up. This is our total mileage. 13.2*1.5=19.8 ~ 20 miles.
+        </p>
+    </li>
+    <li>
+        <h4>Calculate Vehicle Time</h4>
+        <p>
+            A mapping application like Bing Maps will be able to calculate the approximate travel time on a given time and date.
+            Using our example, I put in 20OCT2020 at 11A. The time is calculated to be 1 hour and 26 minutes. Divide this in half,
+            giving us 43 minutes.
+        </p>
+    </li>
+    <li>
+        <h4>Add It Up!</h4>
+        <p>
+            Add the Load time and the Vehicle time and we get 233 minutes. We always round up, so 233 minutes becomes 240 minutes,
+            or 4 hours. We have 3 movers on a job, at $40/hr, and a 3 hour minimum. So the total labor is $120 per hour, or in this
+            case, $480.00 for labor.
+        </p>
+        <p>
+            Choose the vehicle carefully. A Cargo Van can carry 1 room of stuff, and CANNOT fit a king size mattress. Anything larger
+            than a studio apartment should almost definitely be a 15-17 ft truck, and anything larger than a 2 bedroom may be 2 trucks.
+        </p>
+        <p>
+            Cargo Van   == $20.00 + $1.10 per mile
+            Uhaul Van   == $40.00 + $1.80 per mile
+            Uhaul Truck == $65.00 + $1.80 per mile
+
+            In our example, we are renting a truck. The vehicle cost is estimated at $101.00
+        </p>
+        <p>
+            Gas mileage is calculated weekly. Current calculation is $0.23 per mile. The total gas charge is $8.28
+        </p>
+        <p>
+            <b>TOTAL PRICE ESTIMATE TO CLIENT IS $589.28</b>
+        </p>
+        <p>
+    </li>
+    <li>
+        <h4>Explain</h4>
+        <p>
+            At this point, you should explain to the client how we arrived at this figure, and stress that this is an estimate. We will
+            refund them money after the job if it comes under what we estimate, and we write that in our contract.
+        </p>
+    </li>
+
+</ol>

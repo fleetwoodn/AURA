@@ -4,9 +4,16 @@
     ViewData["Title"] = "FivCreate";
 }
 
-<h1>FivCreate</h1>
+    <head>
+        <style>
+            div.form-group {
+                margin-bottom: 0rem;
+            }
+        </style>
+    </head>
 
-<h4>PostFiv</h4>
+
+<h4>ADD 5/</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,17 +31,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="FivPrio" class="control-label"></label>
-                <input asp-for="FivPrio" class="form-control" />
+                <input asp-for="FivPrio" class="form-control" value="5" />
                 <span asp-validation-for="FivPrio" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FivCode" class="control-label"></label>
-                <input asp-for="FivCode" class="form-control" />
+                <input asp-for="FivCode" class="form-control" value="D"/>
                 <span asp-validation-for="FivCode" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom:1rem;">
                 <label asp-for="FivText" class="control-label"></label>
-                <input asp-for="FivText" class="form-control" />
+                @*<input asp-for="FivText" class="form-control" />*@
+                <textarea asp-for="FivText" class="form-control"></textarea>
                 <span asp-validation-for="FivText" class="text-danger"></span>
             </div>
             <div class="form-group">

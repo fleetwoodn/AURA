@@ -3,10 +3,15 @@
 @{
     ViewData["Title"] = "SixCreate";
 }
+    <head>
+        <style>
+            div.form-group {
+                margin-bottom: 0rem;
+            }
+        </style>
+    </head>
 
-<h1>SixCreate</h1>
-
-<h4>PostSix</h4>
+<h4>ADD 6/</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="SixDate" class="control-label"></label>
-                <input asp-for="SixDate" class="form-control" />
+                <input asp-for="SixDate" class="form-control" value="@DateTime.Now" />
                 <span asp-validation-for="SixDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,10 +49,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="SixStat" class="control-label"></label>
-                <input asp-for="SixStat" class="form-control" />
+                <input asp-for="SixStat" class="form-control" value="OPEN" />
                 <span asp-validation-for="SixStat" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom:1rem;">
                 <label asp-for="SixNote" class="control-label"></label>
                 <input asp-for="SixNote" class="form-control" />
                 <span asp-validation-for="SixNote" class="text-danger"></span>
