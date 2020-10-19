@@ -14,6 +14,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="UserId" />
             <div class="form-group">
+                <label asp-for="AuraId" class="control-label"></label>
+                <input asp-for="AuraId" class="form-control" />
+                <span asp-validation-for="AuraId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="FullName" class="control-label"></label>
                 <input asp-for="FullName" class="form-control" />
                 <span asp-validation-for="FullName" class="text-danger"></span>
@@ -56,6 +61,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="AgentDetail" asp-route-UserId="@Model.UserId">Back to Detail</a>
 </div>
+
 

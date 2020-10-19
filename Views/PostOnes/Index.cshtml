@@ -6,9 +6,19 @@
 
 <h1>Index</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
+
+<div class="row">
+    <div class="col-6">
+        <a asp-action="Create">Create New</a>
+    </div>
+    <div class="col-6 text-right">
+        <a class="btn btn-primary" asp-action="DownloadPostOneCommaSeperatedFile"><i class="fa fa-plus"></i>Export CSV</a>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>

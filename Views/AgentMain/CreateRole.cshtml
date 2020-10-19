@@ -1,0 +1,61 @@
+﻿@model AURA.Models.AgentsRoles
+
+@{
+    ViewData["Title"] = "CreateRole";
+}
+
+<h1>CreateRole</h1>
+
+<h4>AgentsRoles</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateRole">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" value="@ViewBag.userid" readonly="readonly" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgentRole" class="control-label"></label>
+                <input asp-for="AgentRole" class="form-control" />
+                <span asp-validation-for="AgentRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PayType" class="control-label"></label>
+                <input asp-for="PayType" class="form-control" />
+                <span asp-validation-for="PayType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PayRate" class="control-label"></label>
+                <input asp-for="PayRate" class="form-control" />
+                <span asp-validation-for="PayRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AgentDetail" asp-route-UserId="@ViewBag.userid">Back to Detail</a>
+</div>
+
+

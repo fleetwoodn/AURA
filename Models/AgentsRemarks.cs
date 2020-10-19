@@ -14,7 +14,7 @@ namespace AURA.Models
         public int Id { get; set; }
 
         [ForeignKey("Agents")]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         [Display(Name = "Subject")]
         public string RemarkSubject { get; set; }

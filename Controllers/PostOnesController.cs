@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using AURA.Data;
+﻿using AURA.Data;
 using AURA.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AURA.Controllers
 {
@@ -149,5 +147,31 @@ namespace AURA.Controllers
         {
             return _context.PostOnes.Any(e => e.OneId == id);
         }
+
+        /// <summary>
+        /// Downloads the post one comma seperated file.
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult DownloadPostOneCommaSeperatedFile()
+        {
+            try
+            {
+                var postOnes = _context.PostOnes.ToList();
+                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder exportData = stringBuilder;
+                stringBuilder.AppendLine("0/,Stage,Lead Agent,Party ID,Title");
+                foreach (var author in postOnes)
+                {
+                    stringBuilder.AppendLine($"{author.OneZero},{ author.OneStag},{ author.OneAgen},{ author.OnePart},{ author.OneTitl}");
+                }
+                return File(Encoding.UTF8.GetBytes
+                (stringBuilder.ToString()), "text/csv", "PostOne.csv");
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
     }
 }
+

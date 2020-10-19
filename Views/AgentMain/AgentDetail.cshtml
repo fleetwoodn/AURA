@@ -1,0 +1,121 @@
+﻿@model AURA.ViewModels.AgentDetailVM
+
+
+<h2>@Model.AuraId</h2>
+
+<div>
+    @Html.DisplayFor(model => model.FullName)
+</div>
+<div>
+    @Html.DisplayFor(model => model.NickName)
+</div>
+<div>
+    @Html.DisplayFor(model => model.AuraId)
+</div>
+<div>
+    @Html.DisplayFor(model => model.BirthDate)
+</div>
+<div>
+    @Html.DisplayFor(model => model.TaxId)
+</div>
+<div>
+    @Html.DisplayFor(model => model.AuraRole)
+</div>
+<div>
+    @Html.DisplayFor(model => model.StartDate)
+</div>
+<div>
+    @Html.DisplayFor(model => model.EndDate)
+</div>
+<hr />
+<p>
+    <span><b>PHONES</b></span>
+    <a asp-action="CreatePhone" asp-route-UserId="@Model.UserId">ADD PHONE/</a>
+</p>
+@foreach (var item in Model.agentsPhones)
+{
+    <p>
+        <span><a asp-action="EditPhone" asp-route-id="@item.Id">Edit</a></span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.CountryCode)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.PhoneNumber)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.EmailText)</span>
+    </p>
+
+}
+<hr />
+<p>
+    <span><b>EMAILS</b></span>
+    <a asp-action="CreateEmail" asp-route-UserId="@Model.UserId">ADD EMAIL/</a>
+</p>
+@foreach (var item in Model.agentsEmails)
+{
+    <p>
+        <span><a asp-action="EditEmail" asp-route-id="@item.Id">Edit</a></span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.EmailAddress)</span>
+    </p>
+
+}
+
+<hr />
+<p>
+    <span><b>ADDRESSES</b></span>
+    <a asp-action="CreateAddress" asp-route-UserId="@Model.UserId">ADD ADDRESS/</a>
+</p>
+@foreach (var item in Model.agentsAddresses)
+{
+    <p>
+        <span><a asp-action="EditAddress" asp-route-id="@item.Id">Edit</a></span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.Notes)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.StreetAddress)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.PostCode)</span>
+    </p>
+
+}
+
+<hr />
+
+<p>
+    <span><b>ROLES</b></span>
+    <a asp-action="CreateRole" asp-route-UserId="@Model.UserId">ADD ROLE/</a>
+</p>
+@foreach (var item in Model.agentsRoles)
+{
+    <p>
+        <span><a asp-action="EditRole" asp-route-id="@item.Id">Edit</a></span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.AgentRole)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.PayType)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.PayRate)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.StartDate)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.EndDate)</span>
+    </p>
+
+}
+
+<p>
+    <span><b>PAYMENTS</b></span>
+    <a asp-action="CreatePayment" asp-route-UserId="@Model.UserId">ADD PAYMENT/</a>
+</p>
+@foreach (var item in Model.agentsPayments)
+{
+    <p>
+        <span><a asp-action="EditPayment" asp-route-id="@item.Id">Edit</a></span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.PaymentType)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.PaymentDetail)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.Notes)</span>
+    </p>
+
+}
+
+<p>
+    <span><b>REMARKS</b></span>
+    <a asp-action="CreateRemark" asp-route-UserId="@Model.UserId">ADD REMARK/</a>
+</p>
+@foreach (var item in Model.agentsRemarks)
+{
+    <p>
+        <span><a asp-action="EditRemark" asp-route-id="@item.Id">Edit</a></span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.RemarkSubject)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.RemarkText)</span><nbsp> </nbsp>
+    </p>
+
+}

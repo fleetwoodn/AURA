@@ -13,6 +13,8 @@ using AURA.Data;
 using AURA.Models;
 using AURA.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+
 
 
 namespace AURA.Controllers
@@ -38,16 +40,21 @@ namespace AURA.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                titles = titles.Where(s => s.OneTitl.Contains(searchString));
+                titles = titles.Where(s => s.OneZero.Contains(searchString)
+                    ||s.OneStag.Contains(searchString)
+                    ||s.OnePart.Contains(searchString)
+                    ||s.OneTitl.Contains(searchString)
+                    );
             }
 
-            return View(await _context.PostOnes.ToListAsync());
+            //return View(await _context.PostOnes.ToListAsync());
+            return View(await titles.ToListAsync());
             
         }
 
         //get: post detail
         [ActionName("PostDetail")]
-        public async Task<IActionResult> PostDetail(string zero)
+        public IActionResult PostDetail(string zero)
         {
             //ViewBag.OneId = id;
 
@@ -57,8 +64,8 @@ namespace AURA.Controllers
             }
 
             //PostOne postOne = _context.PostOnes.Find(id);
-            PostOne postOne = _context.PostOnes.FirstOrDefault(m => m.OneZero == zero); 
-            
+            PostOne postOne = _context.PostOnes.FirstOrDefault(m => m.OneZero == zero);
+
             var uThr = _context.PostThrs.Where(m => m.ThrZero == zero).ToList();
             var uFou = _context.PostFous.Where(m => m.FouZero == zero).ToList();
             var uFiv = _context.PostFivs.Where(m => m.FivZero == zero).ToList();
@@ -75,7 +82,7 @@ namespace AURA.Controllers
                 OneAgen = postOne.OneAgen,
                 OnePart = postOne.OnePart,
                 OneTitl = postOne.OneTitl,
-                
+
 
                 PostThrs = uThr,
                 PostFous = uFou,
@@ -136,9 +143,89 @@ namespace AURA.Controllers
             return View(viewModel);
         }
 
-            //post zero****************************************************************************************************************************************
+        /// <summary>
+        /// Downloads the post one comma seperated file.
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult DownloadPostDetailCommaSeperatedFile(string zero)
+        {
+            try
+            {
+                var postOnes = _context.PostOnes.Where(m => m.OneZero == zero).ToList();
+                //var postTwos = _context.PostTwos.Where(m => m.TwoZero == zero).ToList();
+                var postThrs = _context.PostThrs.Where(m => m.ThrZero == zero).ToList();
+                var postFous = _context.PostFous.Where(m => m.FouZero == zero).ToList();
+                var postFivs = _context.PostFivs.Where(m => m.FivZero == zero).ToList();
+                    //&& m.FivCode.Contains("I")
+                    //).ToList();
+                var postSixs = _context.PostSixs.Where(m => m.SixZero == zero).ToList();
+                var postSevs = _context.PostSevs.Where(m => m.SevZero == zero).ToList();
+                var postEigs = _context.PostEigs.Where(m => m.EigZero == zero).ToList();
+                var postNins = _context.PostNins.Where(m => m.NinZero == zero).ToList();
 
-            // GET: PostZeroes/Create
+                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder exportData = stringBuilder;
+
+                stringBuilder.AppendLine("RYNE MOVING");
+                stringBuilder.AppendLine("212-787-2636");
+                stringBuilder.AppendLine("INFO@RYNE.CO");
+                stringBuilder.AppendLine("108 W 81ST STREET, NEW YORK, NY, 10024");
+                stringBuilder.AppendLine("");
+
+                stringBuilder.AppendLine("SUMMARY");
+                foreach (var author in postOnes)
+                {
+                    stringBuilder.AppendLine($"{author.OneZero},{ author.OneStag},{ author.OneAgen},{ author.OnePart},{ author.OneTitl}");
+                }
+
+                stringBuilder.AppendLine("TIMEFRAMES");
+                foreach (var author in postThrs)
+                {
+                    stringBuilder.AppendLine($"{author.ThrDigit},{author.ThrDate},{author.ThrText}");
+                }
+
+                stringBuilder.AppendLine("CONTACTS");
+                foreach (var author in postFous)
+                {
+                    stringBuilder.AppendLine($"{author.FouDigit},{author.FouName},{author.FouPhon},{author.FouEmai}");
+                }
+
+                stringBuilder.AppendLine("REMARKS");
+                foreach (var author in postFivs)
+                {
+                    stringBuilder.AppendLine($"{author.FivDigit},{author.FivPrio},{author.FivCode},{author.FivText}");
+                }
+
+                stringBuilder.AppendLine("BILLING");
+                foreach (var author in postSevs)
+                {
+                    stringBuilder.AppendLine($"{author.SevDigit},{author.SevDate},{author.SevDesc},{author.SevAmou}");
+                }
+
+                stringBuilder.AppendLine("AGENTS");
+                foreach (var author in postEigs)
+                {
+                    stringBuilder.AppendLine($"{author.EigDigit},{author.EigAgen},{author.EigRole},{author.EigLoad},{author.EigNote}");
+                }
+
+                stringBuilder.AppendLine("ATTACHMENTS");
+                foreach (var author in postNins)
+                {
+                    stringBuilder.AppendLine($"{author.NinDigit},{author.NinFile},{author.NinCapt},{author.NinNote}");
+                }
+
+                return File(Encoding.UTF8.GetBytes
+                (stringBuilder.ToString()), "text/csv", "PostDetail.csv");
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        //post zero****************************************************************************************************************************************
+
+        // GET: PostZeroes/Create
         public IActionResult ZeroCreate()
         {
             return View();
@@ -281,7 +368,8 @@ namespace AURA.Controllers
 
             if (String.IsNullOrEmpty(dateString))
             {
-                dateString = DateTime.Now.ToString("yyyy-MM-dd");
+                dateString = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
+                    //ToString("yyyy-MM-dd");
             }
 
             DateTime mDate = System.DateTime.Parse(dateString);
@@ -327,11 +415,12 @@ namespace AURA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ThrCreate([Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrText")] PostThr postThr, string zero)
+        //public async Task<IActionResult> ThrCreate(ThreeDayAvailabilityVM threeDayAvailabilityVM, PostThr postThr, string zero)
         {
-            //var Dig = _context.PostThrs.Count(n => n.ThrZero == postThr.ThrZero);
-
             
-            //if (!(Dig > 0))
+
+
+
             if (!(_context.PostThrs.Count(n => n.ThrZero == postThr.ThrZero) > 0))
             {
                 postThr.ThrDigit = 1;
@@ -830,6 +919,8 @@ namespace AURA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SevCreate([Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevStage,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
         {
+            postSev.SevDate = DateTime.Now;
+
             if (!(_context.PostSevs.Count(n => n.SevZero == postSev.SevZero) > 0))
             {
                 postSev.SevDigit = 1;
@@ -888,21 +979,21 @@ namespace AURA.Controllers
         //    return View();
         //}
 
-        //// GET: PostSevs/Edit/5
-        //public async Task<IActionResult> SevEdit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: PostSevs/Edit/5
+        public async Task<IActionResult> SevEdit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    var postSev = await _context.PostSevs.FindAsync(id);
-        //    if (postSev == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(postSev);
-        //}
+            var postSev = await _context.PostSevs.FindAsync(id);
+            if (postSev == null)
+            {
+                return NotFound();
+            }
+            return View(postSev);
+        }
 
         // POST: PostSevs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

@@ -26,7 +26,7 @@ namespace AURA.Controllers
         }
 
         // GET: Agents/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -54,7 +54,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,FullName,NickName,BirthDate,TaxId,StartDate,EndDate,AuraRole")] Agents agents)
+        public async Task<IActionResult> Create([Bind("UserId,AuraId,FullName,NickName,BirthDate,TaxId,StartDate,EndDate,AuraRole")] Agents agents)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace AURA.Controllers
         }
 
         // GET: Agents/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("UserId,FullName,NickName,BirthDate,TaxId,StartDate,EndDate,AuraRole")] Agents agents)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,AuraId,FullName,NickName,BirthDate,TaxId,StartDate,EndDate,AuraRole")] Agents agents)
         {
             if (id != agents.UserId)
             {
@@ -117,7 +117,7 @@ namespace AURA.Controllers
         }
 
         // GET: Agents/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace AURA.Controllers
         // POST: Agents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var agents = await _context.Agents.FindAsync(id);
             _context.Agents.Remove(agents);
@@ -145,7 +145,7 @@ namespace AURA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AgentsExists(string id)
+        private bool AgentsExists(int id)
         {
             return _context.Agents.Any(e => e.UserId == id);
         }

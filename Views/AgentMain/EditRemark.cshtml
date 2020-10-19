@@ -1,0 +1,44 @@
+﻿@model AURA.Models.AgentsRemarks
+
+@{
+    ViewData["Title"] = "EditRemark";
+}
+
+<h1>EditRemark</h1>
+
+<h4>AgentsRemarks</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditRemark">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" readonly="readonly" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RemarkSubject" class="control-label"></label>
+                <input asp-for="RemarkSubject" class="form-control" />
+                <span asp-validation-for="RemarkSubject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RemarkText" class="control-label"></label>
+                @*<input asp-for="RemarkText" class="form-control" />*@
+                <textarea asp-for="RemarkText" rows="20" cols="60"></textarea>
+                <span asp-validation-for="RemarkText" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AgentDetail" asp-route-UserId="@Model.UserId">Back to Detail</a>
+</div>
+
+

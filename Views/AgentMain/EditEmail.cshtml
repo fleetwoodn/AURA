@@ -1,0 +1,42 @@
+﻿@model AURA.Models.AgentsEmail
+
+@{
+    ViewData["Title"] = "EditEmail";
+}
+
+<h1>EditEmail</h1>
+
+<h4>AgentsEmail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditEmail">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AgentDetail" asp-route-UserId="@Model.UserId">Back to Detail</a>
+</div>
+
+

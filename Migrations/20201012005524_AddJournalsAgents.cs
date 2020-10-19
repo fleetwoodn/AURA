@@ -57,8 +57,8 @@ namespace AURA.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Agents");
+            //migrationBuilder.DropTable(
+            //    name: "Agents");
 
             migrationBuilder.DropTable(
                 name: "Journals");

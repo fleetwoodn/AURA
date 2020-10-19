@@ -15,8 +15,8 @@ namespace AURA.Models
         public int Id { get; set; }
 
         [Display(Name = "User Id")]
-        [ForeignKey("Agentst")]
-        public string UserId { get; set; }
+        [ForeignKey("Agents")]
+        public int UserId { get; set; }
 
         [StringLength(50, MinimumLength = 2)]
         [Required]

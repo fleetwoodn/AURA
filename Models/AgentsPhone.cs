@@ -15,7 +15,7 @@ namespace AURA.Models
 
         [Display(Name = "User ID")]
         [ForeignKey("Agents")]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         [Display(Name = "Phone Number")]
         [Required]

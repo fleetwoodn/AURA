@@ -58,6 +58,9 @@
     <form asp-action="DeleteAgent">
         <input type="hidden" asp-for="UserId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <div>
+            <a asp-action="AgentDetail" asp-route-UserId="@Model.UserId">Back to Detail</a>
+        </div>
+
     </form>
 </div>
