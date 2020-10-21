@@ -57,6 +57,10 @@ namespace AURA.Controllers
         public IActionResult PostDetail(string zero)
         {
             //ViewBag.OneId = id;
+            //ViewBag.sevtotal = _context.PostSevs.Sum(q => q.SevAmou);
+            ViewBag.sevtotal = _context.PostSevs.Where(q => q.SevZero == zero
+                && q.SevHidd == "FALSE"
+                ).Sum(c => c.SevAmou);
 
             if (zero == null)
             {
@@ -104,6 +108,7 @@ namespace AURA.Controllers
         {
             //ViewBag.OneId = id;
 
+
             if (zero == null)
             {
                 return NotFound();
@@ -149,6 +154,8 @@ namespace AURA.Controllers
         /// <returns></returns>
         public IActionResult DownloadPostDetailCommaSeperatedFile(string zero)
         {
+            var qTotal = _context.PostSevs.Where(q => q.SevZero == zero && q.SevHidd == "FALSE").Sum(c => c.SevAmou);
+
             try
             {
                 var postOnes = _context.PostOnes.Where(m => m.OneZero == zero).ToList();
@@ -169,53 +176,65 @@ namespace AURA.Controllers
                 stringBuilder.AppendLine("RYNE MOVING");
                 stringBuilder.AppendLine("212-787-2636");
                 stringBuilder.AppendLine("INFO@RYNE.CO");
-                stringBuilder.AppendLine("108 W 81ST STREET, NEW YORK, NY, 10024");
+                stringBuilder.AppendLine("108 W 81ST STREET NEW YORK NY 10024");
                 stringBuilder.AppendLine("");
 
                 stringBuilder.AppendLine("SUMMARY");
                 foreach (var author in postOnes)
                 {
-                    stringBuilder.AppendLine($"{author.OneZero},{ author.OneStag},{ author.OneAgen},{ author.OnePart},{ author.OneTitl}");
+                    stringBuilder.AppendLine($"JOB ID: {author.OneZero},{author.OneStag}");
+                    stringBuilder.AppendLine($"JOB TITLE: {author.OneTitl}");
+                    stringBuilder.AppendLine($"LEAD AGENT: {author.OneAgen}");
+                    stringBuilder.AppendLine($"CUSTOMER ID: {author.OnePart}");
+                    
                 }
-
+                stringBuilder.AppendLine($"");
                 stringBuilder.AppendLine("TIMEFRAMES");
                 foreach (var author in postThrs)
                 {
-                    stringBuilder.AppendLine($"{author.ThrDigit},{author.ThrDate},{author.ThrText}");
+                    stringBuilder.AppendLine($"{author.ThrDigit}.,{author.ThrDate},{author.ThrText}");
+                    
                 }
-
+                stringBuilder.AppendLine($"");
                 stringBuilder.AppendLine("CONTACTS");
                 foreach (var author in postFous)
                 {
-                    stringBuilder.AppendLine($"{author.FouDigit},{author.FouName},{author.FouPhon},{author.FouEmai}");
+                    stringBuilder.AppendLine($"{author.FouDigit}.,{author.FouName},,{author.FouPhon},,{author.FouEmai}");
+                    stringBuilder.AppendLine($",{author.FouAddr},{author.FouPost},{author.FouOrg},{author.FouNote}");
+                    
                 }
-
+                stringBuilder.AppendLine($"");
                 stringBuilder.AppendLine("REMARKS");
                 foreach (var author in postFivs)
                 {
-                    stringBuilder.AppendLine($"{author.FivDigit},{author.FivPrio},{author.FivCode},{author.FivText}");
+                    stringBuilder.AppendLine($"{author.FivDigit}.,{author.FivPrio}-{author.FivCode},{author.FivText}");
+                    //stringBuilder.AppendLine($"{author.FivDigit}    {author.FivPrio}    {author.FivCode}    {author.FivText}");
+                    
                 }
-
-                stringBuilder.AppendLine("BILLING");
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"BILLING");
+                stringBuilder.AppendLine($"TOTAL DUE:" + qTotal);
                 foreach (var author in postSevs)
                 {
-                    stringBuilder.AppendLine($"{author.SevDigit},{author.SevDate},{author.SevDesc},{author.SevAmou}");
+                    stringBuilder.AppendLine($"{author.SevDigit}.,{author.SevDate.Date},{author.SevDesc},{author.SevAmou}");
+                    
                 }
-
+                stringBuilder.AppendLine($"");
                 stringBuilder.AppendLine("AGENTS");
                 foreach (var author in postEigs)
                 {
-                    stringBuilder.AppendLine($"{author.EigDigit},{author.EigAgen},{author.EigRole},{author.EigLoad},{author.EigNote}");
+                    stringBuilder.AppendLine($"{author.EigDigit}.,{author.EigAgen},{author.EigRole},{author.EigLoad},{author.EigNote}");
+                    
                 }
-
+                stringBuilder.AppendLine($"");
                 stringBuilder.AppendLine("ATTACHMENTS");
                 foreach (var author in postNins)
                 {
-                    stringBuilder.AppendLine($"{author.NinDigit},{author.NinFile},{author.NinCapt},{author.NinNote}");
+                    stringBuilder.AppendLine($"{author.NinDigit}.,{author.NinFile},{author.NinCapt},{author.NinNote}");
                 }
 
                 return File(Encoding.UTF8.GetBytes
-                (stringBuilder.ToString()), "text/csv", "PostDetail.csv");
+                (stringBuilder.ToString()), "text/csv", "PostDetail"+ zero +".csv");
             }
             catch
             {
@@ -648,9 +667,11 @@ namespace AURA.Controllers
         //post fiv****************************************************************************************************************************************
 
         // GET: PostFivs/Create
-        public IActionResult FivCreate(string zero)
+        public IActionResult FivCreate(string zero, string code, string priority)
         {
             ViewBag.zero = zero;
+            ViewBag.code = code;
+            ViewBag.priority = priority;
 
             return View();
         }
@@ -907,6 +928,7 @@ namespace AURA.Controllers
             ViewBag.Ac1 = "1100";
             //ViewBag.Sign = User.Identity; //after authentication
             ViewBag.Sign = "njn-1";
+            ViewBag.SevHidd = "FALSE";
 
 
             return View();
@@ -942,8 +964,10 @@ namespace AURA.Controllers
 
         // get: PostSevProductList
 
-        public async Task<IActionResult> SevProductList(string zero, string stage, string partyid)
+        public async Task<IActionResult> SevProductList(string zero, string stage, string partyid, string large, string small, string fragile, string box, string other)
         {
+
+
             ViewBag.zero = zero;
             ViewBag.stage = stage;
             ViewBag.partyid = partyid;

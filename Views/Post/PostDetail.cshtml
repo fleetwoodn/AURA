@@ -93,7 +93,10 @@
 <hr />
 <p>
     <span><b>REMARKS</b></span>
-    <a asp-action="FivCreate" asp-route-zero="@Model.OneZero">ADD 5/</a>
+    <a asp-action="FivCreate" asp-route-zero="@Model.OneZero" asp-route-code="" asp-route-priority="">ADD 5/</a>|
+    <a asp-action="FivCreate" asp-route-zero="@Model.OneZero" asp-route-code="I" asp-route-priority="5">ADD 5/I</a>|
+    <a asp-action="FivCreate" asp-route-zero="@Model.OneZero" asp-route-code="D" asp-route-priority="5">ADD 5/D</a>|
+    <a asp-action="FivCreate" asp-route-zero="@Model.OneZero" asp-route-code="H" asp-route-priority="5">ADD 5/H</a>
 </p>
 
 @foreach (var item in Model.PostFivs)
@@ -132,6 +135,9 @@
     @*<a asp-action="SevCreate" asp-route-zero="@Model.OneZero">ADD 7/</a>*@
     <a asp-action="SevProductList" asp-route-zero="@Model.OneZero" asp-route-stage="@Model.OneStag" asp-route-partyid="@Model.OnePart">ADD 7/</a>
 </p>
+<p>
+    <b>TOTAL DUE: @ViewBag.sevtotal</b>
+</p>
 
 @foreach (var item in Model.PostSevs)
 {
@@ -146,6 +152,7 @@
         <span>@Html.DisplayFor(modelItem => item.SevNote)</span><nbsp> </nbsp>
     </p>
 }
+
 
 
 @*list of eig*@
