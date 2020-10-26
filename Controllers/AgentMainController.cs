@@ -33,7 +33,7 @@ namespace AURA.Controllers
             return View(await _context.Agents.ToListAsync());
         }
 
-        public async Task<IActionResult> AgentDetail(int? UserId=1111)
+        public IActionResult AgentDetail(int? UserId = 1111)
         {
             if (UserId == null)
             {

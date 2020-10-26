@@ -4,9 +4,12 @@
     ViewData["Title"] = "SevEdit";
 }
 
-<h1>SevEdit</h1>
 
-<h4>PostSev</h4>
+
+<h4>EDIT</h4>
+<div class="col-6 text-right">
+    <a class="btn btn-danger" asp-action="SevDeletea" asp-route-id="@Model.SevId" asp-route-zero="@Model.SevZero"><i class="fa fa-plus"></i>Delete</a>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">

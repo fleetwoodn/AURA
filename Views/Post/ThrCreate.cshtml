@@ -29,8 +29,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="ThrDate" class="control-label"></label>
-                <input asp-for="ThrDate" class="form-control" value="@DateTime.Now.Date" type="date" asp-format="{0:yyyy-MM-dd}" />
-                
+                @*<input asp-for="ThrDate" class="form-control" value="@DateTime.Now.Date" type="date" asp-format="{0:yyyy-MM-dd HH:mm}" />*@
+                <input asp-for="ThrDate" class="form-control" />
+                @*<input asp-for="ThrDate" class="form-control" type="date" asp-format="{0:yyyy-MM-dd HH:mm}" />*@
                 <span asp-validation-for="ThrDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,14 +53,14 @@
 
 <hr />
 
-<form asp-controller="Post" asp-action="ThrCreate">
+<form asp-controller="Post" asp-action="ThrCreate" method="get" >
     <p>
-        <input type="text" name="dateString" method="get"/>
+        <input type="hidden" name="zero" value="@ViewBag.zero"/>
+        <input type="date" name="dateString" method="get"/>
         <input type="submit" value="SEARCH AVAILABILITY" />
     </p>
-    <p>
-        <a asp-action="ThrCreate" asp-route-zero="@ViewBag.zero" asp-route-searchString="">SEARCH HERE</a>
-    </p>
+    <p>USE MM/DD/YY FORMAT</p>
+    
 </form>
 
 <hr />

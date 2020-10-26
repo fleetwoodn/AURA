@@ -15,6 +15,12 @@ using AURA.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 
+//using System.Web.UI;
+//using System.Web.UI.WebControls;
+using SelectPdf;
+
+
+
 
 
 namespace AURA.Controllers
@@ -104,7 +110,7 @@ namespace AURA.Controllers
         //***************************+++++++++++++++++++++ test area
 
         [ActionName("PostDetailb")]
-        public async Task<IActionResult> PostDetailb(string zero = "201004-0")
+        public IActionResult PostDetailb(string zero = "201004-0")
         {
             //ViewBag.OneId = id;
 
@@ -233,12 +239,34 @@ namespace AURA.Controllers
                     stringBuilder.AppendLine($"{author.NinDigit}.,{author.NinFile},{author.NinCapt},{author.NinNote}");
                 }
 
+                
+
                 return File(Encoding.UTF8.GetBytes
                 (stringBuilder.ToString()), "text/csv", "PostDetail"+ zero +".csv");
             }
             catch
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(PostIndex));
+            }
+        }
+
+        protected void CreateSelectPdf(object sender, EventArgs e, string zero)
+        //public IActionResult CreateSelectPdf(string zero)
+        {
+            try
+            {
+                SelectPdf.HtmlToPdf converter = new SelectPdf.HtmlToPdf();
+                SelectPdf.PdfDocument doc = converter.ConvertUrl("https://selectpdf.com");
+                doc.Save("test.pdf");
+
+                //return File(doc);
+
+                doc.Close();
+                
+            }
+            catch
+            {
+                RedirectToAction(nameof(PostIndex));
             }
         }
 
@@ -383,7 +411,12 @@ namespace AURA.Controllers
         // GET: PostThrs/Create
         public IActionResult ThrCreate(string zero, string dateString)
         {
+
+
             ViewBag.zero = zero;
+        
+            PostThr postThr = new PostThr { ThrDate = DateTime.Now.AddDays(1) };
+
 
             if (String.IsNullOrEmpty(dateString))
             {
@@ -416,6 +449,8 @@ namespace AURA.Controllers
 
             var viewModel = new ThreeDayAvailabilityVM
             {
+                ThrDate = DateTime.Now,
+
                 Thr0X = _context.PostThrs.Where(m => m.ThrDate.Date == dateX),
                 Thr0Y = _context.PostThrs.Where(m => m.ThrDate.Date == dateY),
                 Thr0Z = _context.PostThrs.Where(m => m.ThrDate.Date == dateZ),
@@ -941,7 +976,7 @@ namespace AURA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SevCreate([Bind("SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevStage,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote")] PostSev postSev)
         {
-            postSev.SevDate = DateTime.Now;
+            postSev.SevDate = DateTime.Now.Date;
 
             if (!(_context.PostSevs.Count(n => n.SevZero == postSev.SevZero) > 0))
             {
@@ -1073,9 +1108,9 @@ namespace AURA.Controllers
         }
 
         // POST: PostSevs/Delete/5
-        [HttpPost, ActionName("SevDelete")]
+        [HttpPost, ActionName("SevDeletea")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SevDeleteConfirmed(int id)
+        public async Task<IActionResult> SevDeleteConfirmed(int id, string zero)
         {
             var postSev = await _context.PostSevs.FindAsync(id);
             _context.PostSevs.Remove(postSev);

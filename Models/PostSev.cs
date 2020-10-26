@@ -24,6 +24,7 @@ namespace AURA.Models
         [Display(Name = "Invoice")]
         public string SevInvo { get; set; }
 
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Entry Date")]
         public DateTime SevDate { get; set; }
 
