@@ -34,7 +34,7 @@ namespace AURA.Models
 
         [Required]
         [Display(Name = "Payment Amount")]
-        public string SixAmou { get; set; }
+        public decimal SixAmou { get; set; }
 
         [Display(Name = "Payment Status")]
         [StringLength(5, MinimumLength = 4)]

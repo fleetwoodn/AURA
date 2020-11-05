@@ -58,6 +58,10 @@
                 <span asp-validation-for="SixNote" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <input type="hidden" name="stage" value="@ViewBag.stage" />
+                <input type="hidden" name="partyid" value="@ViewBag.partyid" />
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

@@ -118,7 +118,7 @@
 <hr />
 <p>
     <span><b>PAYMENTS</b></span>
-    <a asp-action="SixCreate" asp-route-zero="@Model.OneZero">ADD 6/</a>
+    <a asp-action="SixCreate" asp-route-zero="@Model.OneZero" asp-route-stage="@Model.OneStag" asp-route-partyid="@Model.OnePart">ADD 6/</a>
 </p>
 @foreach (var item in Model.PostSixs)
 {

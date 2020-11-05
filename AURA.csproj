@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wkhtmltopdf\**" />
+    <Content Remove="wkhtmltopdf\**" />
+    <EmbeddedResource Remove="wkhtmltopdf\**" />
+    <None Remove="wkhtmltopdf\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\AgentsAddressesController.cs" />
     <Compile Remove="Controllers\AgentsEmailsController.cs" />
     <Compile Remove="Controllers\AgentsPaymentsController.cs" />
@@ -26,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wkhtmltopdf\Windows\" />
     <Folder Include="wwwroot\NinFileUploads\" />
   </ItemGroup>
 

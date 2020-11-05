@@ -825,9 +825,11 @@ namespace AURA.Controllers
         //post six****************************************************************************************************************************************
 
         // GET: PostSixes/Create
-        public IActionResult SixCreate(string zero)
+        public IActionResult SixCreate(string zero, string stage, string partyid)
         {
             ViewBag.zero = zero;
+            ViewBag.stage = stage;
+            ViewBag.partyid = partyid;
 
             return View();
         }
@@ -837,7 +839,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SixCreate([Bind("SixId,SixZero,SixDigit,SixDate,SixType,SixDeta,SixAmou,SixStat,SixNote")] PostSix postSix)
+        public async Task<IActionResult> SixCreate([Bind("SixId,SixZero,SixDigit,SixDate,SixType,SixDeta,SixAmou,SixStat,SixNote")] PostSix postSix, PostSev postSev, string stage, string partyid)
         {
             if (!(_context.PostSixs.Count(n => n.SixZero == postSix.SixZero) > 0))
             {
@@ -851,6 +853,34 @@ namespace AURA.Controllers
             
             if (ModelState.IsValid)
             {
+                //SevId,SevZero,SevDigit,SevInvo,SevDate,SevDesc,SevAmou,SevAc1,SevAc2,SevAcf,SevSign,SevStage,SevPart,SevCust,SevStat,SevPaym,SevRefe,SevHidd,SevChec,SevNote
+                postSev.SevZero = postSix.SixZero;
+                if (!(_context.PostSevs.Count(n => n.SevZero == postSev.SevZero) > 0))
+                {
+                    postSev.SevDigit = 1;
+                }
+                else
+                {
+                    postSev.SevDigit = _context.PostSevs.Where(m => m.SevZero == postSev.SevZero).Max(x => x.SevDigit) + 1;
+                }
+                postSev.SevDate = DateTime.Now;
+                postSev.SevDesc = "6PAYM " + postSix.SixNote;
+                postSev.SevAmou = postSix.SixAmou * -1; 
+                postSev.SevAc1 = "1100";
+                postSev.SevAc2 = "1103";
+                postSev.SevAcf = "";
+                postSev.SevSign = "njn-1"; //should be user.identity.name
+                postSev.SevStage = stage;
+                postSev.SevPart = partyid;
+                postSev.SevCust = partyid;
+                postSev.SevStat = "OPEN";
+                postSev.SevPaym = "TRUE";
+                postSev.SevRefe = "";
+                postSev.SevHidd = "FALSE";
+                postSev.SevChec = "";
+                postSev.SevNote = "";
+                _context.Add(postSev);
+
                 _context.Add(postSix);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(PostDetail), new { zero = postSix.SixZero });
