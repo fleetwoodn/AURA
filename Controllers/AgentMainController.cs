@@ -13,12 +13,11 @@ using AURA.Data;
 using AURA.Models;
 using AURA.ViewModels;
 using Microsoft.EntityFrameworkCore;
-
-
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace AURA.Controllers
 {
+    [Authorize]
     public class AgentMainController : Controller
     {
         private readonly PostContext _context;

@@ -36,6 +36,7 @@ namespace AURA.Models
         public string EigLoad { get; set; }
 
         [Display(Name = "Notes")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(160)]
         public string EigNote { get; set; }
     }

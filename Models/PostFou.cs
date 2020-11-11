@@ -21,6 +21,7 @@ namespace AURA.Models
         public int FouDigit { get; set; }
 
         [Display(Name = "Full Name")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(45)]
         public string FouName { get; set; }
 
@@ -29,22 +30,27 @@ namespace AURA.Models
         public string FouPhon { get; set; }
 
         [Display(Name = "Email")]
+
         [StringLength(45)]
         public string FouEmai { get; set; }
 
         [Display(Name = "Street Address")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(60)]
         public string FouAddr { get; set; }
 
         [Display(Name = "Postal Code")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(10)]
         public string FouPost { get; set; }
 
         [Display(Name = "Organization")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(45)]
         public string FouOrg { get; set; }
 
         [Display(Name = "Notes")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(160)]
         public string FouNote { get; set; }
     }

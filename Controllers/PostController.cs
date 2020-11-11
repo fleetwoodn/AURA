@@ -18,13 +18,13 @@ using System.Text;
 //using System.Web.UI;
 //using System.Web.UI.WebControls;
 using SelectPdf;
-
-
-
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace AURA.Controllers
 {
+
+    //[Authorize(Roles = "NJUN, MGMT, SALE, OPS")]
     public class PostController : Controller
     {
         private readonly PostContext _context;
@@ -33,6 +33,7 @@ namespace AURA.Controllers
             _context = context;
         }
 
+        
         public IActionResult Index()
         {
             return View();
@@ -295,6 +296,7 @@ namespace AURA.Controllers
 
             ///postOne.OneAgent = User.Identity.Name; //we will apply this once the authentication is complete
             postZero.ZeroAgen = "njn-1";
+            //postZero.ZeroAgen = User.Identity.n
 
             if (ModelState.IsValid)
             {

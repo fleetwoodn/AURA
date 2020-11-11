@@ -28,6 +28,7 @@ namespace AURA.Models
         public DateTime ThrDate { get; set; }
 
         [Required]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [Display(Name = "Text")]
         [StringLength(160, MinimumLength = 2)]
         public string ThrText { get; set; }

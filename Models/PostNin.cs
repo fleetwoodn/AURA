@@ -24,11 +24,13 @@ namespace AURA.Models
         public string NinFile { get; set; }
 
         [Required]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [Display(Name = "File Caption")]
         [StringLength(160, MinimumLength = 2)]
         public string NinCapt { get; set; }
 
         [Display(Name = "Notes")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(160)]
         public string NinNote { get; set; }
     }

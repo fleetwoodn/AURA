@@ -27,9 +27,11 @@ namespace AURA.Models
 
         [Required]
         [Display(Name = "Payment Type")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         public string SixType { get; set; }
 
         [Display(Name = "Payment Detail")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         public string SixDeta { get; set; }
 
         [Required]
@@ -37,10 +39,12 @@ namespace AURA.Models
         public decimal SixAmou { get; set; }
 
         [Display(Name = "Payment Status")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(5, MinimumLength = 4)]
         public string SixStat { get; set; }
 
         [Display(Name = "Notes")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(160)]
         public string SixNote { get; set; }
     }

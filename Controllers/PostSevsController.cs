@@ -8,6 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using AURA.Data;
 using AURA.Models;
 
+using System.Data;
+using System.Net;
+using System.Web;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using AURA.ViewModels;
+using System.Text;
+
+//using System.Web.UI;
+//using System.Web.UI.WebControls;
+using SelectPdf;
+using Microsoft.AspNetCore.Authorization;
+
 namespace AURA.Controllers
 {
     public class PostSevsController : Controller
@@ -144,6 +157,42 @@ namespace AURA.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        //download csv
+        public IActionResult DownloadPostDetailCommaSeperatedFile(string startDate)
+        {
+            //var qTotal = _context.PostSevs.Where(q => q.SevZero == zero && q.SevHidd == "FALSE").Sum(c => c.SevAmou);
+
+            DateTime parseDate = DateTime.Parse(startDate);
+
+            try
+            {
+                var postSevs = _context.PostSevs.Where(m => m.SevDate == parseDate).ToList();
+                
+                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder exportData = stringBuilder;
+
+                
+                stringBuilder.AppendLine($"");
+                stringBuilder.AppendLine($"BILLING");
+                stringBuilder.AppendLine($"TOTAL DUE:");
+                foreach (var author in postSevs)
+                {
+                    stringBuilder.AppendLine($"{author.SevDigit}.,{author.SevDate.Date},{author.SevDesc},{author.SevAmou}");
+
+                }
+
+
+                return File(Encoding.UTF8.GetBytes
+                (stringBuilder.ToString()), "text/csv", "PostDetail" + ".csv");
+            }
+            catch
+            {
+                return RedirectToAction(nameof(PostIndex));
+            }
+        }
+
+
 
         private bool PostSevExists(int id)
         {
