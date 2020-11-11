@@ -28,6 +28,8 @@ namespace AURA.Controllers
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
 
+
+
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser
