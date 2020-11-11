@@ -1,0 +1,46 @@
+﻿@model List<AURA.ViewModels.UserDetailViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Register" asp-controller="Account">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().EmailAddres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Role)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    <a asp-action="ForgotPassword" asp-controller="Account" asp-route-Email="@item.EmailAddres">Change Password</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
