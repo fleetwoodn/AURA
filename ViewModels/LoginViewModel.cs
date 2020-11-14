@@ -9,7 +9,7 @@ namespace AURA.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
+        //[EmailAddress]
         public string Email { get; set; }
 
         [Required]

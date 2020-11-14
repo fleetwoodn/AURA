@@ -24,7 +24,8 @@ using Microsoft.AspNetCore.Authorization;
 namespace AURA.Controllers
 {
 
-    //[Authorize(Roles = "NJUN, MGMT, SALE, OPS")]
+    //[Authorize(Roles = "NJUN,SALE")]
+    [Authorize]
     public class PostController : Controller
     {
         private readonly PostContext _context;

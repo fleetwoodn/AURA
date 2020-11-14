@@ -6,8 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace AURA.Controllers
 {
+    [Authorize]
     public class PostOnesController : Controller
     {
         private readonly PostContext _context;
@@ -152,7 +155,7 @@ namespace AURA.Controllers
         /// Downloads the post one comma seperated file.
         /// </summary>
         /// <returns></returns>
-        public IActionResult DownloadPostOneCommaSeperatedFile()
+        public IActionResult DownloadPostOneCommaSeperatedFileOne()
         {
             try
             {

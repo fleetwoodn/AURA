@@ -13,9 +13,11 @@ using System.Net;
 using System.Web;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AURA.Controllers
 {
+    [Authorize]
     public class PostNinsController : Controller
     {
         private readonly PostContext _context;

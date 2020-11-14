@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AURA.Data;
 using AURA.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AURA.Controllers
 {
+    [Authorize]
     public class PostFousController : Controller
     {
         private readonly PostContext _context;

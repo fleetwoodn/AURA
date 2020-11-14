@@ -8,8 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using AURA.Data;
 using AURA.Models;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace AURA.Controllers
 {
+
+    [Authorize]
     public class PostSixsController : Controller
     {
         private readonly PostContext _context;

@@ -8,8 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using AURA.Data;
 using AURA.Models;
 
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
+
+
 namespace AURA.Controllers
 {
+    [Authorize]
     public class PostThrsController : Controller
     {
         private readonly PostContext _context;
@@ -148,6 +153,31 @@ namespace AURA.Controllers
         private bool PostThrExists(int id)
         {
             return _context.PostThrs.Any(e => e.ThrId == id);
+        }
+
+        /// <summary>
+        /// Downloads the post one comma seperated file.
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult DownloadCommaSeperatedFileThr()
+        {
+            try
+            {
+                var postThrs = _context.PostThrs.ToList();
+                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder exportData = stringBuilder;
+                stringBuilder.AppendLine("0/,Stage,Lead Agent,Party ID,Title");
+                foreach (var author in postThrs)
+                {
+                    stringBuilder.AppendLine($"{author.ThrId},{ author.ThrZero},{ author.ThrDigit},{ author.ThrDate},{ author.ThrText}");
+                }
+                return File(Encoding.UTF8.GetBytes
+                (stringBuilder.ToString()), "text/csv", "PostOne.csv");
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+            }
         }
     }
 }

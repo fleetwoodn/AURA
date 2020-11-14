@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AURA.Controllers
 {
+    [Authorize]
     public class PostSevsController : Controller
     {
         private readonly PostContext _context;
@@ -158,45 +159,53 @@ namespace AURA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //download csv
-        public IActionResult DownloadPostDetailCommaSeperatedFile(string startDate)
-        {
-            //var qTotal = _context.PostSevs.Where(q => q.SevZero == zero && q.SevHidd == "FALSE").Sum(c => c.SevAmou);
 
-            DateTime parseDate = DateTime.Parse(startDate);
-
-            try
-            {
-                var postSevs = _context.PostSevs.Where(m => m.SevDate == parseDate).ToList();
-                
-                StringBuilder stringBuilder = new StringBuilder();
-                StringBuilder exportData = stringBuilder;
-
-                
-                stringBuilder.AppendLine($"");
-                stringBuilder.AppendLine($"BILLING");
-                stringBuilder.AppendLine($"TOTAL DUE:");
-                foreach (var author in postSevs)
-                {
-                    stringBuilder.AppendLine($"{author.SevDigit}.,{author.SevDate.Date},{author.SevDesc},{author.SevAmou}");
-
-                }
-
-
-                return File(Encoding.UTF8.GetBytes
-                (stringBuilder.ToString()), "text/csv", "PostDetail" + ".csv");
-            }
-            catch
-            {
-                return RedirectToAction(nameof(PostIndex));
-            }
-        }
 
 
 
         private bool PostSevExists(int id)
         {
             return _context.PostSevs.Any(e => e.SevId == id);
+        }
+
+
+        public IActionResult DownloadSevTable()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Downloads the post one comma seperated file.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost, ActionName("DownloadSevTable")]
+        public IActionResult DownloadCommaSeperatedFileSev(DateTime startDate)
+        {
+            //DateTime sDate = DateTime.Parse("9/1/2020");
+            DateTime sDate = startDate;
+            DateTime eDate = DateTime.Now;
+
+            try
+            {
+                var postSevs = _context.PostSevs.Where(m => m.SevDate >= sDate
+                    && m.SevDate <= eDate);
+                //var postSevs = _context.PostSevs.ToList();
+                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder exportData = stringBuilder;
+                stringBuilder.AppendLine(sDate + "-" + eDate);
+                stringBuilder.AppendLine("Id,Zero,Digit,Date,Desc,Amount,Ac1,Ac2,Acf,Sign,Stage,Party,Customer,Status,?Payment,Reference,?Hidden,Check,Note");
+                foreach (var author in postSevs)
+                {
+                    stringBuilder.AppendLine($"{author.SevId},{author.SevZero},{author.SevDigit},{author.SevDate},{author.SevDesc},{author.SevAmou},{author.SevAc1},{author.SevAc2},{author.SevAcf},{author.SevSign},{author.SevStage},{author.SevPart},{author.SevCust},{author.SevStat},{author.SevPaym},{author.SevRefe},{author.SevHidd},{author.SevChec},{author.SevNote}");
+                }
+                return File(Encoding.UTF8.GetBytes
+                (stringBuilder.ToString()), "text/csv", "PostSev" + sDate + "-" + eDate + ".csv");
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
         }
     }
 }
