@@ -12,7 +12,7 @@ using AURA.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using AURA.Models;
 
 namespace AURA
 {
@@ -37,7 +37,7 @@ namespace AURA
 
             //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<IdentityUser, ApplicationRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.SignIn.RequireConfirmedEmail = false;
@@ -47,7 +47,7 @@ namespace AURA
                 options.Password.RequireUppercase = false;
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
-            }).AddEntityFrameworkStores<ApplicationDbContext>();
+            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders(); 
 
             services.Configure<PasswordHasherOptions>(options =>
             options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV2

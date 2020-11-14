@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AURA.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,5 +22,10 @@ namespace AURA.ViewModels
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Password & Confirm Password do not match!")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string Role { get; set; }
+
+        public List<SelectListItem> RoleList { get; set; }
     }
 }
