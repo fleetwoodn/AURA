@@ -60,10 +60,10 @@ namespace AURA.Controllers
                 var result = await UserManager.CreateAsync(user, registerViewModel.Password);
 
                 //Update Role
-                var roleDetail = await RoleManager.FindByIdAsync(registerViewModel.Role);
-                await UserManager.RemoveFromRolesAsync(user, UserManager.GetRolesAsync(user).Result.ToArray());
-                await UserManager.AddToRoleAsync(user, roleDetail.NormalizedName);
-                await UserManager.UpdateAsync(user);
+                //var roleDetail = await RoleManager.FindByIdAsync(registerViewModel.Role);
+                //await UserManager.RemoveFromRolesAsync(user, UserManager.GetRolesAsync(user).Result.ToArray());
+                //await UserManager.AddToRoleAsync(user, roleDetail.NormalizedName);
+                //await UserManager.UpdateAsync(user);
 
                 if (result.Succeeded)
                 {

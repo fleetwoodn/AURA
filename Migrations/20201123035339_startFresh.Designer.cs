@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AURA.Data.Migrations
+namespace AURA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201111103851_NewMigration")]
-    partial class NewMigration
+    [Migration("20201123035339_startFresh")]
+    partial class startFresh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

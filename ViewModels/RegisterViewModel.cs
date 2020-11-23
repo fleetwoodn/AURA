@@ -23,7 +23,7 @@ namespace AURA.ViewModels
         [Compare("Password", ErrorMessage = "Password & Confirm Password do not match!")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        //[Required]
         public string Role { get; set; }
 
         public List<SelectListItem> RoleList { get; set; }
