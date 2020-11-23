@@ -32,8 +32,8 @@ namespace AURA.Models
         public string EigRole { get; set; }
 
         [Display(Name = "Agent Load")]
-        [StringLength(3)]
-        public string EigLoad { get; set; }
+        [StringLength(10)]
+        public decimal EigLoad { get; set; }
 
         [Display(Name = "Notes")]
         [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]

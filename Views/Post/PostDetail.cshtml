@@ -174,7 +174,8 @@
         <span>@Html.DisplayFor(modelItem => item.EigAgen)</span><nbsp> </nbsp>|
         <span>@Html.DisplayFor(modelItem => item.EigRole)</span><nbsp> </nbsp>|
         <span>@Html.DisplayFor(modelItem => item.EigLoad)</span><nbsp> </nbsp>|
-        <span>@Html.DisplayFor(modelItem => item.EigNote)</span><nbsp> </nbsp>
+        <span>@Html.DisplayFor(modelItem => item.EigNote)</span><nbsp> </nbsp>|
+        <span><a asp-action="SevCreate" asp-route-zero="@ViewBag.zero" asp-route-stage="@ViewBag.stage" asp-route-partyid="@ViewBag.partyid" asp-route-ac1="2100" asp-route-ac2="5112" asp-route-acf="@item.EigAgen" asp-route-desc="8PAYM-@Model.OneZero-@item.EigAgen" asp-route-amount="@item.EigLoad" asp-route-hidden="TRUE"></a></span>
     </p>
 }
 

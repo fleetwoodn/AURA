@@ -206,6 +206,53 @@ namespace AURA.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+                       
+
+        }
+
+        //sevreport
+        public IActionResult SevReport()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("SevReport")]
+        public IActionResult SevReportExport(DateTime sDate, DateTime eDate, string ac1, string ac2, string acf)
+        {
+            try
+            {
+                var report = _context.PostSevs.Where(m =>
+                    m.SevDate.Date >= sDate.Date &&
+                    m.SevDate.Date <= eDate.Date &&
+                    (ac1 == null || m.SevAc1 == ac1) &&
+                    (ac2 == null || m.SevAc2 == ac2) &&
+                    (acf == null || m.SevAcf == acf)
+                    ).ToList();
+
+                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder exportData = stringBuilder;
+
+                stringBuilder.AppendLine(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+                stringBuilder.AppendLine(sDate.Date.ToString("yyyy-MM-dd"));
+                stringBuilder.AppendLine(eDate.Date.ToString("yyyy-MM-dd"));
+                stringBuilder.AppendLine(ac1);
+                stringBuilder.AppendLine(ac2);
+                stringBuilder.AppendLine(acf);
+
+                stringBuilder.AppendLine("===,===,===");
+
+                stringBuilder.AppendLine("Id,Zero,Digit,Date,Desc,Amount,Ac1,Ac2,Acf,Sign,Stage,Party,Customer,Status,?Payment,Reference,?Hidden,Check,Note");
+                foreach (var author in report)
+                {
+                    stringBuilder.AppendLine($"{author.SevId},{author.SevZero},{author.SevDigit},{author.SevDate.Date},{author.SevDesc},{author.SevAmou},{author.SevAc1},{author.SevAc2},{author.SevAcf},{author.SevSign},{author.SevStage},{author.SevPart},{author.SevCust},{author.SevStat},{author.SevPaym},{author.SevRefe},{author.SevHidd},{author.SevChec},{author.SevNote}");
+                }
+                return File(Encoding.UTF8.GetBytes
+                (stringBuilder.ToString()), "text/csv", "SevReport" + DateTime.Now.Date + sDate + "-" + eDate + ".csv");
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+            }
         }
     }
 }

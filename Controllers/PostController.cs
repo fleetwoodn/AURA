@@ -979,7 +979,7 @@ namespace AURA.Controllers
         //post sev****************************************************************************************************************************************
 
         // GET: PostSevs/Create
-        public IActionResult SevCreate(string zero, string stage, string partyid, string accountNumber, string fractionId, string productDescription, string listPrice)
+        public IActionResult SevCreate(string zero, string stage, string partyid, string ac1, string ac2, string acf, string desc, string amount, string hidden)
         {
             //asp-route-zero="@ViewBag.zero" asp-route-stage="@ViewBag.stage" asp-route-partyid="@ViewBag.partyid" 
             //asp-route-accountNumber="@item.AccountNumber" asp-route-fractionId="@item.FractionId" asp-route-productDescription="@item.ProductDescription" 
@@ -987,16 +987,18 @@ namespace AURA.Controllers
 
             ViewBag.zero = zero;
             ViewBag.stage = stage;
-            ViewBag.partyid = partyid; 
-            ViewBag.accountNumber = accountNumber;
-            ViewBag.fractionId = fractionId;
-            ViewBag.productDescription = productDescription;
-            ViewBag.listPrice = listPrice;
+            ViewBag.partyid = partyid;
+            ViewBag.ac1 = ac1;
+            ViewBag.ac2 = ac2;
+            ViewBag.acf = acf;
+            ViewBag.desc = desc;
+            ViewBag.amount = amount;
+            ViewBag.hidd = hidden;
 
-            ViewBag.Ac1 = "1100";
+            //ViewBag.Ac1 = "1100";
             //ViewBag.Sign = User.Identity; //after authentication
             ViewBag.Sign = "njn-1";
-            ViewBag.SevHidd = "FALSE";
+            
 
 
             return View();

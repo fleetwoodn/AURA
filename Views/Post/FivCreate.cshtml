@@ -4,13 +4,13 @@
     ViewData["Title"] = "FivCreate";
 }
 
-    <head>
-        <style>
-            div.form-group {
-                margin-bottom: 0rem;
-            }
-        </style>
-    </head>
+<head>
+    <style>
+        div.form-group {
+            margin-bottom: 0rem;
+        }
+    </style>
+</head>
 
 
 <h4>ADD 5/</h4>
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="FivDigit" class="control-label"></label>
-                <input asp-for="FivDigit" class="form-control" readonly="readonly" value="0"/>
+                <input asp-for="FivDigit" class="form-control" readonly="readonly" value="0" />
                 <span asp-validation-for="FivDigit" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -97,4 +97,16 @@
 <div>
     <a asp-action="PostDetail" asp-route-zero="@ViewBag.zero">Back to Detail</a>
 </div>
+
+
+
+@if (ViewBag.code = "I")
+{
+    <button onclick="qmatFunc()">QMAT</button>
+    <script>
+        function qmatFunction() {
+        document.getElementById("FivText").value = document.getElementById("FivText").value + "QMAT/_";
+    }
+    </script>
+}
 
