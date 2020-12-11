@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace AURA.ViewModels
 {
     public class ThreeDayAvailabilityVM
     {
         public string ThrZero { get; set; }
         public int ThrDigit { get; set; }
+
+        [DataType(DataType.DateTime)]
         public DateTime ThrDate { get; set; }
         public string ThrText { get; set; }
 

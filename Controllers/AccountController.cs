@@ -28,7 +28,7 @@ namespace AURA.Controllers
             RoleManager = roleManager;
         }
 
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
             RegisterViewModel newRegister = new RegisterViewModel();
             var allRoles = RoleManager.Roles.ToList();

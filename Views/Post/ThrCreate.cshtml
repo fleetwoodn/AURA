@@ -1,15 +1,10 @@
 ﻿@model AURA.ViewModels.ThreeDayAvailabilityVM
-
 @*@model AURA.Models.PostThr
 
     @{
         ViewData["Title"] = "ThrCreate";
     }*@
 
-
-
-
-<h1>ThrCreate</h1>
 
 <h4>PostThr</h4>
 <hr />
@@ -27,11 +22,16 @@
                 <input asp-for="ThrDigit" class="form-control" readonly="readonly" value="0" />
                 <span asp-validation-for="ThrDigit" class="text-danger"></span>
             </div>
+            @*<div class="form-group">
+                <label asp-for="ThrDate" class="control-label"></label>
+                @*<input asp-for="ThrDate" class="form-control" value="@DateTime.Now.Date" type="date" asp-format="{0:yyyy-MM-dd HH:mm}" />
+                <input asp-for="ThrDate" class="form-control" />
+                @*<input asp-for="ThrDate" class="form-control" type="date" asp-format="{0:yyyy-MM-dd HH:mm}" />
+                <span asp-validation-for="ThrDate" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
                 <label asp-for="ThrDate" class="control-label"></label>
-                @*<input asp-for="ThrDate" class="form-control" value="@DateTime.Now.Date" type="date" asp-format="{0:yyyy-MM-dd HH:mm}" />*@
                 <input asp-for="ThrDate" class="form-control" />
-                @*<input asp-for="ThrDate" class="form-control" type="date" asp-format="{0:yyyy-MM-dd HH:mm}" />*@
                 <span asp-validation-for="ThrDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -53,14 +53,14 @@
 
 <hr />
 
-<form asp-controller="Post" asp-action="ThrCreate" method="get" >
+<form asp-controller="Post" asp-action="ThrCreate" method="get">
     <p>
-        <input type="hidden" name="zero" value="@ViewBag.zero"/>
-        <input type="date" name="dateString" method="get"/>
+        <input type="hidden" name="zero" value="@ViewBag.zero" />
+        <input type="date" name="dateString" method="get" />
         <input type="submit" value="SEARCH AVAILABILITY" />
     </p>
     <p>USE MM/DD/YY FORMAT</p>
-    
+
 </form>
 
 <hr />
@@ -69,19 +69,19 @@
     <table>
         @foreach (var item in Model.Thr0X)
         {
-        <tr>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.ThrZero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThrDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThrText)
-            </td>
-            
-        </tr>
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
         }
     </table>
 

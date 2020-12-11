@@ -1,0 +1,134 @@
+﻿@model AURA.ViewModels.PostPDFVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PrintPDF</title>
+</head>
+<body>
+
+    <h3>@Model.OneZero</h3>
+
+    <p>
+        <span>
+            @Html.DisplayFor(model => model.OneStag) | @Html.DisplayFor(model => model.OneAgen) | @Html.DisplayFor(model => model.OnePart)
+        </span>
+
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.OneTitl)
+    </p>
+    @*LIST OF THR*@
+    <hr />
+    <p>
+        <span><b>TIMEFRAMES</b></span>
+    </p>
+    @foreach (var item in Model.PostThrs)
+    {
+        <p>
+
+            <span>@Html.DisplayFor(modelItem => item.ThrDigit)</span>.<nbsp> </nbsp>
+            <span>@Html.DisplayFor(modelItem => item.ThrDate)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.ThrText)</span>
+        </p>
+
+    }
+    @*list of fou*@
+    <hr />
+    <p>
+        <span><b>CONTACTS</b></span>
+    </p>
+    @foreach (var item in Model.PostFous)
+    {
+        <p>
+
+            <span>@Html.DisplayFor(modelItem => item.FouDigit)</span>.<nbsp> </nbsp>
+            <span>@Html.DisplayFor(modelItem => item.FouName)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.FouPhon)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.FouEmai)</span>
+        </p>
+        <p>
+
+            <span>@Html.DisplayFor(modelItem => item.FouAddr)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.FouPost)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.FouOrg)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.FouNote)</span>
+        </p>
+    }
+
+    @*list of fiv*@
+    <hr />
+    <p>
+        <span><b>REMARKS</b></span>
+    </p>
+
+    @foreach (var item in Model.PostFivs)
+    {
+        <p>
+
+            <span>@Html.DisplayFor(modelItem => item.FivDigit)</span>.<nbsp> </nbsp>
+            <span>@Html.DisplayFor(modelItem => item.FivPrio)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.FivCode)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.FivText)</span>
+        </p>
+    }
+
+    @*list of sev*@
+    <hr />
+    <p>
+        <span><b>ACCOUNTING</b></span>
+    </p>
+    <p>
+        <b>TOTAL DUE: @ViewBag.sevtotal</b>
+    </p>
+
+    @foreach (var item in Model.PostSevs)
+    {
+        <p>
+
+            <span>@Html.DisplayFor(modelItem => item.SevDigit)</span>.<nbsp> </nbsp>
+            <span>@Html.DisplayFor(modelItem => item.SevInvo)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.SevDate)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.SevDesc)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.SevAmou)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.SevSign)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.SevNote)</span><nbsp> </nbsp>
+        </p>
+    }
+
+
+
+    @*list of eig*@
+    <hr />
+    <p>
+        <span><b>AGENTS</b></span>
+    </p>
+
+    @foreach (var item in Model.PostEigs)
+    {
+        <p>
+
+            <span>@Html.DisplayFor(modelItem => item.EigDigit)</span>.<nbsp> </nbsp>
+            <span>@Html.DisplayFor(modelItem => item.EigAgen)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.EigRole)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.EigLoad)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.EigNote)</span><nbsp> </nbsp>|
+
+        </p>
+    }
+
+
+    @*list of nin*@
+    <hr />
+    <p>
+        <span><b>ATTACHMENTS</b></span>
+
+    </p>
+</body>
+</html>

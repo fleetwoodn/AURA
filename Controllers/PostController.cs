@@ -244,7 +244,7 @@ namespace AURA.Controllers
                 
 
                 return File(Encoding.UTF8.GetBytes
-                (stringBuilder.ToString()), "text/csv", "PostDetail"+ zero +".csv");
+                (stringBuilder.ToString()), "text/csv", "PostDetail"+ zero + "-" + DateTime.Now.ToString("yyyy-MM-dd-hhmm") +  ".csv");
             }
             catch
             {
@@ -270,6 +270,53 @@ namespace AURA.Controllers
             {
                 RedirectToAction(nameof(PostIndex));
             }
+        }
+
+        public IActionResult PrintPDF(string zero)
+        {
+            //ViewBag.OneId = id;
+            //ViewBag.sevtotal = _context.PostSevs.Sum(q => q.SevAmou);
+            ViewBag.sevtotal = _context.PostSevs.Where(q => q.SevZero == zero
+                && q.SevHidd == "FALSE"
+                ).Sum(c => c.SevAmou);
+
+            if (zero == null)
+            {
+                return NotFound();
+            }
+
+            //PostOne postOne = _context.PostOnes.Find(id);
+            PostOne postOne = _context.PostOnes.FirstOrDefault(m => m.OneZero == zero);
+
+            var uThr = _context.PostThrs.Where(m => m.ThrZero == zero).ToList();
+            var uFou = _context.PostFous.Where(m => m.FouZero == zero).ToList();
+            var uFiv = _context.PostFivs.Where(m => m.FivZero == zero).ToList();
+            var uSix = _context.PostSixs.Where(m => m.SixZero == zero).ToList();
+            var uSev = _context.PostSevs.Where(m => m.SevZero == zero).ToList();
+            var uEig = _context.PostEigs.Where(m => m.EigZero == zero).ToList();
+            var uNin = _context.PostNins.Where(m => m.NinZero == zero).ToList();
+
+            var viewModel = new PostPDFVM
+            {
+                OneId = postOne.OneId.ToString(),
+                OneZero = postOne.OneZero,
+                OneStag = postOne.OneStag,
+                OneAgen = postOne.OneAgen,
+                OnePart = postOne.OnePart,
+                OneTitl = postOne.OneTitl,
+
+
+                PostThrs = uThr,
+                PostFous = uFou,
+                PostFivs = uFiv,
+                PostSixs = uSix,
+                PostSevs = uSev,
+                PostEigs = uEig,
+                PostNins = uNin,
+
+            };
+
+            return View(viewModel);
         }
 
         //post zero****************************************************************************************************************************************
@@ -412,19 +459,24 @@ namespace AURA.Controllers
         //post thr****************************************************************************************************************************************
 
         // GET: PostThrs/Create
+        //public IActionResult ThrCreate()
+        //{
+        //    return View();
+        //}
+
         public IActionResult ThrCreate(string zero, string dateString)
         {
 
 
             ViewBag.zero = zero;
-        
-            PostThr postThr = new PostThr { ThrDate = DateTime.Now.AddDays(1) };
+
+            //PostThr postThr = new PostThr { ThrDate = DateTime.Now.AddDays(1) };
 
 
             if (String.IsNullOrEmpty(dateString))
             {
                 dateString = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
-                    //ToString("yyyy-MM-dd");
+                //ToString("yyyy-MM-dd");
             }
 
             DateTime mDate = System.DateTime.Parse(dateString);
@@ -704,15 +756,24 @@ namespace AURA.Controllers
 
         //post fiv****************************************************************************************************************************************
 
+        public IActionResult FivInventory(string zero)
+        {
+            ViewBag.zero = zero;
+            return View();
+        }
+
         // GET: PostFivs/Create
-        public IActionResult FivCreate(string zero, string code, string priority)
+        public IActionResult FivCreate(string zero, string code, string priority, string remark)
         {
             ViewBag.zero = zero;
             ViewBag.code = code;
             ViewBag.priority = priority;
+            ViewBag.remark = remark;
 
             return View();
         }
+
+        
 
         // POST: PostFivs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

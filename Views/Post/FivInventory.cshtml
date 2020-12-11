@@ -1,0 +1,224 @@
+﻿
+<head>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <input type="button" onclick="AddToFiv()" value="Create A 5/I Remark" />
+    <p id="FivRemarkLink"></p>
+    
+
+    <div>
+        FULL LIST: <span id="Inventory"></span>
+    </div>
+
+
+    <div>
+        TOTAL MINUTES: <span id="TotalCount"></span>
+    </div>
+
+
+    <div>
+        <input type="button" onclick="AddBoxItem()" id="AddBoxItem" value="ADD BOX" />
+        <input type="button" onclick="RemoveBox()" id="AddBoxItem" value="REMOVE BOX" />
+
+        <p id="BoxInventory"></p>
+    </div>
+    <div>
+        <select id="LargeItems">
+            <option>LMIS</option>
+            <option>ARMC</option>
+            <option>BNCH</option>
+            <option>SOFA2</option>
+            <option>SOFA3</option>
+            <option>SOFAS</option>
+            <option>KFRAM</option>
+            <option>KBOX</option>
+            <option>KMATT</option>
+            <option>QFRAM</option>
+            <option>QBOX</option>
+            <option>QMATT</option>
+            <option>FFRAM</option>
+            <option>FBOX</option>
+            <option>FMATT</option>
+            <option>TFRAM</option>
+            <option>TBOX</option>
+            <option>TMATT</option>
+            <option>OFRAM</option>
+            <option>OBOX</option>
+            <option>OMATT</option>
+            <option>DTBL</option>
+            <option>CTBL</option>
+            <option>DESK</option>
+            <option>WARD</option>
+            <option>HBOOK</option>
+            <option>LBOOK</option>
+            <option>CDRAW</option>
+            <option>DRSR</option>
+            <option>LTV</option>
+            <option>LMIRR</option>
+            <option>LPNTG</option>
+        </select>
+        <input type="button" onclick="AddLargeItem()" id="AddLargeItem" value="ADD LARGE" />
+        @*<p id="LargeCount">MINUTES</p>*@
+        <p id="LargeInventory"></p>
+    </div>
+
+    <div>
+        <select id="SmallItems">
+            <option>SMIS</option>
+            <option>CHAR</option>
+            <option>OTTO</option>
+            <option>BEAN</option>
+            <option>STOL</option>
+            <option>CHARO</option>
+            <option>ETBL</option>
+            <option>FTBL</option>
+            <option>NSTND</option>
+            <option>CRACK</option>
+            <option>WRACK</option>
+            <option>STV</option>
+            <option>MIRR</option>
+            <option>PNTG</option>
+        </select>
+        <input type="button" onclick="AddSmallItem()" id="AddSmallItem" value="ADD SMALL" />
+        @*<p id="SmallCount">MINUTES</p>*@
+        <p id="SmallInventory"></p>
+    </div>
+
+
+
+
+</body>
+
+<script>
+    var LargeList = ["¥L"]
+    var SmallList = ["¥S"]
+    var BoxList = ["¥B"]
+
+
+    //large items
+
+    function AddLargeItem() {
+        LargeList.push(document.getElementById("LargeItems").value)
+
+        PopulateListL(LargeList);
+    }
+
+    function RemoveLarge(index) {
+        LargeList.splice(index, 1);
+        PopulateListL(LargeList);
+    }
+
+    function PopulateListL(arr) {
+        LLen = arr.length;
+
+        text = "<ol>";
+        for (i = 0; i < LLen; i++) {
+            text += "<li><input type='button' onclick='RemoveLarge(" + i + ")' value='X' />" + arr[i] + "</li>";
+        }
+        text += "</ol>";
+
+        document.getElementById("LargeInventory").innerHTML = text;
+
+        //totals
+        var TotalMinutes = (LargeList.length * 10) + (SmallList.length * 5) + (BoxList.length * .5);
+
+        document.getElementById("TotalCount").innerHTML = TotalMinutes;
+
+        var FullString = LargeList.concat(SmallList);
+        LenB = BoxList.length;
+        FullString.push(LenB);
+
+        document.getElementById("Inventory").innerHTML = FullString.join("/");
+    }
+
+    //small items
+
+    function AddSmallItem() {
+        SmallList.push(document.getElementById("SmallItems").value)
+
+        PopulateListS(SmallList);
+    }
+
+    function RemoveSmall(index) {
+        SmallList.splice(index, 1);
+        PopulateListS(SmallList);
+    }
+
+    function PopulateListS(arr) {
+        SLen = arr.length;
+
+        text = "<ol>";
+        for (i = 0; i < SLen; i++) {
+            text += "<li><input type='button' onclick='RemoveSmall(" + i + ")' value='X' />" + arr[i] + "</li>";
+        }
+        text += "</ol>";
+
+        document.getElementById("SmallInventory").innerHTML = text;
+
+        //totals
+        var TotalMinutes = (LargeList.length * 10) + (SmallList.length * 5) + (BoxList.length * .5);
+
+        document.getElementById("TotalCount").innerHTML = TotalMinutes;
+
+        var FullString = LargeList.concat(SmallList);
+        LenB = BoxList.length;
+        FullString.push(LenB);
+
+        document.getElementById("Inventory").innerHTML = FullString.join("/");
+    }
+
+    //BOX LIST
+
+    function AddBoxItem() {
+        BoxList.push(1)
+
+        PopulateListB(BoxList);
+    }
+
+    function RemoveBox() {
+        BoxList.pop();
+        PopulateListB(BoxList);
+    }
+
+    function PopulateListB() {
+        LenB = BoxList.length
+
+
+        text = LenB;
+
+
+        document.getElementById("BoxInventory").innerHTML = text;
+
+        //totals
+        var TotalMinutes = (LargeList.length * 10) + (SmallList.length * 5) + (BoxList.length * .5);
+
+        document.getElementById("TotalCount").innerHTML = TotalMinutes;
+
+        var FullString = LargeList.concat(SmallList);
+        LenB = BoxList.length;
+        FullString.push(LenB);
+
+        document.getElementById("Inventory").innerHTML = FullString.join("/");
+    }
+
+    @*function AddToFiv() {
+
+        var FullString = LargeList.concat(SmallList);
+        LenB = BoxList.length;
+        FullString.push(LenB);
+
+        var Inventory = FullString.join("/");
+
+        var text = "<a asp-action="FivCreate" asp-route-zero="@ViewBag.zero" asp-route-code="I" asp-route-priority="5" asp-route-remark=" + Inventory + ">ADD 5/I</a>";
+
+        document.getElementById("FivRemarkLink").value = text;
+    }*@
+
+</script>
+
+    

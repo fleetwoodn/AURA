@@ -24,6 +24,7 @@ namespace AURA.Models
         public int ThrDigit { get; set; }
 
         [Required]
+        [DataType(DataType.DateTime)]
         [Display(Name = "TimeFrame")]
         public DateTime ThrDate { get; set; }
 

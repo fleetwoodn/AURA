@@ -100,13 +100,51 @@
 
 
 
-@if (ViewBag.code = "I")
+
+
+@*@if (ViewBag.code == "I")
+        {
+            <button onclick="qmatFunc()">QMAT</button>
+            <script>
+                function qmatFunc() {
+                    document.getElementById("FivText").value = document.getElementById("FivText").value + "QMAT/_";
+                }
+            </script>
+        }
+
+    <hr />*@
+
+@if (ViewBag.code == "o")
 {
-    <button onclick="qmatFunc()">QMAT</button>
-    <script>
-        function qmatFunction() {
-        document.getElementById("FivText").value = document.getElementById("FivText").value + "QMAT/_";
-    }
-    </script>
+    <input type="button" onclick="addFunction()" id="-W" value="-W +5" />
+    <input type="button" onabort="addFunction()" id="-A" value="-A +5" />
+    <hr />
+    @*<button onclick="addFunction()" id="QFRAM" value="QFRAM">QFRAM</button>*@
+
+    <b>BEDDING</b>
+    <p>
+        <input type="button" onclick="addFunction()" id="KFRAM" value="KFRAM +10" />
+        <input type="button" onclick="addFunction()" id="KBOXS" value="KBOXS +10" />
+        <input type="button" onclick="addFunction()" id="KMATT" value="KMATT +10" />
+        <input type="button" onclick="addFunction()" id="QFRAM" value="QFRAM +10" />
+        <input type="button" onclick="addFunction()" id="QBOXS" value="QBOXS +10" />
+        <input type="button" onclick="addFunction()" id="QMATT" value="QMATT +10" />
+        <input type="button" onclick="addFunction()" id="FFRAM" value="FFRAM +10" />
+        <input type="button" onclick="addFunction()" id="FBOXS" value="FBOXS +10" />
+        <input type="button" onclick="addFunction()" id="FMATT" value="FMATT +10" />
+        <input type="button" onclick="addFunction()" id="TFRAM" value="TFRAM +10" />
+        <input type="button" onclick="addFunction()" id="TFRAM" value="TFRAM +10" />
+        <input type="button" onclick="addFunction()" id="TFRAM" value="TFRAM +10" />
+        <input type="button" onclick="addFunction()" id="OFRAM" value="OFRAM +10" />
+
+    </p>
+    <b>SEATING</b>
 }
+
+<script>
+    function addFunction() {
+        document.getElementById("FivText").value = document.getElementById("FivText").value + "/" + document.getElementById("QFRAM").value;
+    }
+</script>
+
 
