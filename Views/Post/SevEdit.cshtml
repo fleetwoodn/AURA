@@ -8,7 +8,9 @@
 
 <h4>EDIT</h4>
 <div class="col-6 text-right">
-    <a class="btn btn-danger" asp-action="SevDeletea" asp-route-id="@Model.SevId" asp-route-zero="@Model.SevZero"><i class="fa fa-plus"></i>Delete</a>
+    <a class="btn btn-danger" asp-action="SevDeleteConfirmed" asp-route-id="@Model.SevId" asp-route-zero="@Model.SevZero"><i class="fa fa-plus"></i>Delete</a>
+
+    <a asp-action="SevDelete" asp-route-id="@Model.SevId" asp-route-zero="@Model.SevZero">delete</a>
 </div>
 <hr />
 <div class="row">

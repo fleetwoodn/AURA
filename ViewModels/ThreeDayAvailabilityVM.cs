@@ -13,7 +13,8 @@ namespace AURA.ViewModels
         public string ThrZero { get; set; }
         public int ThrDigit { get; set; }
 
-        [DataType(DataType.DateTime)]
+        //[DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime ThrDate { get; set; }
         public string ThrText { get; set; }
 

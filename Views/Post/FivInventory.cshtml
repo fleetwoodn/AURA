@@ -133,7 +133,7 @@
         LenB = BoxList.length;
         FullString.push(LenB);
 
-        document.getElementById("Inventory").innerHTML = FullString.join("/");
+        document.getElementById("Inventory").innerHTML = FullString.join(" /");
     }
 
     //small items
@@ -169,7 +169,7 @@
         LenB = BoxList.length;
         FullString.push(LenB);
 
-        document.getElementById("Inventory").innerHTML = FullString.join("/");
+        document.getElementById("Inventory").innerHTML = FullString.join(" /");
     }
 
     //BOX LIST
@@ -203,21 +203,22 @@
         LenB = BoxList.length;
         FullString.push(LenB);
 
-        document.getElementById("Inventory").innerHTML = FullString.join("/");
+        document.getElementById("Inventory").innerHTML = FullString.join(" /");
     }
 
-    @*function AddToFiv() {
+    function AddToFiv() {
 
         var FullString = LargeList.concat(SmallList);
         LenB = BoxList.length;
         FullString.push(LenB);
 
-        var Inventory = FullString.join("/");
+        var Inventory = FullString.join(" /");
 
-        var text = "<a asp-action="FivCreate" asp-route-zero="@ViewBag.zero" asp-route-code="I" asp-route-priority="5" asp-route-remark=" + Inventory + ">ADD 5/I</a>";
+        //var text = "<a asp-action="FivCreate" asp-route-zero="@ViewBag.zero" asp-route-code="I" asp-route-priority="5" asp-route-remark=" + Inventory + ">ADD 5/I</a>";
+        var text = "<a href='FivCreate?zero=@ViewBag.zero&code=I&priority=5&remark=" + Inventory + "'>CLICK HERE TO SEND TO 5/I</a>";
 
-        document.getElementById("FivRemarkLink").value = text;
-    }*@
+        document.getElementById("FivRemarkLink").innerHTML = text;
+    }
 
 </script>
 

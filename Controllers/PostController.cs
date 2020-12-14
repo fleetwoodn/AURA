@@ -274,11 +274,23 @@ namespace AURA.Controllers
 
         public IActionResult PrintPDF(string zero)
         {
-            //ViewBag.OneId = id;
-            //ViewBag.sevtotal = _context.PostSevs.Sum(q => q.SevAmou);
-            ViewBag.sevtotal = _context.PostSevs.Where(q => q.SevZero == zero
-                && q.SevHidd == "FALSE"
+
+            var paym = _context.PostSixs.Where(q => q.SixZero == zero).Sum(c => c.SixAmou);
+
+            var bill = _context.PostSevs.Where(q => q.SevZero == zero
+                && q.SevHidd != "TRUE"
+                && q.SevPaym != "TRUE"
                 ).Sum(c => c.SevAmou);
+
+            var total = -paym + bill;
+
+            ViewBag.paym = paym;
+            ViewBag.bill = bill;
+            ViewBag.total = total;
+
+            ////ViewBag.sevtotal = _context.PostSevs.Where(q => q.SevZero == zero
+            ////    && q.SevHidd == "FALSE"
+            ////    ).Sum(c => c.SevAmou);
 
             if (zero == null)
             {
@@ -292,7 +304,11 @@ namespace AURA.Controllers
             var uFou = _context.PostFous.Where(m => m.FouZero == zero).ToList();
             var uFiv = _context.PostFivs.Where(m => m.FivZero == zero).ToList();
             var uSix = _context.PostSixs.Where(m => m.SixZero == zero).ToList();
-            var uSev = _context.PostSevs.Where(m => m.SevZero == zero).ToList();
+
+            var uSev = _context.PostSevs.Where(m => m.SevZero == zero
+                && m.SevHidd != "TRUE"
+                && m.SevPaym != "TRUE").ToList();
+            
             var uEig = _context.PostEigs.Where(m => m.EigZero == zero).ToList();
             var uNin = _context.PostNins.Where(m => m.NinZero == zero).ToList();
 
@@ -770,6 +786,10 @@ namespace AURA.Controllers
             ViewBag.priority = priority;
             ViewBag.remark = remark;
 
+            PostFiv postFiv = new PostFiv { FivText = remark };
+
+            //PostThr postThr = new PostThr { ThrDate = DateTime.Now.AddDays(1) };
+
             return View();
         }
 
@@ -1204,7 +1224,7 @@ namespace AURA.Controllers
         }
 
         // POST: PostSevs/Delete/5
-        [HttpPost, ActionName("SevDeletea")]
+        [HttpPost, ActionName("SevDelete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SevDeleteConfirmed(int id, string zero)
         {

@@ -33,7 +33,7 @@ namespace AURA.Models
         public string FivCode { get; set; }
 
         [Required]
-        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
+        [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\/¥]*$")]
         [Display(Name = "Remark Text")]
         [StringLength(160, MinimumLength = 1)]
         public string FivText { get; set; }

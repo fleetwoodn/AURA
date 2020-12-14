@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    
 }
 
 <!DOCTYPE html>
@@ -10,109 +11,146 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>PrintPDF</title>
+    <style>
+        .p {
+            display: block;
+            margin-top: 0px;
+            margin-bottom: 0px;
+
+        }
+        .span {
+            max-width: 65em;
+
+        }
+
+    </style>
 </head>
-<body>
+<body style="max-width: 200mm;">
+
+    <div>
+        <img src="~/StaticImages/Ryne Logo.png" alt="image" />
+        <p>212-787-2636 | www.ryne.co | info@ryne.co</p>
+    </div>
 
     <h3>@Model.OneZero</h3>
 
-    <p>
+    <div>
         <span>
             @Html.DisplayFor(model => model.OneStag) | @Html.DisplayFor(model => model.OneAgen) | @Html.DisplayFor(model => model.OnePart)
         </span>
-
-    </p>
-    <p>
-        @Html.DisplayFor(model => model.OneTitl)
-    </p>
+        <div>
+            @Html.DisplayFor(model => model.OneTitl)
+        </div>
+    </div>
     @*LIST OF THR*@
     <hr />
-    <p>
-        <span><b>TIMEFRAMES</b></span>
-    </p>
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>TIMEFRAMES</b></span>
+    </div>
     @foreach (var item in Model.PostThrs)
     {
-        <p>
+        <div>
 
             <span>@Html.DisplayFor(modelItem => item.ThrDigit)</span>.<nbsp> </nbsp>
             <span>@Html.DisplayFor(modelItem => item.ThrDate)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.ThrText)</span>
-        </p>
+        </div>
 
     }
     @*list of fou*@
     <hr />
-    <p>
-        <span><b>CONTACTS</b></span>
-    </p>
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>CONTACTS</b></span>
+    </div>
     @foreach (var item in Model.PostFous)
     {
-        <p>
+        <div style="float:left">
 
             <span>@Html.DisplayFor(modelItem => item.FouDigit)</span>.<nbsp> </nbsp>
             <span>@Html.DisplayFor(modelItem => item.FouName)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FouPhon)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FouEmai)</span>
-        </p>
-        <p>
-
+            <span>@Html.DisplayFor(modelItem => item.FouPhon)</span> |
+            <span>@Html.DisplayFor(modelItem => item.FouEmai)</span> |
+        </div>
+        <div>
             <span>@Html.DisplayFor(modelItem => item.FouAddr)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.FouPost)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.FouOrg)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.FouNote)</span>
-        </p>
+        </div>
     }
 
     @*list of fiv*@
     <hr />
-    <p>
-        <span><b>REMARKS</b></span>
-    </p>
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>REMARKS</b></span>
+    </div>
 
     @foreach (var item in Model.PostFivs)
     {
-        <p>
+        <div>
 
-            <span>@Html.DisplayFor(modelItem => item.FivDigit)</span>.<nbsp> </nbsp>
+            <span style="width:50em;">@Html.DisplayFor(modelItem => item.FivDigit)</span>.<nbsp> </nbsp>
             <span>@Html.DisplayFor(modelItem => item.FivPrio)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.FivCode)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.FivText)</span>
-        </p>
+        </div>
     }
 
     @*list of sev*@
     <hr />
-    <p>
-        <span><b>ACCOUNTING</b></span>
-    </p>
-    <p>
-        <b>TOTAL DUE: @ViewBag.sevtotal</b>
-    </p>
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>BILLING</b></span>
+    </div>
 
+    
     @foreach (var item in Model.PostSevs)
     {
-        <p>
+        <div style="float:left;">
 
-            <span>@Html.DisplayFor(modelItem => item.SevDigit)</span>.<nbsp> </nbsp>
+
             <span>@Html.DisplayFor(modelItem => item.SevInvo)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.SevDate)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.SevDesc)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.SevAmou)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.SevSign)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.SevNote)</span><nbsp> </nbsp>
-        </p>
+
+            @*<div style="text-align:right">@Html.DisplayFor(modelItem => item.SevAmou)</div>*@
+            @*<span>@Html.DisplayFor(modelItem => item.SevSign)</span><nbsp> </nbsp>|*@
+            @*<span>@Html.DisplayFor(modelItem => item.SevNote)</span><nbsp> </nbsp>*@
+        </div>
+        <div style="text-align:right;">@Html.DisplayFor(modelItem => item.SevAmou)</div>
     }
-
-
+    <div style="text-align:right;">
+        <b>TOTAL BILLING: @ViewBag.bill</b>
+    </div>
+    <div style="text-align:right;">
+        <b>----</b>
+    </div>
+    @foreach (var item in Model.PostSixs)
+    {
+        <div style="float:left;">
+            <span>@Html.DisplayFor(modelItem => item.SixDate)</span>
+            <span>@Html.DisplayFor(modelItem => item.SixType)</span>
+        </div>
+        <div style="text-align:right;">@Html.DisplayFor(modelItem => item.SixAmou)</div>
+    }
+    <div style="text-align:right;">
+        <b>TOTAL PAYMENTS: @ViewBag.paym</b>
+    </div>
+    <div style="text-align:right;">
+        <b>----</b>
+    </div>
+    <div style="text-align:right;">
+        <b>TOTAL DUE: @ViewBag.total</b>
+    </div>
 
     @*list of eig*@
     <hr />
-    <p>
-        <span><b>AGENTS</b></span>
-    </p>
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>AGENTS</b></span>
+    </div>
 
     @foreach (var item in Model.PostEigs)
     {
-        <p>
+        <div>
 
             <span>@Html.DisplayFor(modelItem => item.EigDigit)</span>.<nbsp> </nbsp>
             <span>@Html.DisplayFor(modelItem => item.EigAgen)</span><nbsp> </nbsp>|
@@ -120,15 +158,91 @@
             <span>@Html.DisplayFor(modelItem => item.EigLoad)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.EigNote)</span><nbsp> </nbsp>|
 
-        </p>
+        </div>
     }
 
 
     @*list of nin*@
     <hr />
-    <p>
-        <span><b>ATTACHMENTS</b></span>
+    <div style="background-color:lightblue">
 
-    </p>
+    </div>
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>AGREEMENT OF TERMS</b></span>
+    </div>
+    <p>BY SIGNING BELOW, YOU ARE AGREEING TO ALL OF THE TERMS LISTED IN THIS CONTRACT</p>
+    
+    <div>
+        <p></p>
+        <p></p>
+    </div>
+    <p></p>
+    <p>_______________________________________________________________________________________</p>
+    <hr />
+
+    <div>
+        <b>ESTIMATED BILLING</b>
+        <p>
+            The mileage is based on the route from the company base, to each location specified, and then back to the company base.
+            Exceptions and exclusions can be made and must be specified in writing.
+            Additional mileage costs may apply based on actual mileage traveled.
+            Additional labor charges will apply to the total estimated amount if the hours estimate is exceeded.
+        </p>
+        <p></p>
+        <b>BILLING AND PAYMENT</b>
+        <p>
+            The deposit is due at the signing of this document, and will hold the date and time for the job. This contract comes
+            into force ONLY upon payment of the deposit.
+        </p>
+        <p>
+            The card on file will be charged on the day of the job, before the job, for the total estimated amount still
+            outstanding.
+        </p>
+        <p>
+            After the job is completed, the lead agent on your move will discuss the total billing with the client and report back
+            should any further billing be required. We will then bill or refund to your form of payment as required.
+        </p>
+        <p>
+            If you have any questions, please feel free to ask.
+        </p>
+        <p></p>
+        <b>CANCELLATION POLICY</b>
+        <p>
+            Client is subject to a full refund if they wish to cancel within 15 days of contracted date with written notice.
+        </p>
+        <p>
+            If Ryne Corp. cancels the job due to unforseen circumstances, full deposit will be refunded to the original form of
+            payment.
+        </p>
+        <p>
+            Ryne may cancel a job without refunding the deposit in certain circumstances, including, but not limited to:
+            _Breach of contract
+            _Incorrect inventory list
+            _Incorrect property address and/or description
+            _Fraudulent credit card
+            _Insurance requirements not met
+            _Speak and/or actions involving hate, racism or bigotry
+            _Verbal and/or physical abuse, including threats of violence
+            _Failure to properly or adequately communicate with Ryne about the job.
+        </p>
+        <p></p>
+        <b>GENERAL LIABILITY</b>
+        <p>
+            The Ryne Corporation will care for your possessions to the best of its ability while in our custody, and will take all
+            available steps to avoid damage. However, in the event of damage to personal belongings while in our custody, the
+            Ryne Corporation will NOT accept any liability for any said damage. Ryne may, at its discretion, attempt to help fix,
+            mitigate, or replace items should the Ryne Corporation feel it is warranted.
+        </p>
+        <p></p>
+        <b>INSURANCE</b>
+        <p>
+            Ryne carries general liability insurance. While this covers most issues, the subject property may require additional
+            insurance requirements. Ryne will work with you and the subject property to meet any insurance requirement to the
+            best of our ability. It is your responsibility to understand and disclose any and all insurance requirements required
+            for successful completion of the job.
+        </p>
+        <p></p>
+    </div>
+
 </body>
 </html>

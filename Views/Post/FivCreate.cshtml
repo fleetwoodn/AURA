@@ -12,93 +12,95 @@
     </style>
 </head>
 
-
-<h4>ADD 5/</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="FivCreate">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FivZero" class="control-label"></label>
-                <input asp-for="FivZero" class="form-control" readonly="readonly" value="@ViewBag.zero" />
-                <span asp-validation-for="FivZero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FivDigit" class="control-label"></label>
-                <input asp-for="FivDigit" class="form-control" readonly="readonly" value="0" />
-                <span asp-validation-for="FivDigit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FivPrio" class="control-label"></label>
-                @*<input asp-for="FivPrio" class="form-control" value="@ViewBag.priority" />*@
-                <select asp-for="FivPrio" class="form-control" style="width:75px">
-                    <option>@ViewBag.priority</option>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                </select>
-                <span asp-validation-for="FivPrio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FivCode" class="control-label"></label>
-                @*<input asp-for="FivCode" class="form-control" value="@ViewBag.code" />*@
-                <select asp-for="FivCode" class="form-control" style="width:75px">
-                    <option>@ViewBag.code</option>
-                    <option>A</option>
-                    <option>B</option>
-                    <option>C</option>
-                    <option>D</option>
-                    <option>E</option>
-                    <option>F</option>
-                    <option>G</option>
-                    <option>H</option>
-                    <option>I</option>
-                    <option>J</option>
-                    <option>K</option>
-                    <option>L</option>
-                    <option>M</option>
-                    <option>N</option>
-                    <option>O</option>
-                    <option>P</option>
-                    <option>Q</option>
-                    <option>R</option>
-                    <option>S</option>
-                    <option>T</option>
-                    <option>U</option>
-                    <option>V</option>
-                    <option>W</option>
-                    <option>X</option>
-                    <option>Y</option>
-                    <option>Z</option>
-                </select>
-                <span asp-validation-for="FivCode" class="text-danger"></span>
-            </div>
-            <div class="form-group" style="margin-bottom:1rem;">
-                <label asp-for="FivText" class="control-label"></label>
-                @*<input asp-for="FivText" class="form-control" />*@
-                <textarea asp-for="FivText" class="form-control" ro></textarea>
-                <span asp-validation-for="FivText" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<body onload="viewbagremark()">
+    <h4>ADD 5/</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="FivCreate">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FivZero" class="control-label"></label>
+                    <input asp-for="FivZero" class="form-control" readonly="readonly" value="@ViewBag.zero" />
+                    <span asp-validation-for="FivZero" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FivDigit" class="control-label"></label>
+                    <input asp-for="FivDigit" class="form-control" readonly="readonly" value="0" />
+                    <span asp-validation-for="FivDigit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FivPrio" class="control-label"></label>
+                    @*<input asp-for="FivPrio" class="form-control" value="@ViewBag.priority" />*@
+                    <select asp-for="FivPrio" class="form-control" style="width:75px">
+                        <option>@ViewBag.priority</option>
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                    </select>
+                    <span asp-validation-for="FivPrio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FivCode" class="control-label"></label>
+                    @*<input asp-for="FivCode" class="form-control" value="@ViewBag.code" />*@
+                    <select asp-for="FivCode" class="form-control" style="width:75px">
+                        <option>@ViewBag.code</option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+                        <option>E</option>
+                        <option>F</option>
+                        <option>G</option>
+                        <option>H</option>
+                        <option>I</option>
+                        <option>J</option>
+                        <option>K</option>
+                        <option>L</option>
+                        <option>M</option>
+                        <option>N</option>
+                        <option>O</option>
+                        <option>P</option>
+                        <option>Q</option>
+                        <option>R</option>
+                        <option>S</option>
+                        <option>T</option>
+                        <option>U</option>
+                        <option>V</option>
+                        <option>W</option>
+                        <option>X</option>
+                        <option>Y</option>
+                        <option>Z</option>
+                    </select>
+                    <span asp-validation-for="FivCode" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-bottom:1rem;">
+                    <label asp-for="FivText" class="control-label"></label>
+                    @*<input asp-for="FivText" class="form-control" value="@ViewBag.remark" style="height: 100px"/>*@
+                    <textarea asp-for="FivText" class="form-control" id="FivText"></textarea>
+                    <span asp-validation-for="FivText" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="PostDetail" asp-route-zero="@ViewBag.zero">Back to Detail</a>
-</div>
+    <div>
+        <a asp-action="PostDetail" asp-route-zero="@ViewBag.zero">Back to Detail</a>
+    </div>
 
+    <input id="text" value="@ViewBag.remark" type="text" hidden="hidden" />
 
+</body>
 
 
 
@@ -114,36 +116,11 @@
 
     <hr />*@
 
-@if (ViewBag.code == "o")
-{
-    <input type="button" onclick="addFunction()" id="-W" value="-W +5" />
-    <input type="button" onabort="addFunction()" id="-A" value="-A +5" />
-    <hr />
-    @*<button onclick="addFunction()" id="QFRAM" value="QFRAM">QFRAM</button>*@
 
-    <b>BEDDING</b>
-    <p>
-        <input type="button" onclick="addFunction()" id="KFRAM" value="KFRAM +10" />
-        <input type="button" onclick="addFunction()" id="KBOXS" value="KBOXS +10" />
-        <input type="button" onclick="addFunction()" id="KMATT" value="KMATT +10" />
-        <input type="button" onclick="addFunction()" id="QFRAM" value="QFRAM +10" />
-        <input type="button" onclick="addFunction()" id="QBOXS" value="QBOXS +10" />
-        <input type="button" onclick="addFunction()" id="QMATT" value="QMATT +10" />
-        <input type="button" onclick="addFunction()" id="FFRAM" value="FFRAM +10" />
-        <input type="button" onclick="addFunction()" id="FBOXS" value="FBOXS +10" />
-        <input type="button" onclick="addFunction()" id="FMATT" value="FMATT +10" />
-        <input type="button" onclick="addFunction()" id="TFRAM" value="TFRAM +10" />
-        <input type="button" onclick="addFunction()" id="TFRAM" value="TFRAM +10" />
-        <input type="button" onclick="addFunction()" id="TFRAM" value="TFRAM +10" />
-        <input type="button" onclick="addFunction()" id="OFRAM" value="OFRAM +10" />
-
-    </p>
-    <b>SEATING</b>
-}
 
 <script>
-    function addFunction() {
-        document.getElementById("FivText").value = document.getElementById("FivText").value + "/" + document.getElementById("QFRAM").value;
+    function viewbagremark() {
+        document.getElementById("FivText").value = document.getElementById("text").value;
     }
 </script>
 
