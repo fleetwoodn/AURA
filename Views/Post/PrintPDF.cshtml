@@ -27,22 +27,30 @@
 </head>
 <body style="max-width: 200mm;">
 
-    <div>
+    <div style="float:left;">
         <img src="~/StaticImages/Ryne Logo.png" alt="image" />
-        <p>212-787-2636 | www.ryne.co | info@ryne.co</p>
+        <p>212-787-2636 | info@ryne.co</p>
     </div>
 
-    <h3>@Model.OneZero</h3>
+    <h3 style="text-align:right;">JOB: @Model.OneZero</h3>
 
-    <div>
+    <div style="text-align:right">
+
         <span>
-            @Html.DisplayFor(model => model.OneStag) | @Html.DisplayFor(model => model.OneAgen) | @Html.DisplayFor(model => model.OnePart)
+            @Html.DisplayFor(model => model.OneStag) | @Html.DisplayFor(model => model.OneAgen)
         </span>
+        <div>@Html.DisplayFor(model => model.OnePart)</div>
         <div>
             @Html.DisplayFor(model => model.OneTitl)
         </div>
+        <div>
+            <p></p>
+        </div>
     </div>
     @*LIST OF THR*@
+    <div>
+        <hr />
+    </div>
     <hr />
     <div style="background-color:lightblue">
         <span style="background-color:lightblue"><b>TIMEFRAMES</b></span>
@@ -60,7 +68,7 @@
     @*list of fou*@
     <hr />
     <div style="background-color:lightblue">
-        <span style="background-color:lightblue"><b>CONTACTS</b></span>
+        <span style="background-color:lightblue"><b>CONTACTS & LOCATIONS</b></span>
     </div>
     @foreach (var item in Model.PostFous)
     {
@@ -216,14 +224,17 @@
         </p>
         <p>
             Ryne may cancel a job without refunding the deposit in certain circumstances, including, but not limited to:
-            _Breach of contract
-            _Incorrect inventory list
-            _Incorrect property address and/or description
-            _Fraudulent credit card
-            _Insurance requirements not met
-            _Speak and/or actions involving hate, racism or bigotry
-            _Verbal and/or physical abuse, including threats of violence
-            _Failure to properly or adequately communicate with Ryne about the job.
+            <ul>
+                <li>Breach of contract</li>
+                <li>Incorrect inventory list</li>
+                <li>Incorrect property address and/or description</li>
+                <li>Fraudulent credit card</li>
+                <li>Insurance requirements not met</li>
+                <li>Speak and/or actions involving hate, racism or bigotry</li>
+                <li>Verbal and/or physical abuse, including threats of violence</li>
+                <li>Criminal activity of any kind</li>
+                <li>Failure to properly or adequately communicate with Ryne about the job.</li>
+            </ul>
         </p>
         <p></p>
         <b>GENERAL LIABILITY</b>
