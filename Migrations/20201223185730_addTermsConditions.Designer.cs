@@ -4,14 +4,16 @@ using AURA.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AURA.Migrations
 {
     [DbContext(typeof(PostContext))]
-    partial class PostContextModelSnapshot : ModelSnapshot
+    [Migration("20201223185730_addTermsConditions")]
+    partial class addTermsConditions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -329,14 +331,15 @@ namespace AURA.Migrations
 
                     b.Property<string>("EigAgen")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<int>("EigDigit")
                         .HasColumnType("int");
 
                     b.Property<decimal>("EigLoad")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("EigNote")
                         .HasColumnType("nvarchar(160)")
@@ -472,6 +475,7 @@ namespace AURA.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("OneAgen")
+                        .IsRequired()
                         .HasColumnType("nvarchar(35)")
                         .HasMaxLength(35);
 

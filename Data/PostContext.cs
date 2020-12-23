@@ -41,8 +41,12 @@ namespace AURA.Data
         public DbSet<AURA.Models.AgentsRemarks> AgentsRemarks { get; set; }
         public DbSet<AURA.Models.AgentsPayment> AgentsPayments { get; set; }
 
+        //Other
+        public DbSet<AURA.Models.TermsConditions> TermsConditions { get; set; }
+
         //test
-        //public DbSet<AURA.Models.Test> tests { get; set; }
+        
+
 
     }
 }
