@@ -35,7 +35,7 @@ namespace AURA.Models
         [Required]
         [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\/¥]*$")]
         [Display(Name = "Remark Text")]
-        [StringLength(240, MinimumLength = 1)]
+        [StringLength(2000, MinimumLength = 1)]
         public string FivText { get; set; }
     }
 }

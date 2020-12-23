@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AURA.Migrations
+namespace AURA.Migrations.ApplicationDb
 {
-    public partial class Restart : Migration
+    public partial class initialAppDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

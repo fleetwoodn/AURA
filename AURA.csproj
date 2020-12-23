@@ -19,6 +19,8 @@
     <Compile Remove="Controllers\AgentsPhonesController.cs" />
     <Compile Remove="Controllers\AgentsRemarksController.cs" />
     <Compile Remove="Controllers\AgentsRolesController.cs" />
+    <Compile Remove="Migrations\20201223061617_initialPost.cs" />
+    <Compile Remove="Migrations\20201223061617_initialPost.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
