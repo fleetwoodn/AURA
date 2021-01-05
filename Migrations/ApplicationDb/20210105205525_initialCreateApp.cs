@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AURA.Migrations.ApplicationDb
 {
-    public partial class initialAppDb : Migration
+    public partial class initialCreateApp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

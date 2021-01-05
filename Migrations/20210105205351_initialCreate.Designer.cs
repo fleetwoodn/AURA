@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AURA.Migrations
 {
     [DbContext(typeof(PostContext))]
-    [Migration("20210104202637_ThrtimeupdateToString")]
-    partial class ThrtimeupdateToString
+    [Migration("20210105205351_initialCreate")]
+    partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -333,6 +333,9 @@ namespace AURA.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
+
+                    b.Property<string>("EigCont")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EigDigit")
                         .HasColumnType("int");

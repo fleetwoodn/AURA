@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AURA.Migrations
 {
-    public partial class initialPost : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -194,7 +194,8 @@ namespace AURA.Migrations
                     EigDigit = table.Column<int>(nullable: false),
                     EigAgen = table.Column<string>(maxLength: 10, nullable: false),
                     EigRole = table.Column<string>(maxLength: 5, nullable: false),
-                    EigLoad = table.Column<decimal>(maxLength: 10, nullable: false),
+                    EigCont = table.Column<string>(nullable: true),
+                    EigLoad = table.Column<decimal>(nullable: false),
                     EigNote = table.Column<string>(maxLength: 160, nullable: true)
                 },
                 constraints: table =>
@@ -265,7 +266,7 @@ namespace AURA.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OneZero = table.Column<string>(nullable: true),
                     OneStag = table.Column<string>(maxLength: 5, nullable: false),
-                    OneAgen = table.Column<string>(maxLength: 35, nullable: false),
+                    OneAgen = table.Column<string>(maxLength: 35, nullable: true),
                     OnePart = table.Column<string>(maxLength: 35, nullable: false),
                     OneTitl = table.Column<string>(maxLength: 160, nullable: true)
                 },
@@ -334,6 +335,7 @@ namespace AURA.Migrations
                     ThrZero = table.Column<string>(nullable: true),
                     ThrDigit = table.Column<int>(nullable: false),
                     ThrDate = table.Column<DateTime>(nullable: false),
+                    ThrTime = table.Column<string>(nullable: true),
                     ThrText = table.Column<string>(maxLength: 160, nullable: false)
                 },
                 constraints: table =>
@@ -371,6 +373,20 @@ namespace AURA.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductList", x => x.ProductId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TermsConditions",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EntryDate = table.Column<DateTime>(nullable: false),
+                    Text = table.Column<string>(maxLength: 10000, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TermsConditions", x => x.ID);
                 });
         }
 
@@ -435,6 +451,9 @@ namespace AURA.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductList");
+
+            migrationBuilder.DropTable(
+                name: "TermsConditions");
         }
     }
 }
