@@ -488,132 +488,7 @@ namespace AURA.Controllers
         //    return View();
         //}
 
-        //test for sending emails
-        public IActionResult ThrEmail(string sendto, string subject, string body)
-        {
-            //var viewModel = new ThrEmailVM();
-
-            //return View(viewModel);
-
-            if (!String.IsNullOrEmpty(sendto))
-            {
-                //construct mail
-                var message = new MimeMessage();
-                //message.From.Add(new MailboxAddress("Halie", "info@ryne.co"));
-                message.From.Add(new MailboxAddress("nick", "nic-fleetwood@behr.travel"));
-                message.To.Add(new MailboxAddress(sendto));
-                message.Subject = subject;
-                message.Headers.Add("Content-class", "urn:content-classes:calendarmessage");
-                //message.Body = new TextPart("plain")
-                //{
-                //    Text = body
-                //};
-
-                //BodyBuilder emailBody = new BodyBuilder();
-                //emailBody.TextBody = body;
-                var emailBody = new BodyBuilder();
-                var ics = new StringBuilder();
-
-
-                //ics file -- use yyyMMddTHHmmssZ format
-                //StringBuilder str = new StringBuilder();
-                //str.AppendLine()
-                ics.AppendLine("BEGIN:VCALENDAR");
-                ics.AppendLine("PRODID:-//RYNE MOVING//EN");
-                ics.AppendLine("VERSION:2.0");
-                ics.AppendLine("METHOD:PUBLISH");
-                //THE EVENT
-                ics.AppendLine("BEGIN:VEVENT");
-                ics.AppendLine("DTSTART:20210215T100000");
-                ics.AppendLine("DTEND:20210215T110000");
-                ics.AppendLine("DTSTAMP:" + DateTime.Now);
-                ics.AppendLine("UID:" + Guid.NewGuid());
-                ics.AppendLine("CREATED:" + DateTime.Now);
-                ics.AppendLine("X-ALT-DESC;FMTTYPE=text/html:");
-                ics.AppendLine("DESCRIPTION:desc-this is a test move date");
-                ics.AppendLine("LAST-MODIFIED:" + DateTime.Now);
-                ics.AppendLine("LOCATION:NYC");
-                ics.AppendLine("SEQUENCE:0");
-                ics.AppendLine("STATUS:CONFIRMED");
-                ics.AppendLine("SUMMARY:summary-test summary");
-                ics.AppendLine("TRANSP:OPAQUE");
-                ics.AppendLine("END:VEVENT");
-
-                ics.AppendLine("END:VCALENDAR");
-
-                //something else
-                //var calendarBytes = Encoding.UTF8.GetBytes(str.ToString());
-                //MemoryStream ms = new MemoryStream(calendarBytes);
-
-                //System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(ms, "event.ics", "text/calendar");
-                //emailBody.Attachments.Add(attachment);
-                //emailBody.Attachments.Add(str.ToString());
-
-                using (var stream = new MemoryStream())
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.Write(ics.ToString());
-
-                        writer.Flush();
-                        stream.Position = 0;
-
-                        emailBody.Attachments.Add("calendar.ics", stream);
-                    }
-
-                    
-                }
-
-                //set message body
-                message.Body = emailBody.ToMessageBody();
-                
-
-                //send the email
-                using (var client = new SmtpClient())
-                {
-                    client.Connect("smtp.office365.com", 587, false);
-
-                    // Note: only needed if the SMTP server requires authentication
-                    //client.Authenticate("info@ryne.co", "foobar");
-                    client.Authenticate("nic-fleetwood@behr.travel", "foobar");
-
-                    client.Send(message);
-                    client.Disconnect(true);
-                }
-            }
-
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult aThrEmail(string sendto, string subject, string body)
-        {
-
-            //construct mail
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Halie", "info@ryne.co"));
-            message.To.Add(new MailboxAddress(sendto));
-            message.Subject = subject;
-            message.Headers.Add("Content-class", "urn:content-classes:calendarmessage");
-            message.Body = new TextPart("plain")
-            {
-                Text = body
-            };
-
-            //send the email
-            using (var client = new SmtpClient())
-            {
-                client.Connect("smtp.office365.com", 587, false);
-
-                // Note: only needed if the SMTP server requires authentication
-                client.Authenticate("info@ryne.co", "Nick&Halie");
-
-                client.Send(message);
-                client.Disconnect(true);
-            }
-
-                return RedirectToAction(nameof(PostIndex));
-        }
+        
         public IActionResult ThrCreate(string zero, string dateString)
         {
 
@@ -754,8 +629,8 @@ namespace AURA.Controllers
                     client.Connect("smtp.office365.com", 587, false);
 
                     // Note: only needed if the SMTP server requires authentication
-                    //client.Authenticate("info@ryne.co", "Nick&Halie");
-                    client.Authenticate("nic-fleetwood@behr.travel", "Travelisnumber1");
+                    //client.Authenticate("info@ryne.co", "foobar");
+                    client.Authenticate("nic-fleetwood@behr.travel", "foobar");
 
                     client.Send(message);
                     client.Disconnect(true);
