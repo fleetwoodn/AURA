@@ -25,8 +25,9 @@ namespace AURA.Models
         public string SevInvo { get; set; }
 
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Entry Date")]
+        [DataType(DataType.Date)]
         //[RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\@]*$")]
         public DateTime SevDate { get; set; }
 

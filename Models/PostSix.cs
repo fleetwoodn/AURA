@@ -22,7 +22,7 @@ namespace AURA.Models
 
         //[Required] enter this programmatically, so no need for required tag
         [Display(Name = "Entry Date")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime SixDate { get; set; }
 
         [Required]

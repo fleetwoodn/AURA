@@ -28,7 +28,7 @@ namespace AURA.Models
         [Display(Name = "Stage")]
         public string OneStag { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(35, MinimumLength = 2)]
         [Display(Name = "Lead Agent")]
         public string OneAgen { get; set; }

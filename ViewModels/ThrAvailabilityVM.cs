@@ -8,14 +8,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AURA.ViewModels
 {
-    public class ThreeDayAvailabilityVM
+    public class ThrAvailabilityVM
     {
         public string ThrZero { get; set; }
         public int ThrDigit { get; set; }
 
-        //[DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        [Display(Name = "DateFrame")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ThrDate { get; set; }
+
+        [Display(Name = "HourFrame")]
+        public DateTime ThrTime { get; set; }
         public string ThrText { get; set; }
 
         public IEnumerable<AURA.Models.PostThr> Thr0X { get; set; }

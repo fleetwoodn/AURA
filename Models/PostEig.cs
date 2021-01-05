@@ -31,8 +31,11 @@ namespace AURA.Models
         [StringLength(5, MinimumLength = 1)]
         public string EigRole { get; set; }
 
+        [Display(Name = "Agent Text Contact")]
+        public string EigCont { get; set; }
+
         [Display(Name = "Agent Load")]
-        [StringLength(10)]
+        //[StringLength(10)]
         public decimal EigLoad { get; set; }
 
         [Display(Name = "Notes")]

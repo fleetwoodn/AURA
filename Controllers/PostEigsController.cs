@@ -8,11 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using AURA.Data;
 using AURA.Models;
 
-using Microsoft.AspNetCore.Authorization;
-
 namespace AURA.Controllers
 {
-    [Authorize]
     public class PostEigsController : Controller
     {
         private readonly PostContext _context;
@@ -57,7 +54,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EigId,EigZero,EigDigit,EigAgen,EigRole,EigLoad,EigNote")] PostEig postEig)
+        public async Task<IActionResult> Create([Bind("EigId,EigZero,EigDigit,EigAgen,EigCont,EigRole,EigLoad,EigNote")] PostEig postEig)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +86,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EigId,EigZero,EigDigit,EigAgen,EigRole,EigLoad,EigNote")] PostEig postEig)
+        public async Task<IActionResult> Edit(int id, [Bind("EigId,EigZero,EigDigit,EigAgen,EigCont,EigRole,EigLoad,EigNote")] PostEig postEig)
         {
             if (id != postEig.EigId)
             {

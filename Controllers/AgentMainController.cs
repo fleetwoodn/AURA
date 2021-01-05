@@ -217,6 +217,9 @@ namespace AURA.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                agentsPhone.EmailText = agentsPhone.PhoneNumber +"@"+ agentsPhone.CarrierName;
+
                 _context.Add(agentsPhone);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(AgentDetail), new { UserId = agentsPhone.UserId });

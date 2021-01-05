@@ -29,14 +29,26 @@
             </div>
             <div class="form-group">
                 <label asp-for="CarrierName" class="control-label"></label>
-                <input asp-for="CarrierName" class="form-control" />
+                <i>[US NUMBERS ONLY!]</i>
+                @*<input asp-for="CarrierName" class="form-control" />*@
+            <select asp-for="CarrierName">
+                <option></option>
+                <option>txt.att.net</option>
+                <option>mobile-number@vtext.com</option>
+                <option>mobile-number@tmomail.net</option>
+                <option>messaging.sprintpcs.com</option>
+                <option>message.Alltel.com</option>
+                <option>myboostmobile.com</option>
+                <option>sms.mycricket.com</option>
+                <option>mymetropcs.com</option>
+            </select>
                 <span asp-validation-for="CarrierName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="EmailText" class="control-label"></label>
                 <input asp-for="EmailText" class="form-control" />
                 <span asp-validation-for="EmailText" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Notes" class="control-label"></label>
                 <input asp-for="Notes" class="form-control" />

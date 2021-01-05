@@ -87,30 +87,13 @@
         </div>
     }
 
-    @*list of fiv*@
-    <hr />
-    <div style="background-color:lightblue">
-        <span style="background-color:lightblue"><b>REMARKS</b></span>
-    </div>
-
-    @foreach (var item in Model.PostFivs)
-    {
-        <div>
-
-            <span style="width:50em;">@Html.DisplayFor(modelItem => item.FivDigit)</span>.<nbsp> </nbsp>
-            <span>@Html.DisplayFor(modelItem => item.FivPrio)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FivCode)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FivText)</span>
-        </div>
-    }
-
     @*list of sev*@
     <hr />
     <div style="background-color:lightblue">
         <span style="background-color:lightblue"><b>BILLING</b></span>
     </div>
 
-    
+
     @foreach (var item in Model.PostSevs)
     {
         <div style="float:left;">
@@ -119,6 +102,7 @@
             <span>@Html.DisplayFor(modelItem => item.SevInvo)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.SevDate)</span><nbsp> </nbsp>|
             <span>@Html.DisplayFor(modelItem => item.SevDesc)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.SevNote)</span><nbsp> </nbsp>
 
             @*<div style="text-align:right">@Html.DisplayFor(modelItem => item.SevAmou)</div>*@
             @*<span>@Html.DisplayFor(modelItem => item.SevSign)</span><nbsp> </nbsp>|*@
@@ -135,7 +119,7 @@
     @foreach (var item in Model.PostSixs)
     {
         <div style="float:left;">
-            <span>@Html.DisplayFor(modelItem => item.SixDate)</span>
+            <span>@Html.DisplayFor(modelItem => item.SixDate)</span>|
             <span>@Html.DisplayFor(modelItem => item.SixType)</span>
         </div>
         <div style="text-align:right;">@Html.DisplayFor(modelItem => item.SixAmou)</div>
@@ -149,6 +133,23 @@
     <div style="text-align:right;">
         <b>TOTAL DUE: @ViewBag.total</b>
     </div>
+
+    @*list of fiv*@
+    <hr />
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>REMARKS</b></span>
+    </div>
+
+    @foreach (var item in Model.PostFivs)
+    {
+        <div>
+
+            <span style="width:50em;">@Html.DisplayFor(modelItem => item.FivDigit)</span>.<nbsp> </nbsp>
+            <span>@Html.DisplayFor(modelItem => item.FivPrio)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.FivCode)</span><nbsp> </nbsp>|
+            <span>@Html.DisplayFor(modelItem => item.FivText)</span>
+        </div>
+    }
 
     @*list of eig*@
     <hr />
@@ -179,7 +180,7 @@
         <span style="background-color:lightblue"><b>AGREEMENT OF TERMS</b></span>
     </div>
     <p>BY SIGNING BELOW, YOU ARE AGREEING TO ALL OF THE TERMS LISTED IN THIS CONTRACT</p>
-    
+
     <div>
         <p></p>
         <p></p>

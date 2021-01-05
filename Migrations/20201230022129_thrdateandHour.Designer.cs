@@ -4,14 +4,16 @@ using AURA.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AURA.Migrations
 {
     [DbContext(typeof(PostContext))]
-    partial class PostContextModelSnapshot : ModelSnapshot
+    [Migration("20201230022129_thrdateandHour")]
+    partial class thrdateandHour
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -332,9 +334,6 @@ namespace AURA.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<string>("EigCont")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("EigDigit")
                         .HasColumnType("int");
 
@@ -626,8 +625,8 @@ namespace AURA.Migrations
                         .HasColumnType("nvarchar(160)")
                         .HasMaxLength(160);
 
-                    b.Property<string>("ThrTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("ThrTimed")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ThrZero")
                         .HasColumnType("nvarchar(max)");

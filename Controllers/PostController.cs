@@ -20,6 +20,10 @@ using System.Text;
 using SelectPdf;
 using Microsoft.AspNetCore.Authorization;
 
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AURA.Controllers
 {
@@ -359,8 +363,8 @@ namespace AURA.Controllers
             postZero.Zero = uDate + "-" + uDigit;
 
             ///postOne.OneAgent = User.Identity.Name; //we will apply this once the authentication is complete
-            postZero.ZeroAgen = "njn-1";
-            //postZero.ZeroAgen = User.Identity.n
+            //postZero.ZeroAgen = "njn-1";
+            postZero.ZeroAgen = User.Identity.Name;
 
             if (ModelState.IsValid)
             {
@@ -400,8 +404,8 @@ namespace AURA.Controllers
 
 
 
-                ///postZero.ZeroAgent = User.Identity.Name; //we will apply this once the authentication is complete
-                postZero.ZeroAgen = "njn-1";
+                postZero.ZeroAgen = User.Identity.Name; //we will apply this once the authentication is complete
+                //postZero.ZeroAgen = "njn-1";
 
                 postOne.OneZero = postZero.Zero;
 
@@ -411,6 +415,10 @@ namespace AURA.Controllers
                 
                 _context.Add(postOne);
                 await _context.SaveChangesAsync();
+
+                //now for posteig load
+
+
                 return RedirectToAction(nameof(PostDetail), new { zero = postOne.OneZero });
             }
             return View(postOne);
@@ -480,6 +488,132 @@ namespace AURA.Controllers
         //    return View();
         //}
 
+        //test for sending emails
+        public IActionResult ThrEmail(string sendto, string subject, string body)
+        {
+            //var viewModel = new ThrEmailVM();
+
+            //return View(viewModel);
+
+            if (!String.IsNullOrEmpty(sendto))
+            {
+                //construct mail
+                var message = new MimeMessage();
+                //message.From.Add(new MailboxAddress("Halie", "info@ryne.co"));
+                message.From.Add(new MailboxAddress("nick", "nic-fleetwood@behr.travel"));
+                message.To.Add(new MailboxAddress(sendto));
+                message.Subject = subject;
+                message.Headers.Add("Content-class", "urn:content-classes:calendarmessage");
+                //message.Body = new TextPart("plain")
+                //{
+                //    Text = body
+                //};
+
+                //BodyBuilder emailBody = new BodyBuilder();
+                //emailBody.TextBody = body;
+                var emailBody = new BodyBuilder();
+                var ics = new StringBuilder();
+
+
+                //ics file -- use yyyMMddTHHmmssZ format
+                //StringBuilder str = new StringBuilder();
+                //str.AppendLine()
+                ics.AppendLine("BEGIN:VCALENDAR");
+                ics.AppendLine("PRODID:-//RYNE MOVING//EN");
+                ics.AppendLine("VERSION:2.0");
+                ics.AppendLine("METHOD:PUBLISH");
+                //THE EVENT
+                ics.AppendLine("BEGIN:VEVENT");
+                ics.AppendLine("DTSTART:20210215T100000");
+                ics.AppendLine("DTEND:20210215T110000");
+                ics.AppendLine("DTSTAMP:" + DateTime.Now);
+                ics.AppendLine("UID:" + Guid.NewGuid());
+                ics.AppendLine("CREATED:" + DateTime.Now);
+                ics.AppendLine("X-ALT-DESC;FMTTYPE=text/html:");
+                ics.AppendLine("DESCRIPTION:desc-this is a test move date");
+                ics.AppendLine("LAST-MODIFIED:" + DateTime.Now);
+                ics.AppendLine("LOCATION:NYC");
+                ics.AppendLine("SEQUENCE:0");
+                ics.AppendLine("STATUS:CONFIRMED");
+                ics.AppendLine("SUMMARY:summary-test summary");
+                ics.AppendLine("TRANSP:OPAQUE");
+                ics.AppendLine("END:VEVENT");
+
+                ics.AppendLine("END:VCALENDAR");
+
+                //something else
+                //var calendarBytes = Encoding.UTF8.GetBytes(str.ToString());
+                //MemoryStream ms = new MemoryStream(calendarBytes);
+
+                //System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(ms, "event.ics", "text/calendar");
+                //emailBody.Attachments.Add(attachment);
+                //emailBody.Attachments.Add(str.ToString());
+
+                using (var stream = new MemoryStream())
+                {
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.Write(ics.ToString());
+
+                        writer.Flush();
+                        stream.Position = 0;
+
+                        emailBody.Attachments.Add("calendar.ics", stream);
+                    }
+
+                    
+                }
+
+                //set message body
+                message.Body = emailBody.ToMessageBody();
+                
+
+                //send the email
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.office365.com", 587, false);
+
+                    // Note: only needed if the SMTP server requires authentication
+                    //client.Authenticate("info@ryne.co", "foobar");
+                    client.Authenticate("nic-fleetwood@behr.travel", "foobar");
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult aThrEmail(string sendto, string subject, string body)
+        {
+
+            //construct mail
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Halie", "info@ryne.co"));
+            message.To.Add(new MailboxAddress(sendto));
+            message.Subject = subject;
+            message.Headers.Add("Content-class", "urn:content-classes:calendarmessage");
+            message.Body = new TextPart("plain")
+            {
+                Text = body
+            };
+
+            //send the email
+            using (var client = new SmtpClient())
+            {
+                client.Connect("smtp.office365.com", 587, false);
+
+                // Note: only needed if the SMTP server requires authentication
+                client.Authenticate("info@ryne.co", "Nick&Halie");
+
+                client.Send(message);
+                client.Disconnect(true);
+            }
+
+                return RedirectToAction(nameof(PostIndex));
+        }
         public IActionResult ThrCreate(string zero, string dateString)
         {
 
@@ -518,7 +652,7 @@ namespace AURA.Controllers
             DateTime date3 = mDate.AddDays(3);
             ViewBag.date3 = date3.ToString("yy-MM-dd");
 
-            var viewModel = new ThreeDayAvailabilityVM
+            var viewModel = new ThrAvailabilityVM
             {
                 ThrDate = DateTime.Now,
 
@@ -539,13 +673,9 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ThrCreate([Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrText")] PostThr postThr, string zero)
-        //public async Task<IActionResult> ThrCreate(ThreeDayAvailabilityVM threeDayAvailabilityVM, PostThr postThr, string zero)
+        public async Task<IActionResult> ThrCreate([Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrTime,ThrText")] PostThr postThr)
+        //public async Task<IActionResult> ThrCreate([Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrText")] PostThr postThr, string zero)
         {
-            
-
-
-
             if (!(_context.PostThrs.Count(n => n.ThrZero == postThr.ThrZero) > 0))
             {
                 postThr.ThrDigit = 1;
@@ -559,6 +689,80 @@ namespace AURA.Controllers
             {
                 _context.Add(postThr);
                 await _context.SaveChangesAsync();
+
+                //send calendar invite
+
+                //decode date and time
+                string timeframe = postThr.ThrDate.ToString("yyyy-MM-dd") + "T" + postThr.ThrTime + ":00.0000000-5:00"; //2018-08-18T07:22:16.0000000Z
+                //string timeframe = "2021-02-12T10:00:00.0000000-5:00";
+                DateTime calDate = System.DateTime.Parse(timeframe);
+
+                //construct mail
+                var message = new MimeMessage();
+                //message.From.Add(new MailboxAddress("Halie", "info@ryne.co"));
+                message.From.Add(new MailboxAddress("Ryne Calendar", "nic-fleetwood@behr.travel"));
+                message.To.Add(new MailboxAddress("info@ryne.co"));
+                message.Subject = "Ryne Moving Calendar - " + postThr.ThrDate + "-"+ postThr.ThrText;
+                message.Headers.Add("Content-class", "urn:content-classes:calendarmessage");
+                
+                var emailBody = new BodyBuilder();
+                var ics = new StringBuilder();
+
+                //ics file -- use yyyyMMddTHHmmssZ format
+                
+                ics.AppendLine("BEGIN:VCALENDAR");
+                ics.AppendLine("PRODID:-//RYNE MOVING//EN");
+                ics.AppendLine("VERSION:2.0");
+                ics.AppendLine("METHOD:PUBLISH");
+                //THE EVENT
+                ics.AppendLine("BEGIN:VEVENT");
+                ics.AppendLine("DTSTART:"+ calDate.ToString("yyyyMMddTHHmmss"));
+                ics.AppendLine("DTEND:"+ calDate.AddHours(1).ToString("yyyyMMddTHHmmss"));
+                ics.AppendLine("DTSTAMP:" + DateTime.Now);
+                ics.AppendLine("UID:" + Guid.NewGuid());
+                ics.AppendLine("CREATED:" + DateTime.Now);
+                ics.AppendLine("X-ALT-DESC;FMTTYPE=text/html:");
+                ics.AppendLine("DESCRIPTION:"+ postThr.ThrText);
+                ics.AppendLine("LAST-MODIFIED:" + DateTime.Now);
+                ics.AppendLine("LOCATION:NYC");
+                ics.AppendLine("SEQUENCE:0");
+                ics.AppendLine("STATUS:CONFIRMED");
+                ics.AppendLine("SUMMARY:"+ postThr.ThrText);
+                ics.AppendLine("TRANSP:OPAQUE");
+                ics.AppendLine("END:VEVENT");
+                ics.AppendLine("END:VCALENDAR");
+
+                using (var stream = new MemoryStream())
+                {
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.Write(ics.ToString());
+
+                        writer.Flush();
+                        stream.Position = 0;
+
+                        emailBody.Attachments.Add("RyneCalendar.ics", stream);
+                    }
+                }
+
+                //set message body
+                message.Body = emailBody.ToMessageBody();
+
+                //send the email
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.office365.com", 587, false);
+
+                    // Note: only needed if the SMTP server requires authentication
+                    //client.Authenticate("info@ryne.co", "Nick&Halie");
+                    client.Authenticate("nic-fleetwood@behr.travel", "Travelisnumber1");
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+
+                //end calendar invite
+
                 return RedirectToAction(nameof(PostDetail), new { zero = postThr.ThrZero });
             }
             return View(postThr);
@@ -585,7 +789,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ThrEdit(int id, [Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrText")] PostThr postThr)
+        public async Task<IActionResult> ThrEdit(int id, [Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrTime,ThrText")] PostThr postThr)
         {
             if (id != postThr.ThrId)
             {
@@ -1246,6 +1450,8 @@ namespace AURA.Controllers
         {
             ViewBag.zero = zero;
 
+            
+
             return View();
         }
 
@@ -1254,7 +1460,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EigCreate([Bind("EigId,EigZero,EigDigit,EigAgen,EigRole,EigLoad,EigNote")] PostEig postEig)
+        public async Task<IActionResult> EigCreate([Bind("EigId,EigZero,EigDigit,EigAgen,EigCont,EigRole,EigLoad,EigNote")] PostEig postEig)
         {
             if (!(_context.PostEigs.Count(n => n.EigZero == postEig.EigZero) > 0))
             {
@@ -1297,7 +1503,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EigEdit(int id, [Bind("EigId,EigZero,EigDigit,EigAgen,EigRole,EigLoad,EigNote")] PostEig postEig)
+        public async Task<IActionResult> EigEdit(int id, [Bind("EigId,EigZero,EigDigit,EigAgen,EigCont,EigRole,EigLoad,EigNote")] PostEig postEig)
         {
             if (id != postEig.EigId)
             {

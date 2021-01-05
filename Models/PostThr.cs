@@ -23,10 +23,23 @@ namespace AURA.Models
         [Display(Name = "Number")]
         public int ThrDigit { get; set; }
 
-        [Required]
-        [DataType(DataType.DateTime)]
-        [Display(Name = "TimeFrame")]
+        //[Required]
+        //[DataType(DataType.DateTime)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH}", ApplyFormatInEditMode = true)]
+        //[Display(Name = "TimeFrame")]
+        //public DateTime ThrDate { get; set; }
+
+        [Display(Name = "DateFrame")]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ThrDate { get; set; }
+
+        [Display(Name = "HourFrame")]
+        //[DataType(DataType.Time)]
+        //[DisplayFormat(DataFormatString = "{0:HH}", ApplyFormatInEditMode = true)]
+        //public DateTime ThrTime { get; set; }
+        public string ThrTime { get; set; }
+
 
         [Required]
         [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
