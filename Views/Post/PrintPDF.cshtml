@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    ViewBag.Title = "PrintPDF";
     
 }
 
@@ -18,9 +19,11 @@
             margin-bottom: 0px;
 
         }
-        .span {
+        .items {
             max-width: 65em;
-
+            margin:5px;
+            /*border-right-width:1px; 
+            border-right-style:solid*/
         }
 
     </style>
@@ -47,11 +50,81 @@
             <p></p>
         </div>
     </div>
-    @*LIST OF THR*@
+
     <div>
         <hr />
     </div>
     <hr />
+
+    <div style="float:left">
+        <span class="items"><strong>PICK-UP</strong></span>
+        @foreach (var item in Model.PostFous)
+        {
+            @if (item.FouNote == null)
+            {
+                
+            }
+            else if (item.FouNote.Split("-")[0] == "PICK")
+            {
+                <div>
+                    <span class="items" style="margin-right:1px; border-right-width:1px;">@Html.DisplayFor(modelItem => item.FouAddr)</span>
+                    <span class="items" style="margin-left:0px">@Html.DisplayFor(modelItem => item.FouPost)</span>
+                </div>
+            }
+            
+        }
+
+    </div>
+    <div style="float:right">
+        <span class="items"><strong>DROP-OFF</strong></span>
+        @foreach (var item in Model.PostFous)
+        {
+            @if (item.FouNote == null)
+            {
+                
+            }
+            else if (item.FouNote.Split("-")[0] == "DROP")
+            {
+                <div>
+                    <span class="items" style="margin-right:1px; border-right-width:1px;">@Html.DisplayFor(modelItem => item.FouAddr)</span>
+                    <span class="items" style="margin-left:0px">@Html.DisplayFor(modelItem => item.FouPost)</span>
+                </div>
+            }
+        }
+    </div>
+
+    @*<div>
+            @foreach (var item in Model.PostFous)
+            {
+                @if (item.FouNote == "PICK")
+                {
+            <div style="float:left">
+                <span class="items"><strong>PICK-UP</strong></span>
+                <div>
+                    <span class="items" style="margin-right:1px; border-right-width:1px;">@Html.DisplayFor(modelItem => item.FouAddr)</span>
+                    <span class="items" style="margin-left:0px">@Html.DisplayFor(modelItem => item.FouPost)</span>
+                </div>
+
+            </div>
+                }
+
+                @if (item.FouNote == "DROP")
+                {
+                    <div style="float:right">
+                        <span class="items"><strong>DROP-OFF</strong></span>
+                        <div>
+                            <span class="items" style="margin-right:0px">@Html.DisplayFor(modelItem => item.FouAddr)</span>
+                            <span class="items" style="margin-left:0px">@Html.DisplayFor(modelItem => item.FouPost)</span>
+                        </div>
+
+                    </div>
+                }
+
+            }
+        </div>*@
+
+    @*LIST OF THR*@
+    <hr style="clear:both" />
     <div style="background-color:lightblue">
         <span style="background-color:lightblue"><b>TIMEFRAMES</b></span>
     </div>
@@ -59,9 +132,10 @@
     {
         <div>
 
-            <span>@Html.DisplayFor(modelItem => item.ThrDigit)</span>.<nbsp> </nbsp>
-            <span>@Html.DisplayFor(modelItem => item.ThrDate)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.ThrText)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.ThrDigit)</span>.
+            <span class="items">@Html.DisplayFor(modelItem => item.ThrDate)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.ThrTime)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.ThrText)</span>
         </div>
 
     }
@@ -74,21 +148,21 @@
     {
         <div style="float:left">
 
-            <span>@Html.DisplayFor(modelItem => item.FouDigit)</span>.<nbsp> </nbsp>
-            <span>@Html.DisplayFor(modelItem => item.FouName)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FouPhon)</span> |
-            <span>@Html.DisplayFor(modelItem => item.FouEmai)</span> |
+            <span class="items">@Html.DisplayFor(modelItem => item.FouDigit)</span>.
+            <span class="items">@Html.DisplayFor(modelItem => item.FouName)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FouPhon)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FouEmai)</span>
         </div>
         <div>
-            <span>@Html.DisplayFor(modelItem => item.FouAddr)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FouPost)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FouOrg)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FouNote)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FouAddr)</span>/
+            <span class="items">@Html.DisplayFor(modelItem => item.FouPost)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FouOrg)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FouNote)</span>
         </div>
     }
 
     @*list of sev*@
-    <hr />
+    <hr style="clear:both"/>
     <div style="background-color:lightblue">
         <span style="background-color:lightblue"><b>BILLING</b></span>
     </div>
@@ -99,10 +173,10 @@
         <div style="float:left;">
 
 
-            <span>@Html.DisplayFor(modelItem => item.SevInvo)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.SevDate)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.SevDesc)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.SevNote)</span><nbsp> </nbsp>
+            <span class="items">@Html.DisplayFor(modelItem => item.SevInvo)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.SevDate)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.SevDesc)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.SevNote)</span>
 
             @*<div style="text-align:right">@Html.DisplayFor(modelItem => item.SevAmou)</div>*@
             @*<span>@Html.DisplayFor(modelItem => item.SevSign)</span><nbsp> </nbsp>|*@
@@ -119,8 +193,8 @@
     @foreach (var item in Model.PostSixs)
     {
         <div style="float:left;">
-            <span>@Html.DisplayFor(modelItem => item.SixDate)</span>|
-            <span>@Html.DisplayFor(modelItem => item.SixType)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.SixDate)</span>|
+            <span class="items">@Html.DisplayFor(modelItem => item.SixType)</span>
         </div>
         <div style="text-align:right;">@Html.DisplayFor(modelItem => item.SixAmou)</div>
     }
@@ -144,10 +218,10 @@
     {
         <div>
 
-            <span style="width:50em;">@Html.DisplayFor(modelItem => item.FivDigit)</span>.<nbsp> </nbsp>
-            <span>@Html.DisplayFor(modelItem => item.FivPrio)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FivCode)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.FivText)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FivDigit)</span>.
+            <span class="items">@Html.DisplayFor(modelItem => item.FivPrio)</span>|
+            <span class="items">@Html.DisplayFor(modelItem => item.FivCode)</span>|
+            <span class="items">@Html.DisplayFor(modelItem => item.FivText)</span>
         </div>
     }
 
@@ -161,11 +235,11 @@
     {
         <div>
 
-            <span>@Html.DisplayFor(modelItem => item.EigDigit)</span>.<nbsp> </nbsp>
-            <span>@Html.DisplayFor(modelItem => item.EigAgen)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.EigRole)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.EigLoad)</span><nbsp> </nbsp>|
-            <span>@Html.DisplayFor(modelItem => item.EigNote)</span><nbsp> </nbsp>|
+            <span class="items">@Html.DisplayFor(modelItem => item.EigDigit)</span>.
+            <span class="items">@Html.DisplayFor(modelItem => item.EigAgen)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.EigRole)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.EigLoad)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.EigNote)</span>
 
         </div>
     }

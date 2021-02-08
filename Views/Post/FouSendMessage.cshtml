@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "FouSendMessage";
+}
+
+
+<form>
+    <h4>SMS</h4>
+    <input type="text" name="phone" />
+    <hr />
+    
+    <h4>EMAIL</h4>
+    <input type="text" name="email" />
+    <hr />
+
+    <h4>MESSAGE TEXT</h4>
+
+    <div>
+        <input type="button" onclick="Contract()" id="CmdContract" value="CONTRACT" />
+        <input type="button" onclick="MaterialChg()" id="CmdMaterialChg" value="MAT CHG" />
+        <input type="button" onclick="ClearText()" id="CmdClearText" value="CLEAR TEXT" />
+    </div>
+    <input type="text" name="subject" hidden="hidden"/>
+    <input type="text" name="message" />
+    <hr />
+    <input type="submit" value="SEND" />
+</form>
+
+<script>
+
+    function Contract() {
+            document.getElementById("subject").value = ""
+            document.getElementById("subject").value = "RYNE-- CONTRACT"
+            document.getElementById("message").value = "PLEASE FOLLOW LINK TO CONTRACT"
+        }
+
+    function MaterialChg() {
+            document.getElementById("subject").value = ""
+            document.getElementById("subject").value = "RYNE-- MATCHG"
+            document.getElementById("message").value = ""
+            document.getElementById("message").value = "THERE IS A MATERIAL CHANGE TO THE JOB NOT COVERED BY CONTRACT. PLEASE FOLLOW LINK TO CONTINUE"
+        }
+
+    function ClearText() {
+            document.getElementById("subject").value = ""
+            document.getElementById("message").value = ""
+        }
+
+</script>
+

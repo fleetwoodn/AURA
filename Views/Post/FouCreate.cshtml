@@ -59,7 +59,12 @@
             </div>
             <div class="form-group" style="margin-bottom:1rem;">
                 <label asp-for="FouNote" class="control-label"></label>
-                <input asp-for="FouNote" class="form-control" />
+                <div>
+                    <input type="button" onclick="Pick()" id="CmdPick" value="PICK-" />
+                    <input type="button" onclick="Drop()" id="CmdDrop" value="DROP-" />
+                    <input type="button" onclick="ClearText()" id="CmdClearText" value="CLEAR TEXT" />
+                </div>
+                <input asp-for="FouNote" class="form-control" id="TbFouNote" />
                 <span asp-validation-for="FouNote" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -73,3 +78,20 @@
     <a asp-action="PostDetail" asp-route-zero="@ViewBag.zero">Back to Detail</a>
 </div>
 
+<script>
+
+    function Pick() {
+        document.getElementById("TbFouNote").value = ""
+        document.getElementById("TbFouNote").value = "PICK-"
+    }
+
+    function Drop() {
+        document.getElementById("TbFouNote").value = ""
+        document.getElementById("TbFouNote").value = "DROP-"
+    }
+
+    function ClearText() {
+        document.getElementById("TbFouNote").value = ""
+    }
+
+</script>

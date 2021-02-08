@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "SendMessage";
+}
+
+<h1>Send Message</h1>
+
+<strong>@ViewBag.zero</strong>
+
+<form asp-controller="Post" asp-action="SendMessage" method="get">
+    <hr />
+    <h4>SMS</h4>
+    <input type="text" name="phone" />
+    <input type="text" name="carrier" />
+    <hr />
+    <h4>EMAIL</h4>
+
+    <input type="text" name="email" />
+
+    <hr />
+
+    <h4>MESSAGE TEXT</h4>
+
+    <div>
+        <input type="button" onclick="MaterialChg()" id="CmdMaterialChg" value="MAT CHANGE" />
+        <input type="button" onclick="Contract()" id="CmdContract" value="CONTRACT" />
+        <input type="button" onclick="ClearText()" id="CmdClearText" value="CLEAR TEXT" />
+    </div>
+    <input type="text" name="subject" />
+    <input type="text" name="message" />
+    <hr />
+    <input type="submit" value="SEND" />
+</form>
+
+    <script>
+
+        function Pick() {
+            document.getElementById("TbFouNote").value = ""
+            document.getElementById("TbFouNote").value = "OUR WORKERS HAVE DETERMINED THAT THERE IS A MATERIAL CHANGE TO THE JOB THAT IS NOT COVERED BY THE CONTRACT. PLEASE CLICK THE LINK TO CONTINUE"
+        }
+
+        function Drop() {
+            document.getElementById("TbFouNote").value = ""
+            document.getElementById("TbFouNote").value = "CONTRACT IS ATTACHED. PLEASE FOLLOW THE LINK HERE"
+        }
+
+        function ClearText() {
+            document.getElementById("TbFouNote").value = ""
+        }
+
+    </script>

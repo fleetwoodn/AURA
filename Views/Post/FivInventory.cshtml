@@ -17,7 +17,7 @@
 
 
     <div>
-        TOTAL MINUTES: <span id="TotalCount"></span>
+        TOTAL MINUTES, LOAD AND UNLOAD: <span id="TotalCount"></span>
     </div>
     <hr />
     <div>
@@ -44,11 +44,12 @@
     <div>
         <select id="FragileItems">
             <option>FRAGILE MISC</option>
+            <option>FLOOR LAMP</option>
             <option>LARGE MIRROR</option>
-            <option>LARGE TV (+40in)</option>
-            <option>Large WALL ART</option>
+            <option>LARGE MONITOR/TV (+40in)</option>
+            <option>LARGE WALL ART</option>
             <option>SMALL MIRROR</option>
-            <option>SMALL TV (-40in)</option>
+            <option>SMALL MONITOR/TV (-40in)</option>
             <option>SMALL WALL ART</option>
 
         </select>
@@ -170,7 +171,10 @@
         document.getElementById("LargeInventory").innerHTML = text;
 
         //totals
-        var TotalMinutes = (LargeList.length * 10) + (SmallList.length * 5) + (WrapList.length * 5) + (FragileList.length * 10) + (ContList.length * 2) + (BoxList.length * .5);
+        var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
+        var UnloadMinutes = (LoadMinutes * .6);
+
+        var TotalMinutes = LoadMinutes + UnloadMinutes;
 
         document.getElementById("TotalCount").innerHTML = TotalMinutes;
 
@@ -213,7 +217,10 @@
         document.getElementById("SmallInventory").innerHTML = text;
 
         //totals
-        var TotalMinutes = (LargeList.length * 10) + (SmallList.length * 5) + (WrapList.length * 5) + (FragileList.length * 10) + (ContList.length * 2) + (BoxList.length * .5);
+        var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
+        var UnloadMinutes = (LoadMinutes * .6);
+
+        var TotalMinutes = LoadMinutes + UnloadMinutes;
 
         document.getElementById("TotalCount").innerHTML = TotalMinutes;
 
@@ -252,7 +259,10 @@
         document.getElementById("WrapInventory").innerHTML = text;
 
         //totals
-        var TotalMinutes = (LargeList.length * 10) + (SmallList.length * 5) + (WrapList.length * 5) + (FragileList.length * 10) + (ContList.length * 2) + (BoxList.length * .5);
+        var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
+        var UnloadMinutes = (LoadMinutes * .6);
+
+        var TotalMinutes = LoadMinutes + UnloadMinutes;
 
         document.getElementById("TotalCount").innerHTML = TotalMinutes;
 
@@ -297,7 +307,10 @@
         document.getElementById("FragileInventory").innerHTML = text;
 
         //totals
-        var TotalMinutes = (LargeList.length * 10) + (SmallList.length * 5) + (WrapList.length * 5) + (FragileList.length * 10) + (ContList.length * 2) + (BoxList.length * .5);
+        var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
+        var UnloadMinutes = (LoadMinutes * .6);
+
+        var TotalMinutes = LoadMinutes + UnloadMinutes;
 
         document.getElementById("TotalCount").innerHTML = TotalMinutes;
 
@@ -337,7 +350,11 @@
         document.getElementById("BoxInventory").innerHTML = text;
 
         //totals
-        var TotalMinutes = (LargeList.length * 10) + (SmallList.length * 5) + (WrapList.length * 5) + (FragileList.length * 10) + (ContList.length * 2) + (BoxList.length * .5);
+        var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
+        var UnloadMinutes = (LoadMinutes * .6);
+
+        var TotalMinutes = LoadMinutes + UnloadMinutes;
+
 
         document.getElementById("TotalCount").innerHTML = TotalMinutes;
 
@@ -376,7 +393,10 @@
         document.getElementById("ContainerInventory").innerHTML = text;
 
         //totals
-        var TotalMinutes = (LargeList.length * 10) + (SmallList.length * 5) + (WrapList.length * 5) + (FragileList.length * 10) + (ContList.length * 2) + (BoxList.length * .5);
+        var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
+        var UnloadMinutes = (LoadMinutes * .6);
+
+        var TotalMinutes = LoadMinutes + UnloadMinutes;
 
         document.getElementById("TotalCount").innerHTML = TotalMinutes;
 
@@ -405,6 +425,16 @@
         FullString.push("BOXS-" + LenB);
         LenC = ContList.length;
         FullString.push("CONT-" + LenC);
+
+
+
+
+        var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
+        var UnloadMinutes = (LoadMinutes * .6);
+
+        var TotalMinutes = LoadMinutes + UnloadMinutes;
+
+        FullString.push("LOAD TIME:" + TotalMinutes + "min");
 
 
         var Inventory = FullString.join(" /");

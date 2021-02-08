@@ -113,52 +113,7 @@ namespace AURA.Controllers
             return View(viewModel);
 
         }
-        //***************************+++++++++++++++++++++ test area
-
-        [ActionName("PostDetailb")]
-        public IActionResult PostDetailb(string zero = "201004-0")
-        {
-            //ViewBag.OneId = id;
-
-
-            if (zero == null)
-            {
-                return NotFound();
-            }
-
-            //PostOne postOne = _context.PostOnes.Find(id);
-            PostOne postOne = _context.PostOnes.FirstOrDefault(m => m.OneZero == zero);
-
-            var uThr = _context.PostThrs.Where(m => m.ThrZero == zero).ToList();
-            var uFou = _context.PostFous.Where(m => m.FouZero == zero).ToList();
-            var uFiv = _context.PostFivs.Where(m => m.FivZero == zero).ToList();
-            var uSix = _context.PostSixs.Where(m => m.SixZero == zero).ToList();
-            var uSev = _context.PostSevs.Where(m => m.SevZero == zero).ToList();
-            var uEig = _context.PostEigs.Where(m => m.EigZero == zero).ToList();
-            var uNin = _context.PostNins.Where(m => m.NinZero == zero).ToList();
-
-            var viewModel = new PostDetailVM
-            {
-                OneId = postOne.OneId.ToString(),
-                OneZero = postOne.OneZero,
-                OneStag = postOne.OneStag,
-                OneAgen = postOne.OneAgen,
-                OnePart = postOne.OnePart,
-                OneTitl = postOne.OneTitl,
-
-
-                PostThrs = uThr,
-                PostFous = uFou,
-                PostFivs = uFiv,
-                PostSixs = uSix,
-                PostSevs = uSev,
-                PostEigs = uEig,
-                PostNins = uNin,
-
-            };
-
-            return View(viewModel);
-        }
+        
 
         /// <summary>
         /// Downloads the post one comma seperated file.
@@ -276,6 +231,7 @@ namespace AURA.Controllers
             }
         }
 
+        [AllowAnonymous]
         public IActionResult PrintPDF(string zero)
         {
 
@@ -338,6 +294,8 @@ namespace AURA.Controllers
 
             return View(viewModel);
         }
+
+        
 
         //post zero****************************************************************************************************************************************
 
@@ -816,7 +774,7 @@ namespace AURA.Controllers
         }
 
         // GET: PostFous/Delete/5
-        public async Task<IActionResult> FouDelete(int? id)
+        public async Task<IActionResult> FouDelete(int? id, string zero, string phone, string email, string type)
         {
             if (id == null)
             {
@@ -830,7 +788,8 @@ namespace AURA.Controllers
                 return NotFound();
             }
 
-            return View(postFou);
+
+                return View(postFou);
         }
 
         // POST: PostFous/Delete/5
@@ -842,6 +801,83 @@ namespace AURA.Controllers
             _context.PostFous.Remove(postFou);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(PostDetail), new { zero = postFou.FouZero });
+        }
+
+        public IActionResult FouSendMessage(string zero, string message)
+        {
+
+
+            return View();
+        }
+
+        public IActionResult SendContract(int? id, string zero, string type, string address)
+        {
+            string message = "Please follow the link for you contract -- https://aura20210105160447.azurewebsites.net/Post/PrintPDF?zero=" + zero;
+
+            //text or email
+
+            InternetAddressList list = new InternetAddressList();
+
+            if (type == "phone")
+            {
+                
+                list.Add(new MailboxAddress(address + "@txt.att.net"));
+                list.Add(new MailboxAddress(address + "@vtext.com"));
+                list.Add(new MailboxAddress(address + "@tmomail.net"));
+                list.Add(new MailboxAddress("info@ryne.co"));
+            }
+
+            if (type == "email")
+            {
+                list.Add(new MailboxAddress(address));
+                list.Add(new MailboxAddress("info@ryne.co"));
+            }
+
+            var tmessage = new MimeMessage();
+                tmessage.From.Add(new MailboxAddress("Ryne", "nic-fleetwood@behr.travel"));
+                tmessage.To.AddRange(list);
+                tmessage.Subject = "RYNE -- Contract";
+
+                var builder = new BodyBuilder();
+
+                builder.TextBody = message;
+                // Now we just need to set the message body and we're done
+                tmessage.Body = builder.ToMessageBody();
+
+                //send the email
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.office365.com", 587, false);
+
+                    // Note: only needed if the SMTP server requires authentication
+                    //client.Authenticate("info@ryne.co", "foobar");
+                    client.Authenticate("nic-fleetwood@behr.travel", "foobar");
+
+                    client.Send(tmessage);
+                    client.Disconnect(true);
+                }
+
+            return RedirectToAction("FouDelete", "Post", new { id });
+
+        }
+
+        public IActionResult MaterialChange(int? id, string zero, string address)
+        {
+            ViewBag.id = id;
+            ViewBag.zero = zero;
+            ViewBag.address = address;
+
+
+
+            return View();
+        }
+
+        public IActionResult MaterialChange(int?id, string zero, string address, string message)
+        {
+
+
+
+            return RedirectToAction("FouDelete", "Post", new { id });
         }
 
         private bool PostFouExists(int id)
@@ -897,6 +933,7 @@ namespace AURA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(PostDetail), new { zero = postFiv.FivZero });
             }
+            //return View(postFiv, new { zero = postFiv.FivZero, code = postFiv.FivCode, priority = postFiv.FivPrio, remark = postFiv.FivText });
             return View(postFiv);
         }
 
@@ -1319,6 +1356,13 @@ namespace AURA.Controllers
         }
 
         //post eig****************************************************************************************************************************************
+
+        //FIND AGENT
+        public async Task<IActionResult> EigAgentList(string zero)
+        {
+
+            return View(await _context.Agents.ToListAsync());
+        }
 
         // GET: PostEigs/Create
         public IActionResult EigCreate(string zero)

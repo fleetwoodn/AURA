@@ -12,12 +12,23 @@
     <title>FouDelete</title>
 </head>
 <body>
+    <div>
+        <strong>CONTRACT</strong>--<a asp-action="SendContract" asp-route-id="@Model.FouId" asp-route-address="@Model.FouPhon" asp-route-zero="@Model.FouZero" asp-route-type="phone">TEXT</a>|<a asp-action="SendContract" asp-route-id="@Model.FouId" asp-route-address="@Model.FouEmai" asp-route-zero="@Model.FouZero" asp-route-type="email">EMAIL</a>
+      </div>
+    @*<div>
+        <strong>MATERIAL CHANGE</strong>--<a asp-action="FouDelete" asp-route-id="@Model.FouId" asp-route-phone="@Model.FouPhon" asp-route-type="MatChg">TEXT</a>|<a asp-action="FouDelete" asp-route-id="@Model.FouId" asp-route-email="@Model.FouEmai" asp-route-type="MatChg">EMAIL</a>
 
-    <a asp-action="FouEdit" asp-route-id="@Model.FouId">Edit</a> |
+    </div>*@
+    <div>
+        <strong style="color:red">@ViewBag.Status</strong>
+    </div>
+    <hr />
+
+    <a asp-action="FouEdit" asp-route-id="@Model.FouId">EDIT</a> |
     <a asp-action="PostDetail" asp-route-zero="@Model.FouZero">BACK TO DETAIL</a>
 
     <div>
-        
+
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
