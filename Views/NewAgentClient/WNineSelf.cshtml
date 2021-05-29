@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewData["Title"] = "W-9 Electronic";
+}
+
+<h3>ELECTRONIC W-9</h3>
+<h4>Request for Taxpayer Identification Number and Certification</h4>
+<p>Sign at bottom</p>
+<hr />
+<p>
+    Link to IRS website for PDF document version: <a href="https://www.irs.gov/forms-pubs/about-form-w-9">About IRS form W-9</a>.
+    Please use this link to reference any instructions from the IRS
+</p>
+<hr />
+<form asp-action="WNineSelf">
+    <div>
+        <input value="@ViewBag.UserId" style="width:100px" readonly="readonly" name="userid" />
+    </div>
+    <div>
+        <span>
+            <strong>Name (as shown of your income tax return)</strong>
+        </span>
+        <div><input style="width:400px" value="@ViewBag.Name" readonly="readonly" name="name" /></div>
+    </div>
+    <div>
+        <span>
+            <strong>Business Name, if different from above</strong>
+        </span>
+        <div><input style="width:400px" readonly="readonly" name="business" /></div>
+    </div>
+    <div>
+        <span>
+            <strong>Select the appropriate federal tax classification</strong>
+        </span>
+        <div><input value="Individual/sole proprietor or single-member LLC" readonly="readonly" style="width:400px" name="taxclass" /></div>
+    </div>
+    <div>
+        <span>
+            <strong>Address (number, street, and apt. or suite no.)</strong>
+        </span>
+        <div><input style="width:400px" value="@ViewBag.StreetAddress" readonly="readonly" name="address" /></div>
+    </div>
+    <div>
+        <span>
+            <strong>City, state, and ZIP code</strong>
+        </span>
+        <div><input style="width:400px" value="@ViewBag.PostCode" readonly="readonly" name="postcode" /></div>
+    </div>
+
+    <hr />
+    <h4><strong>Part I_</strong>Taxpayer Identification Number (TIN)</h4>
+    <div>
+        <p>DO NOT ENTER A FAKE NUMBER! IF YOU DO NOT HAVE ONE, LEAVE IT BLANK!</p>
+        <p>A FAKE NUMBER IS A CRIME! BLANK IS NOT!</p>
+    </div>
+    <div>
+        <input style="width:400px" name="taxid" />
+    </div>
+    <hr />
+    <h4><strong>Part II_</strong>Certification</h4>
+    <p>
+        Under penalties of perjury, I certify that:
+        <ol>
+            <li>
+                The number shown on this form is my correct taxpayer identification number (or I am waiting for a number to be issued to me); and
+            </li>
+            <li>
+                I am not subject to backup withholding because: (a) I am exempt from backup withholding, or (b) I have not been notified by the Internal Revenue
+                Service (IRS) that I am subject to backup withholding as a result of a failure to report all interest or dividends, or (c) the IRS has notified me that I am
+                no longer subject to backup withholding; and
+            </li>
+            <li>
+                I am a U.S. citizen or other U.S. person (defined below); and
+            </li>
+            <li>
+                The FATCA code(s) entered on this form (if any) indicating that I am exempt from FATCA reporting is correct.
+            </li>
+        </ol>
+    </p>
+    <p>
+        Certification instructions. You must cross out item 2 above if you have been notified by the IRS that you are currently subject to backup withholding because
+        you have failed to report all interest and dividends on your tax return. For real estate transactions, item 2 does not apply. For mortgage interest paid,
+        acquisition or abandonment of secured property, cancellation of debt, contributions to an individual retirement arrangement (IRA), and generally, payments
+        other than interest and dividends, you are not required to sign the certification, but you must provide your correct TIN. See the instructions for Part II, later.
+    </p>
+    <hr />
+    <p>
+        This document is an electronic copy of an IRS W-9 form. We will be submitting the information on this form to the IRS for verification. By
+        Electronically signing below, you agree:
+        <ul>
+            <li>That the information above is correct to the best of your knowledge</li>
+            <li>You are in fact the person named above</li>
+            <li>The taxpayer ID listed above does belong to you</li>
+            <li>You agree to the IRS certification in Part II</li>
+            <li>You authorize Ryne to send this information to the IRS</li>
+        </ul>
+        IF SOMETHING ON THIS FORM IS NOT RIGHT, <strong>STOP!!</strong> Talk to a Ryne employee immediately, do not continue.
+    </p>
+
+    <div>
+        <label value="@ViewBag.Name"></label>
+        <label>PRINT IN BOX TO AGREE</label>
+        <input style="width:400px" name="esign" />
+        <label>DATE</label>
+        <input style="width:150px" value="@ViewBag.Date" name="edate" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="I agree" class="btn btn-primary" />
+    </div>
+</form>
+
+<script>
+    function nullCheck()
+    var x;
+
+    x = document.getElementById("taxid").value;
+    if (x == "") {
+        alert("Enter a valid tax ID")
+        return false;
+    };
+
+    x = document.getElementById("esign").value;
+    if (x == "") {
+        alert("Enter a valid e-Signature")
+        return false;
+    };
+
+</script>

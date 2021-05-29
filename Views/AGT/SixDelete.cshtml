@@ -1,0 +1,66 @@
+﻿@model AURA.Models.PostSix
+
+@{
+    ViewData["Title"] = "SixDelete";
+}
+
+<h4>SixDelete</h4>
+
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SixZero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SixZero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SixDigit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SixDigit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SixDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SixDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SixType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SixType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SixDeta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SixDeta)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SixAmou)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SixAmou)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SixStat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SixStat)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SixNote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SixNote)
+        </dd>
+    </dl>
+    
+    <form asp-action="SixDelete">
+        <input type="hidden" asp-for="SixId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="AGTDetail" asp-route-zero="@Model.SixZero">AGTDetail</a>
+    </form>
+</div>

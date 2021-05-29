@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewData["Title"] = "Routing";
+}
+
+<html>
+
+<head>
+    <title>loadmapwithoptionsHTML</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <style type='text/css'>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            font-family: 'Segoe UI',Helvetica,Arial,Sans-Serif
+        }
+    </style>
+</head>
+<body>
+
+    <div id="traveldata">
+        <label for="tbTotalMiles">Total Miles</label>
+        <br />
+        <input id="tbTotalMiles" type="number" style="width:80px" />
+        <br />
+        <label for="NycTruck">NYC 4 Boroughs?</label>
+        <input id="ckNycTruck" type="checkbox" />
+        <br />
+        <label for="InterState">InterState?</label>
+        <input id="ckInterState" type="checkbox"/>
+        <br />
+        <label for="tbTravelTime">Travel Time in minutes:</label>
+        <br />
+        <input id="tbTravelTime" type="number" style="width:80px" />
+        <br />
+        <div>
+            <input id="Submit" type="button" value="JOB DETAILS" class="btn btn-primary" onclick="ToItems()" />
+        </div>
+
+    </div>
+
+    <hr />
+    <p id="WaypointList"></p>
+    
+    <input id="tbNewWaypoint" type="text" style="width:400px;"/>
+    <input id="btNewWaypoint" type="button" value="ADD WAYPOINT" onclick="AddWaypoint()" />
+    <hr />
+    <div id="input panel">
+        <!--<div id="wp1">
+            Waypoint 1 :
+            <input id="wp1address" type="text" />-->
+            @*<input id="wp1postcode" type="text" />*@
+        <!--</div>
+        <div id="wp2">
+            Waypoint 2 :
+            <input id="wp2address" type="text"  />-->
+            @*<input id="wp2postcode" type="text" />*@
+        <!--</div>-->
+        <input id="calculateRoute" type="button" value="Show Route" onclick="loadMapScenario()" />
+
+    </div>
+    <p id="TestLink"></p>
+
+    <hr />
+    <div id='printoutPanel'></div>
+
+    <div id='myMap' style='width: 500px; height: 500px;'></div>
+    <script type='text/javascript'>
+//testing
+        var WaypointList = ["11377"];
+        document.getElementById("WaypointList").innerHTML = "ROUTE:|<input type='button' onclick='RemoveWaypoint(0)' value='X'>" + WaypointList[0] + "==>";
+
+        
+//testing
+        function loadMapScenario() {
+            var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+                /* No need to set credentials if already passed in URL */
+                center: new Microsoft.Maps.Location(40.745540, -73.906010),
+                zoom: 11
+            });
+            Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+                var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+                directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
+                directionsManager.setRequestOptions({
+                    routeMode: Microsoft.Maps.Directions.RouteMode.truck,
+                    //    vehicleSpec: {
+                    //    dimensionUnit: 'ft',
+                    //    weightUnit: 'lb',
+                    //    vehicleHeight: 5,
+                    //    vehicleWidth: 3.5,
+                    //    vehicleLength: 30,
+                    //    vehicleWeight: 30000,
+                    //    vehicleAxles: 3,
+                    //    vehicleTrailers: 2,
+                    //    vehicleSemi: true,
+                    //    vehicleMaxGradient: 10,
+                    //    vehicleMinTurnRadius: 15,
+                    //    vehicleAvoidCrossWind: true,
+                    //    vehicleAvoidGroundingRisk: true,
+                    //    vehicleHazardousMaterials: 'F',
+                    //    vehicleHazardousPermits: 'F'
+                    //}
+
+                });
+
+
+                //array testing
+                //for (i = 0; i < WLength; i++)
+                WLen = WaypointList.length;
+
+                for (q = 0; q < WLen; q++) {
+                    directionsManager.addWaypoint(
+                        new Microsoft.Maps.Directions.Waypoint({
+                            address: WaypointList[q]
+                        })
+                    )
+                } 
+
+                //comment test starts here
+                //var wp1text = document.getElementById("wp1address").value;
+                //var wp2text = document.getElementById("wp2address").value;
+
+                //var wp1 = new Microsoft.Maps.Directions.Waypoint({
+                //    address: wp1text
+                //    //location: new Microsoft.Maps.Location(40.419228, -80.018138)
+                //});
+                //var wp2 = new Microsoft.Maps.Directions.Waypoint({
+                //    address: wp2text
+                //    //location: new Microsoft.Maps.Location(40.437550, -79.993610)
+                //});
+                //directionsManager.addWaypoint(wp1);
+                //directionsManager.addWaypoint(wp2);
+                //ends here
+                directionsManager.calculateDirections();
+            });
+        }
+    </script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AndlX0ezcOyA5fR2ZTrxJ22hIfvmcootBfLElvVB84zEkUJdKMuIptAZcpPghZZz&callback=loadMapScenario' async defer></script>
+
+    <script>
+        function ToItems() {
+
+            if (document.getElementById("ckNycTruck").checked) {
+                var TotalMiles = 0;
+                var NycTruck = "true";
+            }
+            else {
+                var TotalMiles = document.getElementById("tbTotalMiles").value;
+                var NycTruck = "false";
+            }
+            if (document.getElementById("ckInterState").checked) {
+                var InterState = "true";
+            }
+            else {
+                var InterState = "false";
+            }
+            //var TotalMiles = document.getElementById("tbTotalMiles").value;
+            var TravelTime = document.getElementById("tbTravelTime").value;
+            var Waypoints = WaypointList.toString();
+
+            var text = "JobAndInventory?zero=@ViewBag.zero&TravelTime=" + TravelTime + "&TotalMiles=" + TotalMiles + "&NycTruck=" + NycTruck + "&InterState=" + InterState +  "&Waypoints=" + Waypoints;
+            window.location.href = text;
+
+            //document.getElementById("TestLink").innerHTML = text;
+        }
+
+        //waypoint array
+        function AddWaypoint() {
+            WaypointList.push(document.getElementById("tbNewWaypoint").value);
+            PopulateWaypoints(WaypointList);
+            document.getElementById("tbNewWaypoint").value = "";
+
+            document.getElementById("tbNewWaypoint").focus();
+            document.getElementById("tbNewWaypoint").select();
+
+        }
+
+        function PopulateWaypoints(arr) {
+            
+
+            WLength = arr.length;
+
+            text = "ROUTE:"
+            for (i = 0; i < WLength; i++) {
+                text += "<span>|<input type='button' onclick='RemoveWaypoint(" + i + ")' value='X' />" + WaypointList[i] + "==></span>";
+            }
+
+            document.getElementById("WaypointList").innerHTML = text;         
+        }
+
+        function RemoveWaypoint(index) {
+            WaypointList.splice(index, 1);
+            PopulateWaypoints(WaypointList);
+        }
+
+        
+
+    </script>
+
+</body>
+</html>

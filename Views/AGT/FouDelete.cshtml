@@ -1,0 +1,74 @@
+﻿@model AURA.Models.PostFou
+
+@{
+    ViewData["Title"] = "FouDelete";
+}
+
+<h4>FouDelete</h4>
+
+<div>
+    <h4>PostFou</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouZero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouZero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouDigit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouDigit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouPhon)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouPhon)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouEmai)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouEmai)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouAddr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouAddr)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouPost)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouPost)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouOrg)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouOrg)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FouNote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FouNote)
+        </dd>
+    </dl>
+    
+    <form asp-action="FouDelete">
+        <input type="hidden" asp-for="FouId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="AGTDetail" asp-route-zero="@Model.FouZero">AGTDetail</a>
+    </form>
+</div>

@@ -1,0 +1,327 @@
+﻿@model AURA.ViewModels.ThrAvailabilityVM
+@*@model AURA.Models.PostThr
+
+    @{
+        ViewData["Title"] = "ThrCreate";
+    }*@
+
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ThrCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ThrZero" value="@ViewBag.zero" />
+            <input type="hidden" asp-for="ThrDigit" value="0" />
+            @*<div class="form-group">
+                    <label asp-for="ThrZero" class="control-label"></label>
+                    <input asp-for="ThrZero" class="form-control" readonly="readonly" value="@ViewBag.Zero" />
+                    <span asp-validation-for="ThrZero" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThrDigit" class="control-label"></label>
+                    <input asp-for="ThrDigit" class="form-control" readonly="readonly" value="0" />
+                    <span asp-validation-for="ThrDigit" class="text-danger"></span>
+                </div>*@
+
+            <div class="form-group">
+                <label asp-for="ThrDate" class="control-label"></label>
+                <input asp-for="ThrDate" class="form-control" />
+                <span asp-validation-for="ThrDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ThrTime" class="control-label"></label>
+                <select asp-for="ThrTime" class="form-control">
+                    <option>00:00</option>
+                    <option>01:00</option>
+                    <option>02:00</option>
+                    <option>03:00</option>
+                    <option>04:00</option>
+                    <option>05:00</option>
+                    <option>06:00</option>
+                    <option>07:00</option>
+                    <option>08:00</option>
+                    <option>09:00</option>
+                    <option>10:00</option>
+                    <option>11:00</option>
+                    <option>12:00</option>
+                    <option>13:00</option>
+                    <option>14:00</option>
+                    <option>15:00</option>
+                    <option>16:00</option>
+                    <option>17:00</option>
+                    <option>18:00</option>
+                    <option>19:00</option>
+                    <option>20:00</option>
+                    <option>21:00</option>
+                    <option>22:00</option>
+                    <option>23:00</option>
+                    <option>24:00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrEndTime" class="control-label"></label>
+                <select asp-for="ThrEndTime" class="form-control">
+                    <option></option>
+                    <option>07:00</option>
+                    <option>08:00</option>
+                    <option>09:00</option>
+                    <option>10:00</option>
+                    <option>11:00</option>
+                    <option>12:00</option>
+                    <option>13:00</option>
+                    <option>14:00</option>
+                    <option>15:00</option>
+                    <option>16:00</option>
+                    <option>17:00</option>
+                    <option>18:00</option>
+                    <option>19:00</option>
+                    <option>20:00</option>
+                    <option>21:00</option>
+                    <option>22:00</option>
+                    <option>23:00</option>
+                    <option>24:00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrText" class="control-label"></label>
+                <div>
+                    <input type="button" onclick="PlanDate()" id="CmdPlanDate" value="PLAN DATE" />
+                    <input type="button" onclick="DpstDate()" id="CmdDpstDate" value="DPST DATE" />
+                    <input type="button" onclick="ServiceDate()" id="CmdServiceDate" value="SERVICE DATE" />
+                    <input type="button" onclick="ClearText()" id="CmdClearText" value="CLEAR TEXT" />
+                </div>
+                <input asp-for="ThrText" class="form-control" id="TbThrText" />
+                <span asp-validation-for="ThrText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="MSRDetail" asp-route-zero="@ViewBag.Zero">Back to MSR</a>
+</div>
+
+<hr />
+
+<form asp-controller="MSR" asp-action="ThrCreate" method="get">
+    <p>
+        <input type="hidden" name="zero" value="@ViewBag.zero" />
+        <input type="date" name="dateString" method="get" />
+        <input type="submit" value="SEARCH AVAILABILITY" />
+    </p>
+    <p>USE MM/DD/YY FORMAT</p>
+
+</form>
+
+<hr />
+<div>
+    <h4>@ViewBag.dateX</h4>
+    <table>
+        @foreach (var item in Model.Thr0X)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.dateY</h4>
+    <table>
+        @foreach (var item in Model.Thr0Y)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.dateZ</h4>
+    <table>
+        @foreach (var item in Model.Thr0Z)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.date0</h4>
+    <table>
+        @foreach (var item in Model.Thr00)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.date1</h4>
+    <table>
+        @foreach (var item in Model.Thr01)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.date2</h4>
+    <table>
+        @foreach (var item in Model.Thr02)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<hr />
+<div>
+    <h4>@ViewBag.date3</h4>
+    <table>
+        @foreach (var item in Model.Thr03)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrZero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrText)
+                </td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+
+<script>
+
+    function PlanDate() {
+        document.getElementById("TbThrText").value = ""
+        document.getElementById("TbThrText").value = "PLAN DATE-"
+    }
+
+    function DpstDate() {
+        document.getElementById("TbThrText").value = ""
+        document.getElementById("TbThrText").value = "DPST DUE-"
+    }
+
+    function ServiceDate() {
+        document.getElementById("TbThrText").value = ""
+        document.getElementById("TbThrText").value = "SERVICE DATE-"
+    }
+
+    function ClearText() {
+        document.getElementById("TbThrText").value = ""
+    }
+
+    
+</script>

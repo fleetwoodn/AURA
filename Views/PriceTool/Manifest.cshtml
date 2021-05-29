@@ -1,0 +1,269 @@
+﻿@model AURA.ViewModels.ManifestVM
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h4>@ViewBag.zero</h4>
+<hr />
+<div>
+    <div>
+        BOXS COUNT : @ViewBag.boxCount
+
+        <form asp-controller="PriceTool" asp-action="AdjustBoxs" method="post">
+            <input type="number" name="BoxsCount" style="width:60px" />
+            <input type="hidden" name="zero" value="@ViewBag.zero" />
+            <input type="submit" value="UPDATE BOX COUNT" />
+        </form>
+    </div>
+
+    <div>
+        CONT COUNT : @ViewBag.contCount
+        <form asp-controller="PriceTool" asp-action="AdjustCont" method="post">
+            <input type="number" name="ContCount" style="width:60px" />
+            <input type="hidden" name="zero" value="@ViewBag.zero" />
+            <input type="submit" value="UPDATE CONT COUNT" />
+        </form>
+
+    </div>
+</div>
+
+<hr />
+<h5>ITEMS</h5>
+<form asp-controller="PriceTool" asp-action="AddObject" method="post">
+    <span><input type="hidden" name="Type" value="I" readonly="readonly" style="width:20px" />|</span>
+    <span><input type="hidden" name="NameSelect" value="" /></span>
+    <span><input type="text" name="NameWrite" /></span>
+    <span>
+        <select name="Wrap">
+            <option>N</option>
+            <option>Y</option>
+        </select>
+    </span>
+    <span>
+        <select name="Assembly">
+            <option>N</option>
+            <option>Y</option>
+        </select>
+    </span>
+    <input type="submit" value="ADD ITEM" />
+</form>
+@foreach (var item in Model.ManifestsI)
+{
+    <table>
+        <tr>
+            <td>
+                <form asp-controller="PriceTool" asp-action="DeleteObject" method="post">
+                    <input type="hidden" name="id" value="@item.Id" />
+                    <input type="hidden" name="zero" value="@ViewBag.zero" />
+                    <input type="submit" value="X" />
+                </form>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wrap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assembly)
+            </td>
+        </tr>
+    </table>
+    
+}
+<hr />
+<h5>FRAGILES</h5>
+<form asp-controller="PriceTool" asp-action="AddObject" method="post">
+    <span><input type="hidden" name="Type" value="F" readonly="readonly" style="width:20px" />|</span>
+    <span>
+        <select name="NameSelect">
+            <option>FRAGILE MISC</option>
+            <option>LARGE MIRROR</option>
+            <option>MONITOR/TV (+40in)</option>
+            <option>LARGE WALL ART</option>
+            <option>PLANTS</option>
+            <option>SMALL MIRROR</option>
+            <option>MONITOR/TV (-40in)</option>
+            <option>SMALL WALL ART</option>
+        </select>
+    </span>
+    <span><input type="text" name="NameWrite" /></span>
+    <span>
+        <select name="Wrap">
+            <option>Y</option>
+        </select>
+    </span>
+    <span>
+        <select name="Assembly">
+            <option>N</option>
+        </select>
+    </span>
+    <span><input type="submit" value="ADD FRAGILE" /></span>
+</form>
+@foreach (var item in Model.ManifestsF)
+{
+<table>
+    <tr>
+        <td>
+            <form asp-controller="PriceTool" asp-action="DeleteObject" method="post">
+                <input type="hidden" name="id" value="@item.Id" />
+                <input type="hidden" name="zero" value="@ViewBag.zero" />
+                <input type="submit" value="X" />
+            </form>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Wrap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assembly)
+        </td>
+    </tr>
+</table>
+}
+<hr />
+<h5>LARGE</h5>
+<form asp-controller="PriceTool" asp-action="AddObject" method="post">
+    <span><input type="hidden" name="Type" value="L" readonly="readonly" style="width:20px" />|</span>
+    <span>
+        <select name="NameSelect">
+            <option>LARGE MISC</option>
+            <option>ARMCHAIR</option>
+            <option>BED BOX</option>
+            <option>BED FRAME</option>
+            <option>BED MATTRESS</option>
+            <option>BOOKCASE</option>
+            <option>CHINA CLOSET</option>
+            <option>CHST DRAW</option>
+            <option>COFFEE TABLE</option>
+            <option>DINING TABLE</option>
+            <option>DRESSER</option>
+            <option>ENT CENTER</option>
+            <option>FUTON</option>
+            <option>RECLINER</option>
+            <option>SOFA 2 SEAT</option>
+            <option>SOFA 3 SEAT</option>
+            <option>SOFA SEC 1ST PIECE</option>
+            <option>SOFA SEC 2ND PIECE</option>
+            <option>WARDROBE</option>
+        </select>
+    </span>
+    <span><input type="text" name="NameWrite" /></span>
+    <span>
+        <select name="Wrap">
+            <option>N</option>
+            <option>Y</option>
+        </select>
+    </span>
+    <span>
+        <select name="Assembly">
+            <option>N</option>
+            <option>Y</option>
+        </select>
+    </span>
+    <input type="submit" value="ADD LARGE" />
+</form>
+@foreach (var item in Model.ManifestsL)
+{
+<table>
+    <tr>
+        <td>
+            <form asp-controller="PriceTool" asp-action="DeleteObject" method="post">
+                <input type="hidden" name="id" value="@item.Id" />
+                <input type="hidden" name="zero" value="@ViewBag.zero" />
+                <input type="submit" value="X" />
+            </form>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Wrap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assembly)
+        </td>
+    </tr>
+</table>
+}
+<hr />
+<h5>SMALL</h5>
+<form asp-controller="PriceTool" asp-action="AddObject" method="post">
+    <span><input type="hidden" name="Type" value="S" readonly="readonly" style="width:20px" />|</span>
+    <span>
+        <select name="NameSelect">
+            <option>SMALL MISC</option>
+            <option>AIR CONDIT</option>
+            <option>BENCH</option>
+            <option>BOOKSHELF</option>
+            <option>CHAIR-STOOL</option>
+            <option>COAT RACK</option>
+            <option>COMPUTER DESK</option>
+            <option>CONSOLE TABLE</option>
+            <option>END TABLE</option>
+            <option>FLOOR LAMP</option>
+            <option>MISC CABINETS</option>
+            <option>NIGHTSTAND</option>
+            <option>OTTOMAN</option>
+            <option>ROCKER</option>
+            <option>RUG</option>
+            <option>SERVER TABLE</option>
+            <option>TV STAND</option>
+            <option>WINE RACK</option>
+            <option>WORK DESK</option>
+        </select>
+    </span>
+    <span><input type="text" name="NameWrite" /></span>
+    <span>
+        <select name="Wrap">
+            <option>N</option>
+            <option>Y</option>
+        </select>
+    </span>
+    <span>
+        <select name="Assembly">
+            <option>N</option>
+            <option>Y</option>
+        </select>
+    </span>
+    <span><input type="submit" value="ADD SMALL" /></span>
+</form>
+@foreach (var item in Model.ManifestsS)
+{
+<table>
+    <tr>
+        <td>
+            <form asp-controller="PriceTool" asp-action="DeleteObject" method="post">
+                <input type="hidden" name="id" value="@item.Id" />
+                <input type="hidden" name="zero" value="@ViewBag.zero" />
+                <input type="submit" value="X" />
+            </form>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Wrap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assembly)
+        </td>
+    </tr>
+</table>
+}

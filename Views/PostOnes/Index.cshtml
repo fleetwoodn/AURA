@@ -23,6 +23,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.OneType)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.OneZero)
             </th>
             <th>
@@ -43,6 +46,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneType)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OneZero)
             </td>

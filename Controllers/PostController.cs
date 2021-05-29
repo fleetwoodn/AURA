@@ -29,7 +29,7 @@ namespace AURA.Controllers
 {
 
     //[Authorize(Roles = "NJUN,SALE")]
-    [Authorize]
+    [Authorize(Roles = "Admin,Sale")]
     public class PostController : Controller
     {
         private readonly PostContext _context;
@@ -44,11 +44,17 @@ namespace AURA.Controllers
             return View();
         }
 
+
         //get: postindex
+        
         public async Task<IActionResult> PostIndex(string searchString)
         {
-            var titles = from m in _context.PostOnes
-                         select m;
+            //var titles = from m in _context.PostOnes
+            //             select m;
+
+            //var titles = (from p in _context.PostOnes
+
+            var titles = _context.PostOnes.OrderByDescending(p => p.OneId).Take(100);
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -64,7 +70,9 @@ namespace AURA.Controllers
             
         }
 
+
         //get: post detail
+        
         [ActionName("PostDetail")]
         public IActionResult PostDetail(string zero)
         {
@@ -211,26 +219,6 @@ namespace AURA.Controllers
             }
         }
 
-        protected void CreateSelectPdf(object sender, EventArgs e, string zero)
-        //public IActionResult CreateSelectPdf(string zero)
-        {
-            try
-            {
-                SelectPdf.HtmlToPdf converter = new SelectPdf.HtmlToPdf();
-                SelectPdf.PdfDocument doc = converter.ConvertUrl("https://selectpdf.com");
-                doc.Save("test.pdf");
-
-                //return File(doc);
-
-                doc.Close();
-                
-            }
-            catch
-            {
-                RedirectToAction(nameof(PostIndex));
-            }
-        }
-
         [AllowAnonymous]
         public IActionResult PrintPDF(string zero)
         {
@@ -360,8 +348,6 @@ namespace AURA.Controllers
                 string uDigit = _context.PostZeros.Count(d => d.ZeroDate.Date == postZero.ZeroDate.Date).ToString(); //awesome
                 postZero.Zero = uDate + "-" + uDigit;
 
-
-
                 postZero.ZeroAgen = User.Identity.Name; //we will apply this once the authentication is complete
                 //postZero.ZeroAgen = "njn-1";
 
@@ -370,11 +356,24 @@ namespace AURA.Controllers
                 _context.Add(postZero);
                 await _context.SaveChangesAsync();
                 //now the postone
-                
+
+                postOne.OneAgen = User.Identity.Name;
+
                 _context.Add(postOne);
                 await _context.SaveChangesAsync();
 
                 //now for posteig load
+
+                PostEig postEig = new PostEig();
+
+                postEig.EigZero = postZero.Zero;
+                postEig.EigDigit = 1;
+                postEig.EigAgen = User.Identity.Name;
+                postEig.EigRole = "LEAD";
+                postEig.EigLoad = 0;
+
+                _context.Add(postEig);
+                await _context.SaveChangesAsync();
 
 
                 return RedirectToAction(nameof(PostDetail), new { zero = postOne.OneZero });
@@ -439,13 +438,6 @@ namespace AURA.Controllers
         }
 
         //post thr****************************************************************************************************************************************
-
-        // GET: PostThrs/Create
-        //public IActionResult ThrCreate()
-        //{
-        //    return View();
-        //}
-
         
         public IActionResult ThrCreate(string zero, string dateString)
         {
@@ -523,78 +515,78 @@ namespace AURA.Controllers
                 _context.Add(postThr);
                 await _context.SaveChangesAsync();
 
-                //send calendar invite
+                ////send calendar invite
 
-                //decode date and time
-                string timeframe = postThr.ThrDate.ToString("yyyy-MM-dd") + "T" + postThr.ThrTime + ":00.0000000-5:00"; //2018-08-18T07:22:16.0000000Z
-                //string timeframe = "2021-02-12T10:00:00.0000000-5:00";
-                DateTime calDate = System.DateTime.Parse(timeframe);
+                ////decode date and time
+                //string timeframe = postThr.ThrDate.ToString("yyyy-MM-dd") + "T" + postThr.ThrTime + ":00.0000000-5:00"; //2018-08-18T07:22:16.0000000Z
+                ////string timeframe = "2021-02-12T10:00:00.0000000-5:00";
+                //DateTime calDate = System.DateTime.Parse(timeframe);
 
-                //construct mail
-                var message = new MimeMessage();
-                //message.From.Add(new MailboxAddress("Halie", "info@ryne.co"));
-                message.From.Add(new MailboxAddress("Ryne Calendar", "nic-fleetwood@behr.travel"));
-                message.To.Add(new MailboxAddress("info@ryne.co"));
-                message.Subject = "Ryne Moving Calendar - " + postThr.ThrDate + "-"+ postThr.ThrText;
-                message.Headers.Add("Content-class", "urn:content-classes:calendarmessage");
-                
-                var emailBody = new BodyBuilder();
-                var ics = new StringBuilder();
+                ////construct mail
+                //var message = new MimeMessage();
+                ////message.From.Add(new MailboxAddress("Halie", "info@ryne.co"));
+                //message.From.Add(new MailboxAddress("Ryne Calendar", "info@ryne.co"));
+                //message.To.Add(new MailboxAddress("info@ryne.co"));
+                //message.Subject = "Ryne Moving Calendar - " + postThr.ThrDate + "-" + postThr.ThrText;
+                //message.Headers.Add("Content-class", "urn:content-classes:calendarmessage");
 
-                //ics file -- use yyyyMMddTHHmmssZ format
-                
-                ics.AppendLine("BEGIN:VCALENDAR");
-                ics.AppendLine("PRODID:-//RYNE MOVING//EN");
-                ics.AppendLine("VERSION:2.0");
-                ics.AppendLine("METHOD:PUBLISH");
-                //THE EVENT
-                ics.AppendLine("BEGIN:VEVENT");
-                ics.AppendLine("DTSTART:"+ calDate.ToString("yyyyMMddTHHmmss"));
-                ics.AppendLine("DTEND:"+ calDate.AddHours(1).ToString("yyyyMMddTHHmmss"));
-                ics.AppendLine("DTSTAMP:" + DateTime.Now);
-                ics.AppendLine("UID:" + Guid.NewGuid());
-                ics.AppendLine("CREATED:" + DateTime.Now);
-                ics.AppendLine("X-ALT-DESC;FMTTYPE=text/html:");
-                ics.AppendLine("DESCRIPTION:"+ postThr.ThrText);
-                ics.AppendLine("LAST-MODIFIED:" + DateTime.Now);
-                ics.AppendLine("LOCATION:NYC");
-                ics.AppendLine("SEQUENCE:0");
-                ics.AppendLine("STATUS:CONFIRMED");
-                ics.AppendLine("SUMMARY:"+ postThr.ThrText);
-                ics.AppendLine("TRANSP:OPAQUE");
-                ics.AppendLine("END:VEVENT");
-                ics.AppendLine("END:VCALENDAR");
+                //var emailBody = new BodyBuilder();
+                //var ics = new StringBuilder();
 
-                using (var stream = new MemoryStream())
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.Write(ics.ToString());
+                ////ics file -- use yyyyMMddTHHmmssZ format
 
-                        writer.Flush();
-                        stream.Position = 0;
+                //ics.AppendLine("BEGIN:VCALENDAR");
+                //ics.AppendLine("PRODID:-//RYNE MOVING//EN");
+                //ics.AppendLine("VERSION:2.0");
+                //ics.AppendLine("METHOD:PUBLISH");
+                ////THE EVENT
+                //ics.AppendLine("BEGIN:VEVENT");
+                //ics.AppendLine("DTSTART:" + calDate.ToString("yyyyMMddTHHmmss"));
+                //ics.AppendLine("DTEND:" + calDate.AddHours(1).ToString("yyyyMMddTHHmmss"));
+                //ics.AppendLine("DTSTAMP:" + DateTime.Now);
+                //ics.AppendLine("UID:" + Guid.NewGuid());
+                //ics.AppendLine("CREATED:" + DateTime.Now);
+                //ics.AppendLine("X-ALT-DESC;FMTTYPE=text/html:");
+                //ics.AppendLine("DESCRIPTION:" + postThr.ThrText);
+                //ics.AppendLine("LAST-MODIFIED:" + DateTime.Now);
+                //ics.AppendLine("LOCATION:NYC");
+                //ics.AppendLine("SEQUENCE:0");
+                //ics.AppendLine("STATUS:CONFIRMED");
+                //ics.AppendLine("SUMMARY:" + postThr.ThrText);
+                //ics.AppendLine("TRANSP:OPAQUE");
+                //ics.AppendLine("END:VEVENT");
+                //ics.AppendLine("END:VCALENDAR");
 
-                        emailBody.Attachments.Add("RyneCalendar.ics", stream);
-                    }
-                }
+                //using (var stream = new MemoryStream())
+                //{
+                //    using (var writer = new StreamWriter(stream))
+                //    {
+                //        writer.Write(ics.ToString());
 
-                //set message body
-                message.Body = emailBody.ToMessageBody();
+                //        writer.Flush();
+                //        stream.Position = 0;
 
-                //send the email
-                using (var client = new SmtpClient())
-                {
-                    client.Connect("smtp.office365.com", 587, false);
+                //        emailBody.Attachments.Add("RyneCalendar.ics", stream);
+                //    }
+                //}
 
-                    // Note: only needed if the SMTP server requires authentication
-                    //client.Authenticate("info@ryne.co", "foobar");
-                    client.Authenticate("nic-fleetwood@behr.travel", "foobar");
+                ////set message body
+                //message.Body = emailBody.ToMessageBody();
 
-                    client.Send(message);
-                    client.Disconnect(true);
-                }
+                ////send the email
+                //using (var client = new SmtpClient())
+                //{
+                //    client.Connect("smtp.office365.com", 587, false);
 
-                //end calendar invite
+                //    // Note: only needed if the SMTP server requires authentication
+                //    client.Authenticate("info@ryne.co", "foobar");
+                //    //client.Authenticate("nic-fleetwood@behr.travel", "foobar");
+
+                //    client.Send(message);
+                //    client.Disconnect(true);
+                //}
+
+                ////end calendar invite
 
                 return RedirectToAction(nameof(PostDetail), new { zero = postThr.ThrZero });
             }
@@ -820,7 +812,7 @@ namespace AURA.Controllers
 
             if (type == "phone")
             {
-                
+
                 list.Add(new MailboxAddress(address + "@txt.att.net"));
                 list.Add(new MailboxAddress(address + "@vtext.com"));
                 list.Add(new MailboxAddress(address + "@tmomail.net"));
@@ -833,8 +825,11 @@ namespace AURA.Controllers
                 list.Add(new MailboxAddress("info@ryne.co"));
             }
 
+            //list.Add(new MailboxAddress(address));
+            //list.Add(new MailboxAddress("info@ryne.co"));
+
             var tmessage = new MimeMessage();
-                tmessage.From.Add(new MailboxAddress("Ryne", "nic-fleetwood@behr.travel"));
+                tmessage.From.Add(new MailboxAddress("Ryne", "info@ryne.co"));
                 tmessage.To.AddRange(list);
                 tmessage.Subject = "RYNE -- Contract";
 
@@ -850,8 +845,8 @@ namespace AURA.Controllers
                     client.Connect("smtp.office365.com", 587, false);
 
                     // Note: only needed if the SMTP server requires authentication
-                    //client.Authenticate("info@ryne.co", "foobar");
-                    client.Authenticate("nic-fleetwood@behr.travel", "foobar");
+                    client.Authenticate("info@ryne.co", "foobar");
+                    //client.Authenticate("nic-fleetwood@behr.travel", "foobar");
 
                     client.Send(tmessage);
                     client.Disconnect(true);
@@ -1479,6 +1474,34 @@ namespace AURA.Controllers
             _context.PostEigs.Remove(postEig);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(PostDetail), new { zero = postEig.EigZero });
+        }
+
+        public IActionResult EigCreateFast (PostEig postEig, string zero, string role)
+        {
+            if (!(_context.PostEigs.Count(n => n.EigZero == postEig.EigZero) > 0))
+            {
+                postEig.EigDigit = 1;
+            }
+            else
+            {
+                postEig.EigDigit = _context.PostEigs.Where(m => m.EigZero == postEig.EigZero).Max(x => x.EigDigit) + 1;
+            }
+
+
+            postEig.EigZero = zero;
+            postEig.EigAgen = "OPEN";
+            postEig.EigRole = role;
+            postEig.EigLoad = 0;
+
+            //if (ModelState.IsValid)
+            
+            _context.Add(postEig);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(PostDetail), new { zero = postEig.EigZero });
+            
+            //return View(postEig);
+            //return View();
+            //return RedirectToAction(nameof(PostDetail), new { zero = postEig.EigZero });
         }
 
         private bool PostEigExists(int id)

@@ -12,11 +12,13 @@ namespace AURA.Models
     public class TermsConditions
     {
         public int ID { get; set; }
-        
-        public DateTime EntryDate { get; set; }
-        
-        [Required]
-        [StringLength(10000, MinimumLength = 1)]
-        public string Text { get; set; }
+
+        public string Title { get; set; }
+
+        public string Description { get; set; }
+
+        public string FullText { get; set; }
+
+        public DateTime LastUpdate { get; set; }
     }
 }

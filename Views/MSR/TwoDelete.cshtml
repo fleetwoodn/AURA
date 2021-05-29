@@ -1,0 +1,102 @@
+﻿@model AURA.Models.PostTwo
+
+@{
+    ViewData["Title"] = "TwoDelete";
+}
+
+
+
+<div>
+    <a asp-action="TwoEdit" asp-route-id="@Model.TwoId">EDIT 2/</a>|
+    <a asp-action="MSRDetail" asp-route-zero="@Model.TwoZero">BACK TO MSR</a>
+</div>
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoZero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoZero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoStag)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoStag)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoProd)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoProd)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoDepCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoDepCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoArrCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoArrCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoDepTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoDepTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoArrTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoArrTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoElpdTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoElpdTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CargoRequirement)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CargoRequirement)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoStat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoStat)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TwoNote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TwoNote)
+        </dd>
+    </dl>
+    
+    <form asp-action="TwoDelete">
+        <input type="hidden" asp-for="TwoId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

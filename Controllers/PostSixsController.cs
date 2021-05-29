@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace AURA.Controllers
 {
 
-    [Authorize]
+    [Authorize(Roles = "Admin,Sale")]
     public class PostSixsController : Controller
     {
         private readonly PostContext _context;
@@ -24,8 +24,27 @@ namespace AURA.Controllers
         }
 
         // GET: PostSixes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            //var titles = from m in _context.PostOnes
+            //             select m;
+
+            //var titles = (from p in _context.PostOnes
+
+            var titles = _context.PostSixs.OrderByDescending(p => p.SixId).Take(100);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                titles = titles.Where(s => s.SixZero.Contains(searchString)
+                    || s.SixType.Contains(searchString)
+                    || s.SixDeta.Contains(searchString)
+                    );
+                //                    || s.SixDate.Contains(searchString)
+            }
+
+            //return View(await _context.PostOnes.ToListAsync());
+            return View(await titles.ToListAsync());
+
             return View(await _context.PostSixs.ToListAsync());
         }
 

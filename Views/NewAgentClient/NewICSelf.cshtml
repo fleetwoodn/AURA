@@ -1,0 +1,160 @@
+﻿@model AURA.ViewModels.NewAgentCreateVM
+
+@{
+    ViewData["Title"] = "NewAgentCreate";
+}
+
+<h2>New Independent Contractor Application and Agreement</h2>
+
+<h2>@ViewBag.description</h2>
+<hr />
+<div>
+    Document Last Updated: @ViewBag.lastupdate
+</div>
+<hr />
+<div>
+    @Html.Raw(ViewBag.fulltext)
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NewICSelf">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NickName" class="control-label"></label>
+                <input asp-for="NickName" class="form-control" />
+                <span asp-validation-for="NickName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxId" class="control-label"></label>
+                <input asp-for="TaxId" class="form-control" />
+                <span asp-validation-for="TaxId" class="text-danger"></span>
+            </div>
+            @*phone*@
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryCode" class="control-label"></label>
+                <input asp-for="CountryCode" class="form-control" />
+                <span asp-validation-for="CountryCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarrierName" class="control-label"></label>
+                <i>[FOR US NUMBERS ONLY!]</i>
+                @*<input asp-for="CarrierName" class="form-control" />*@
+                <select asp-for="CarrierName">
+                    <option></option>
+                    <option>txt.att.net</option>
+                    <option>vtext.com</option>
+                    <option>tmomail.net</option>
+                    <option>messaging.sprintpcs.com</option>
+                    <option>message.Alltel.com</option>
+                    <option>myboostmobile.com</option>
+                    <option>sms.mycricket.com</option>
+                    <option>mymetropcs.com</option>
+                </select>
+                <span asp-validation-for="CarrierName" class="text-danger"></span>
+            </div>
+            @*email*@
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            @*address*@
+            <div class="form-group">
+                <label asp-for="StreetAddress" class="control-label"></label>
+                <input asp-for="StreetAddress" class="form-control" />
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostCode" class="control-label"></label>
+                <input asp-for="PostCode" class="form-control" />
+                <span asp-validation-for="PostCode" class="text-danger"></span>
+            </div>
+            @*payment*@
+            <strong>WE ONLY PAY BY DIRECT DEPOSIT OR CHECK</strong>
+            <div class="form-group">
+                <label asp-for="PaymentType" class="control-label"></label>
+                <input asp-for="PaymentType" class="form-control" value="ACH" readonly="readonly" />
+                <span asp-validation-for="PaymentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentDetail" class="control-label"></label>
+                <div>
+                    <strong>ENTER NAME ON ACCOUNT/BANK ROUTING NUMBER/ACCOUNT NUMBER</strong>
+                </div>
+                <input asp-for="PaymentDetail" class="form-control" style="height:50px" />
+                <span asp-validation-for="PaymentDetail" class="text-danger"></span>
+            </div>
+            <hr />
+            <div>
+                <p style="width">
+                    By proceeding and submitting your application, you agree and understand all above. If you needed
+                    translation help, you asked for it, and if you had questions you asked them.
+                </p>
+                <p>
+                    Al continuar y presentar su solicitud, usted acepta y entiende todo lo anterior. Si necesitaba
+                    ayuda de traducción, usted lo pidió, y si tenía preguntas que les hizo.
+                </p>
+                <p>
+                    Furthermore, you understand that Independent Contractor agreements with Ryne Corporation are evergreen
+                    and defined and changeable by Ryne without notice or warning. You also understand the provision relating
+                    to Workers Compensation Insurance, and how if you want, Ryne can assist you to obtain this insurance that
+                    you will pay yourself out of pocket.
+                </p>
+                <p>
+                    Además, usted entiende que los acuerdos de Contratista Independiente con Ryne Corporation son
+                    y definido y modificable por Ryne sin previo aviso o advertencia. También entiende la disposición relativa a
+                    seguro de compensación de trabajadores, y cómo si lo desea, Ryne puede ayudarle a obtener este seguro que
+                    te pagarás de tu bolsillo.
+                </p>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="button" value="I READ AND UNDERSTOOD ALL THE ABOVE" class="btn btn-primary" onclick="ShowAgree()" />
+                <hr />
+                <div class="form-group" id="Esignature" style="visibility:hidden">
+                    <label asp-for="ESignature" class="control-label"></label>
+                    <input asp-for="ESignature" class="form-control" />
+                    <span asp-validation-for="ESignature" class="text-danger"></span>
+                </div>
+                <p id="AreYouSure" style="visibility:hidden">ARE YOU SURE? If you have any questions or concerns, STOP, an speak to a Ryne employee.</p>
+                <input type="submit" value="I AM SURE, I AGREE AND I WANT TO PROCEED" class="btn btn-danger" id="Agree" style="visibility:hidden" />
+            </div>
+        </form>
+        <hr />
+    </div>
+</div>
+
+<script>
+    var hidden = false;
+    function ShowAgree() {
+        hidden = !hidden;
+        document.getElementById("Agree").style.visibility = "visible";
+        document.getElementById("AreYouSure").style.visibility = "visible";
+        document.getElementById("Esignature").style.visibility = "visible";
+
+    }
+</script>
+

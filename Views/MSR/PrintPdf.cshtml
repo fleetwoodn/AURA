@@ -1,0 +1,277 @@
+﻿@model AURA.ViewModels.PostPDFVM
+
+@{
+    Layout = null;
+    ViewBag.Title = "Contract-" + Model.OneZero + "/" + DateTime.Now.ToString("yyMMddHHmm");
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        .p {
+            display: block;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .items {
+            max-width: 65em;
+            margin: 5px;
+            /*border-right-width:1px;
+            border-right-style:solid*/
+        }
+    </style>
+</head>
+<body style="max-width: 195mm;">
+
+    <div style="float:left;">
+        <img src="~/StaticImages/Ryne Logo.png" alt="image" />
+        <p>212-787-2636 | info@ryne.co</p>
+    </div>
+
+    <h3 style="text-align:right;">JOB: @Model.OneZero</h3>
+
+    <div style="text-align:right">
+
+        <span>
+            @Html.DisplayFor(model => model.OneStag) | @Html.DisplayFor(model => model.OneAgen)
+        </span>
+        <div>@Html.DisplayFor(model => model.OnePart)</div>
+        <div>
+            @Html.DisplayFor(model => model.OneTitl)
+        </div>
+        <div>
+            <p></p>
+        </div>
+    </div>
+
+    <div>
+        <hr />
+    </div>
+    <hr />
+
+    <div style="float:left">
+        <span class="items"><strong>PICK-UP</strong></span>
+        @foreach (var item in Model.PostFous)
+        {
+            @if (item.FouNote == null)
+            {
+
+            }
+            else if (item.FouNote.Split("-")[0] == "PICK")
+            {
+                <div>
+                    <span class="items" style="margin-right:1px; border-right-width:1px;">@Html.DisplayFor(modelItem => item.FouAddr)</span>
+                    <span class="items" style="margin-left:0px">@Html.DisplayFor(modelItem => item.FouPost)</span>
+                </div>
+            }
+
+        }
+
+    </div>
+    <div style="float:right">
+        <span class="items"><strong>DROP-OFF</strong></span>
+        @foreach (var item in Model.PostFous)
+        {
+            @if (item.FouNote == null)
+            {
+
+            }
+            else if (item.FouNote.Split("-")[0] == "DROP")
+            {
+                <div>
+                    <span class="items" style="margin-right:1px; border-right-width:1px;">@Html.DisplayFor(modelItem => item.FouAddr)</span>
+                    <span class="items" style="margin-left:0px">@Html.DisplayFor(modelItem => item.FouPost)</span>
+                </div>
+            }
+        }
+    </div>
+
+    @*<div>
+            @foreach (var item in Model.PostFous)
+            {
+                @if (item.FouNote == "PICK")
+                {
+            <div style="float:left">
+                <span class="items"><strong>PICK-UP</strong></span>
+                <div>
+                    <span class="items" style="margin-right:1px; border-right-width:1px;">@Html.DisplayFor(modelItem => item.FouAddr)</span>
+                    <span class="items" style="margin-left:0px">@Html.DisplayFor(modelItem => item.FouPost)</span>
+                </div>
+
+            </div>
+                }
+
+                @if (item.FouNote == "DROP")
+                {
+                    <div style="float:right">
+                        <span class="items"><strong>DROP-OFF</strong></span>
+                        <div>
+                            <span class="items" style="margin-right:0px">@Html.DisplayFor(modelItem => item.FouAddr)</span>
+                            <span class="items" style="margin-left:0px">@Html.DisplayFor(modelItem => item.FouPost)</span>
+                        </div>
+
+                    </div>
+                }
+
+            }
+        </div>*@
+
+    @*LIST OF THR*@
+    <hr style="clear:both" />
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>TIMEFRAMES</b></span>
+    </div>
+    @foreach (var item in Model.PostThrs)
+    {
+        <div>
+
+            <span class="items">@Html.DisplayFor(modelItem => item.ThrDigit)</span>.
+            <span class="items">@Html.DisplayFor(modelItem => item.ThrDate)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.ThrTime)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.ThrText)</span>
+        </div>
+
+    }
+    @*list of fou*@
+    <hr />
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>CONTACTS & LOCATIONS</b></span>
+    </div>
+    @foreach (var item in Model.PostFous)
+    {
+        <div style="float:left">
+
+            <span class="items">@Html.DisplayFor(modelItem => item.FouDigit)</span>.
+            <span class="items">@Html.DisplayFor(modelItem => item.FouName)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FouPhon)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FouEmai)</span>
+        </div>
+        <div style="float:left">
+            <span class="items">@Html.DisplayFor(modelItem => item.FouAddr)</span>/
+            <span class="items">@Html.DisplayFor(modelItem => item.FouPost)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FouOrg)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.FouNote)</span>
+        </div>
+        <div style="clear:both"></div>
+
+    }
+
+    @*list of sev*@
+    <hr style="clear:both" />
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>BILLING</b></span>
+    </div>
+
+
+    @foreach (var item in Model.PostSevs)
+    {
+        <div style="float:left;">
+
+
+            <span class="items">@Html.DisplayFor(modelItem => item.SevInvo)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.SevDate)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.SevDesc)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.SevNote)</span>
+
+            @*<div style="text-align:right">@Html.DisplayFor(modelItem => item.SevAmou)</div>*@
+            @*<span>@Html.DisplayFor(modelItem => item.SevSign)</span><nbsp> </nbsp>|*@
+            @*<span>@Html.DisplayFor(modelItem => item.SevNote)</span><nbsp> </nbsp>*@
+        </div>
+        <div style="text-align:right;">@Html.DisplayFor(modelItem => item.SevAmou)</div>
+        <div style="clear:both"></div>
+    }
+    <hr style="clear:both" />
+    <div style="text-align:right;">
+        <b>TOTAL BILLING: @ViewBag.bill</b>
+    </div>
+    <div style="text-align:right;">
+        <b>----</b>
+    </div>
+    @foreach (var item in Model.PostSixs)
+    {
+        <div style="float:left;">
+            <span class="items">@Html.DisplayFor(modelItem => item.SixDate)</span>|
+            <span class="items">@Html.DisplayFor(modelItem => item.SixType)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.SixNote)</span>
+        </div>
+        <div style="text-align:right;">@Html.DisplayFor(modelItem => item.SixAmou)</div>
+    }
+    <div style="text-align:right;">
+        <b>TOTAL PAYMENTS: @ViewBag.paym</b>
+    </div>
+    <div style="text-align:right;">
+        <b>----</b>
+    </div>
+    <div style="text-align:right;">
+        <b>TOTAL DUE: @ViewBag.total</b>
+    </div>
+
+    @*list of fiv*@
+    <hr />
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>REMARKS</b></span>
+    </div>
+
+    @foreach (var item in Model.PostFivs)
+    {
+        <div>
+
+            <span class="items">@Html.DisplayFor(modelItem => item.FivDigit)</span>.
+            @*<span class="items">@Html.DisplayFor(modelItem => item.FivPrio)</span>|*@
+            <span class="items">@Html.DisplayFor(modelItem => item.FivCode)</span>|
+            <span class="items">@Html.DisplayFor(modelItem => item.FivText)</span>
+        </div>
+    }
+
+    @*list of eig*@
+    <hr />
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>AGENTS</b></span>
+    </div>
+
+    @foreach (var item in Model.PostEigs)
+    {
+        <div>
+
+            <span class="items">@Html.DisplayFor(modelItem => item.EigDigit)</span>.
+            <span class="items">@Html.DisplayFor(modelItem => item.EigAgen)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.EigRole)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.EigCont)</span>
+            @*<span class="items">@Html.DisplayFor(modelItem => item.EigLoad)</span>*@
+            <span class="items">@Html.DisplayFor(modelItem => item.EigNote)</span>
+
+        </div>
+    }
+
+
+    @*list of nin*@
+    <hr />
+    <div style="background-color:lightblue">
+
+    </div>
+    <div style="background-color:lightblue">
+        <span style="background-color:lightblue"><b>AGREEMENT OF TERMS</b></span>
+    </div>
+    <p>BY SIGNING BELOW, YOU ARE AGREEING TO ALL OF THE TERMS LISTED IN THIS CONTRACT</p>
+    <br />
+    <br />
+    <br />
+    <p>_______________________________________________________________________________________</p>
+    <hr />
+
+    <div>
+        @Html.Raw(ViewBag.description)
+    </div>
+
+    <div>
+        @Html.Raw(ViewBag.fulltext)
+    </div>
+
+</body>
+</html>

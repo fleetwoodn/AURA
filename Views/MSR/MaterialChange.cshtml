@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "MaterialChange";
+}
+
+<h4>MaterialChange</h4>
+
+<div>
+    <form asp-action="MaterialChange">
+        <input type="text" value="@ViewBag.zero" name="zero" readonly="readonly" />
+        <br />
+        @*<input type="tel" />|*@
+        Email:<input type="email" name="emailAddress"/>
+        <hr />
+        <textarea name="MatChgDesc" cols="9" style="width:300px; height:200px"></textarea>
+        <hr />
+        <input type="submit" value="Send MatChg" />
+    </form>
+</div>
+
+<a asp-action="MSRDetail" asp-route-zero="@ViewBag.zero">BACK TO MSR</a>

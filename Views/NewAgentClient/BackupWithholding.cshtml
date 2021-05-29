@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "BackupWithholding";
+}
+
+<h1>Backup Withholding</h1>
+<hr />
+<h5>IF YOU ARE ON THIS PAGE, YOU LEFT THE TAX ID FIELD BLANK</h5>
+<p>
+    Not a problem. There may be many reasons you did so, and we are not going to demand it. However,
+    it is the policy of the Ryne Corporation to begin backup withholding immediately without a valid
+    tax ID. If you have a tax ID, please advise a Ryne Corporate supervisor so that it will be added
+    to your file.
+</p>
+<h4>What is Backup Withholding?</h4>
+<p>
+    Backup withholding is when the withholding agent, in this case the Ryne Corporation, holds back
+    a flat percentage of your pay for taxes. The current rate is 24%. For example, if you work a contract with
+    Ryne, and the payout is $1000.00, Ryne will only pay out $760.00. The remaining $240.00 will be
+    set aside to pay the US Government. If you can produce a valid Tax Identification Number (TIN) before
+    the end of the calendar year, Ryne will pay out all the money set aside in full. Otherwise, Ryne will
+    pay the US government the taxes it is due.
+</p>
+<hr />
+<a class="nav-link text-danger" asp-area="" asp-controller="NewAgentClient" asp-action="WNineSelf" asp-route-UserId="@ViewBag.UserId"
+   asp-route-Name="@ViewBag.Name" asp-route-StreetAddress="@ViewBag.StreetAddress" asp-route-Postcode="@ViewBag.Postcode">I AGREE AND UNDERSTAND</a>
+
+
+

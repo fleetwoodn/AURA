@@ -27,6 +27,7 @@ namespace AURA.Models
 
         [Display(Name = "Phone")]
         [StringLength(20)]
+        //[DataType(DataType.PhoneNumber)]
         public string FouPhon { get; set; }
 
         [Display(Name = "Email")]
@@ -44,7 +45,7 @@ namespace AURA.Models
         [StringLength(10)]
         public string FouPost { get; set; }
 
-        [Display(Name = "Organization")]
+        [Display(Name = "Apt/Organization/Comments")]
         [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]
         [StringLength(45)]
         public string FouOrg { get; set; }

@@ -1,0 +1,67 @@
+﻿@model AURA.Models.PostThr
+
+@{
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body>
+
+    <a asp-action="ThrEdit" asp-route-id="@Model.ThrId">EDIT</a> |
+    <a asp-action="MSRDetail" asp-route-zero="@Model.ThrZero">BACK TO DETAIL</a>
+    <div>
+        <h4>TimeFrame</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ThrZero)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ThrZero)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ThrDigit)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ThrDigit)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ThrDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ThrDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ThrTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ThrTime)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ThrEndTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ThrEndTime)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ThrText)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ThrText)
+            </dd>
+        </dl>
+
+        <form asp-action="ThrDelete">
+            <input type="hidden" asp-for="ThrId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="MSRDetail" asp-route-zero="@Model.ThrZero">BACK TO MSR</a>
+        </form>
+    </div>
+</body>
+</html>

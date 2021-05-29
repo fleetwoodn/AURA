@@ -18,8 +18,11 @@ namespace AURA.ViewModels
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ThrDate { get; set; }
 
-        [Display(Name = "HourFrame")]
-        public DateTime ThrTime { get; set; }
+        [Display(Name = "Time Block")]
+        public string ThrTime { get; set; }
+
+        [Display(Name = "End Time")]
+        public string ThrEndTime { get; set; }
         public string ThrText { get; set; }
 
         public IEnumerable<AURA.Models.PostThr> Thr0X { get; set; }

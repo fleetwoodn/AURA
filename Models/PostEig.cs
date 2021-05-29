@@ -23,7 +23,7 @@ namespace AURA.Models
         //[ForeignKey("Agents")] to come later
         [Required]
         [Display(Name = "Agent ID")]
-        [StringLength(10, MinimumLength = 1)]
+        [StringLength(50, MinimumLength = 1)]
         public string EigAgen { get; set; }
 
         [Required]

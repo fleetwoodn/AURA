@@ -54,7 +54,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrTime,ThrText")] PostThr postThr)
+        public async Task<IActionResult> Create([Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrTime,ThrEndTime,ThrText")] PostThr postThr)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrTime,ThrText")] PostThr postThr)
+        public async Task<IActionResult> Edit(int id, [Bind("ThrId,ThrZero,ThrDigit,ThrDate,ThrTime,ThrEndTime,ThrText")] PostThr postThr)
         {
             if (id != postThr.ThrId)
             {

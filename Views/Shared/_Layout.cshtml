@@ -26,27 +26,34 @@
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>*@
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="TruckMap" asp-action="Index">Map</a>
                             </li>
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="AgentMain" asp-action="Index">Agent System</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Availability" asp-action="Index">Calendar</a>
                             </li>
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="PostIndex">Post System</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="AgentClient" asp-action="Index">Operations Home</a>
                             </li>
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin System</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin Home</a>
                             </li>
-                            <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Availability" asp-action="Index">Availability</a>
-                            </li>
-                                @*<li class="nav-item">
+                            @if (User.IsInRole("Admin") || User.IsInRole("Sale"))
+                            {
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="PostIndex">Post System</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="MSR" asp-action="MSRIndex">MSR</a>
+                                </li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                                </li>*@
+                                </li>
+                                 }
+                             }
+                            
                         </ul>
                     }
                 </div>

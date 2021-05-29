@@ -64,8 +64,9 @@
             <div class="form-group">
                 <label asp-for="ThrText" class="control-label"></label>
                 <div>
-                    <input type="button" onclick="ServiceDate()" id="CmdServiceDate" value="SERVICE DATE" />
+                    <input type="button" onclick="PlanDate()" id="CmdPlanDate" value="PLAN DATE" />
                     <input type="button" onclick="DpstDate()" id="CmdDpstDate" value="DPST DATE" />
+                    <input type="button" onclick="ServiceDate()" id="CmdServiceDate" value="SERVICE DATE" />
                     <input type="button" onclick="ClearText()" id="CmdClearText" value="CLEAR TEXT" />
                 </div>
                 <input asp-for="ThrText" class="form-control" id="TbThrText"/>
@@ -110,6 +111,9 @@
                     @Html.DisplayFor(modelItem => item.ThrDate)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.ThrText)
                 </td>
 
@@ -131,6 +135,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ThrText)
@@ -156,6 +163,9 @@
                     @Html.DisplayFor(modelItem => item.ThrDate)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.ThrText)
                 </td>
 
@@ -177,6 +187,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ThrText)
@@ -202,6 +215,9 @@
                     @Html.DisplayFor(modelItem => item.ThrDate)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.ThrText)
                 </td>
 
@@ -223,6 +239,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ThrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ThrText)
@@ -248,6 +267,9 @@
                     @Html.DisplayFor(modelItem => item.ThrDate)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ThrTime)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.ThrText)
                 </td>
 
@@ -259,14 +281,19 @@
 
 <script>
 
-    function ServiceDate() {
+    function PlanDate() {
         document.getElementById("TbThrText").value = ""
-        document.getElementById("TbThrText").value = "SERVICE DATE-"
+        document.getElementById("TbThrText").value = "PLAN DATE-"
     }
 
     function DpstDate() {
         document.getElementById("TbThrText").value = ""
-        document.getElementById("TbThrText").value = "DPST-"
+        document.getElementById("TbThrText").value = "DPST DUE-"
+    }
+
+    function ServiceDate() {
+        document.getElementById("TbThrText").value = ""
+        document.getElementById("TbThrText").value = "SERVICE DATE-"
     }
 
     function ClearText() {

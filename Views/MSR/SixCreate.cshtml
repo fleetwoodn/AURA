@@ -1,0 +1,89 @@
+﻿@model AURA.Models.PostSix
+
+@{
+    ViewData["Title"] = "SixCreate";
+}
+<head>
+    <style>
+        div.form-group {
+            margin-bottom: 0rem;
+        }
+    </style>
+</head>
+
+<h4>ADD 6/</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SixCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SixZero" value="@ViewBag.zero" />
+            <input type="hidden" asp-for="SixDigit" value="0" />
+            @*<div class="form-group">
+                    <label asp-for="SixZero" class="control-label"></label>
+                    <input asp-for="SixZero" class="form-control" readonly="readonly" value="@ViewBag.zero" />
+                    <span asp-validation-for="SixZero" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SixDigit" class="control-label"></label>
+                    <input asp-for="SixDigit" class="form-control" readonly="readonly" value="0" />
+                    <span asp-validation-for="SixDigit" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="SixDate" class="control-label"></label>
+                <input asp-for="SixDate" class="form-control" value="@DateTime.Now" />
+                <span asp-validation-for="SixDate" class="text-danger"></span>
+            </div>
+            <div></div>
+            <br />
+            <div class="form-group">
+                <label asp-for="SixType" class="control-label"></label>
+                @*<input asp-for="SixType" class="form-control" />*@
+                <select asp-for="SixType">
+                    <option>CARD</option>
+                    <option>ELEC</option>
+                    <option>CASH</option>
+                </select>
+                <span asp-validation-for="SixType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SixDeta" class="control-label"></label>
+                <i>[CARD ENTRY FORMAT: VI4444333322221111/0221/123]</i>
+                <input asp-for="SixDeta" class="form-control" />
+                <span asp-validation-for="SixDeta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SixAmou" class="control-label"></label>
+                <input asp-for="SixAmou" class="form-control" />
+                <span asp-validation-for="SixAmou" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="SixStat" class="control-label"></label>
+                    <input asp-for="SixStat" class="form-control" value="OPEN" />
+                    <span asp-validation-for="SixStat" class="text-danger"></span>
+                </div>*@
+            <div>
+
+            </div>
+            <div class="form-group" style="margin-bottom:1rem;">
+                <label asp-for="SixNote" class="control-label"></label>
+                <i>[IF DEPOSIT, WRITE THAT HERE]</i>
+                <input asp-for="SixNote" class="form-control" />
+                <span asp-validation-for="SixNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="SixStat" value="OPEN" />
+                <input type="hidden" name="stage" value="@ViewBag.stage" />
+                <input type="hidden" name="partyid" value="@ViewBag.partyid" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="MSRDetail" asp-route-zero="@ViewBag.zero">BACK TO MSR</a>
+</div>
+

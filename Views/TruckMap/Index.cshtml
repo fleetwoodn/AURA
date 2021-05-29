@@ -1,0 +1,166 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ 
+}
+@{
+    ViewData["Title"] = "Truck Routing";
+}
+
+
+<html>
+
+<head>
+    <title>loadmapwithoptionsHTML</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <style type='text/css'>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            font-family: 'Segoe UI',Helvetica,Arial,Sans-Serif
+        }
+    </style>
+</head>
+<body>
+
+   
+
+    <div id="input panel">
+        <div id="wp1">
+            Waypoint 1 :
+            <input id="wp1address" type="text" />
+            @*<input id="wp1postcode" type="text" />*@
+            <span><button onclick="GetLocation()">Get Location</button></span>
+        </div>
+        <div id="wp2">
+            Waypoint 2 :
+            <input id="wp2address" type="text" value="@ViewBag.endpoint"/>
+            @*<input id="wp2postcode" type="text" />*@
+        </div>
+        <input id="calculateRoute" type="button" value="Show Route" onclick="loadMapScenario()" />
+        <div>
+            
+
+            
+
+            <p id="demo"></p>
+        </div>
+
+    </div>
+    <p id="TestLink"></p>
+
+    <hr />
+    <div id="directions" style="overflow:visible;">
+        <div id='printoutPanel' style="overflow:visible;"></div>
+
+        <div id='myMap' style='width: 500px; height: 500px;'></div>
+    </div>
+
+    <script type='text/javascript'>
+        function loadMapScenario() {
+            var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+                /* No need to set credentials if already passed in URL */
+                center: new Microsoft.Maps.Location(40.745540, -73.906010),
+                zoom: 11
+            });
+            Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+                var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+                directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
+                directionsManager.setRequestOptions({
+                    routeMode: Microsoft.Maps.Directions.RouteMode.truck,
+                    //    vehicleSpec: {
+                    //    dimensionUnit: 'ft',
+                    //    weightUnit: 'lb',
+                    //    vehicleHeight: 5,
+                    //    vehicleWidth: 3.5,
+                    //    vehicleLength: 30,
+                    //    vehicleWeight: 30000,
+                    //    vehicleAxles: 3,
+                    //    vehicleTrailers: 2,
+                    //    vehicleSemi: true,
+                    //    vehicleMaxGradient: 10,
+                    //    vehicleMinTurnRadius: 15,
+                    //    vehicleAvoidCrossWind: true,
+                    //    vehicleAvoidGroundingRisk: true,
+                    //    vehicleHazardousMaterials: 'F',
+                    //    vehicleHazardousPermits: 'F'
+                    //}
+
+                });
+
+                //if (!document.getElementById("wp1address").value) {
+                //    var wp1text = document.getElementById("wp1postcode").value;
+                //}
+                //else {
+                //    var wp1text = document.getElementById("wp1address").value + ", " + document.getElementById("wp1postcode").value;
+                //}
+
+                //var wp2text = document.getElementById("wp2address").value + ", " + document.getElementById("wp2postcode").value;
+
+                var wp1text = document.getElementById("wp1address").value;
+                var wp2text = document.getElementById("wp2address").value;
+
+                var wp1 = new Microsoft.Maps.Directions.Waypoint({
+                    address: wp1text
+                    //location: new Microsoft.Maps.Location(40.419228, -80.018138)
+                });
+                var wp2 = new Microsoft.Maps.Directions.Waypoint({
+                    address: wp2text
+                    //location: new Microsoft.Maps.Location(40.437550, -79.993610)
+                });
+                directionsManager.addWaypoint(wp1);
+                directionsManager.addWaypoint(wp2);
+                directionsManager.calculateDirections();
+            });
+        }
+    </script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AndlX0ezcOyA5fR2ZTrxJ22hIfvmcootBfLElvVB84zEkUJdKMuIptAZcpPghZZz&callback=loadMapScenario' async defer></script>
+
+    <script>
+        function ToItems() {
+
+            if (document.getElementById("ckNycTruck").checked) {
+                var TotalMiles = 0;
+                var NycTruck = "true";
+            }
+            else {
+                var TotalMiles = document.getElementById("tbTotalMiles").value;
+                var NycTruck = "false";
+            }
+            if (document.getElementById("ckInterState").checked) {
+                var InterState = "true";
+            }
+            else {
+                var InterState = "false";
+            }
+            //var TotalMiles = document.getElementById("tbTotalMiles").value;
+            var TravelTime = document.getElementById("tbTravelTime").value;
+            var Waypoints = document.getElementById("wp1address").value + "-" + document.getElementById("wp2address").value;
+
+            var text = "JobAndInventory?TravelTime=" + TravelTime + "&TotalMiles=" + TotalMiles + "&NycTruck=" + NycTruck + "&InterState=" + InterState +  "&Waypoints=" + Waypoints;
+            window.location.href = text;
+
+            //document.getElementById("TestLink").innerHTML = text;
+        }
+
+        var x = document.getElementById("demo");
+
+        function GetLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("wp1address").value = position.coords.latitude + "," + position.coords.longitude;
+                
+        }
+
+    </script>
+    
+
+</body>
+</html>

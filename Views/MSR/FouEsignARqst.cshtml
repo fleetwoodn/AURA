@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "FouEsignARqst";
+}
+
+<h4>ESign Rqst</h4>
+
+<form asp-action="FouEsignARqst">
+    <label>Job ID</label>
+    <input name="Zero" value="@ViewBag.zero" readonly="readonly" />
+    <label>Email Address</label>
+    <input name="EmailAddress" value="@ViewBag.EmailAddress" />
+    <hr />
+    <label>Comments</label>
+    <input type="button" id="btEndOfJob" value="End of Job" onclick="EndOfJob()" />
+    <br />
+    <textarea id="tbComments" name="Comments" cols="9" style="width:300px; height:200px"></textarea>
+    <hr />
+    <input type="submit" value="Send" />
+</form>
+
+
+<script>
+    function EndOfJob() {
+        document.getElementById("tbComments").value = "End of Job. No other issues reported." + document.getElementById("tbComments").value;
+    }
+</script>
+
+

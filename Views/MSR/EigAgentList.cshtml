@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AURA.Models.Agents>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="EigCreate" asp-route-zero="@ViewBag.zero">Create New</a>
+</p>
+<form asp-controller="MSR" asp-action="EigAgentList" method="get">
+    <p>
+        FULL NAME CONTAINS : <input type="text" name="searchString" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuraId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NickName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+
+                <td>
+                    <a asp-action="EigCreate" asp-route-zero="@ViewBag.zero" asp-route-auraid="@item.AuraId" asp-route-phone="@item.PhoneNumber" asp-route-role="DRVR">DRVR</a>|
+                    <a asp-action="EigCreate" asp-route-zero="@ViewBag.zero" asp-route-auraid="@item.AuraId" asp-route-phone="@item.PhoneNumber" asp-route-role="CREW">CREW</a>|
+                    <a asp-action="EigCreate" asp-route-zero="@ViewBag.zero" asp-route-auraid="@item.AuraId" asp-route-phone="@item.PhoneNumber" asp-route-role="NONE">NONE</a>|
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

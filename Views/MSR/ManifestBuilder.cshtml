@@ -1,0 +1,402 @@
+﻿
+@{
+    ViewData["Title"] = "ManifestBuilder";
+}
+
+<h4>Manifest Builder</h4>
+
+
+
+@{
+    ViewData["Title"] = "JobAndInventory";
+}
+
+
+
+<header>
+    <div id="PriceDiv">
+        Travel Time: <span id="TravelTime">@ViewBag.TravelTime|</span>
+        Total Miles: <span id="TotalMiles">@ViewBag.TotalMiles</span>|
+        NYC Truck: <span id="TotalMiles">@ViewBag.NycTruck</span>|
+        InterState: <span id="TotalMiles">@ViewBag.Interstate</span>|
+        Waypoints: <span id="Waypoints">@ViewBag.Waypoints</span>
+        <hr />
+        <p id="LinkToPage"></p>
+        <div>
+            TOTAL LOAD MINUTES: <span id="TotalCount"></span>
+        </div>
+        <input id="CalculateLoad" type="button" value="Calculate" onclick="CalcLoad()" />
+
+    </div>
+    <hr />
+</header>
+<body>
+    <div id="TeamDiv">
+        <strong>Job Details</strong>
+        <br />
+        <input id="ckHourlyRate" type="checkbox" value="-1" />
+        <b>Hourly rate?</b>
+        <i>Flat by default</i>
+        <br />
+        <input id="tbDrvrCount" type="number" value="1" style="width:50px" />
+        <b>Drvr Count</b>
+        <br />
+        <input id="tbCrewCount" type="number" value="2" style="width:50px" />
+        <b>Crew Count</b>
+        <i>More than 3 flights of stairs, add 1 Crew</i>
+    </div>
+    <div id="JobDetails">
+        <input id="tbStairCount" type="number" value="0" style="width:50px" />
+        <b>Stairs</b>
+        <i>Flights of stairs to get to curb level</i>
+        @*<br />
+        <input id="tbAddlInsuredCount" type="number" value="0" style="width:50px" />
+        <b>Additional Insured Count</b>
+        <i>How many add'l insured needed?</i>*@
+    </div>
+    <hr />
+    <div id="ItemDiv">
+        <div>
+            <b>BOX COUNT: </b>&nbsp;
+            <span id="BoxInventory">0</span>&nbsp;
+            <input type="button" onclick="AddBoxItem()" id="AddBoxItem" value="+" />
+            <input type="button" onclick="RemoveBox()" id="RemoveBoxItem" value="-" />
+            <i>Medium or small boxes [is box < 18in?]</i>
+
+        </div>
+        <hr />
+        <div>
+            <b>CONTAINER COUNT: </b>&nbsp;
+            <span id="ContainerInventory">0</span>&nbsp;
+            <input type="button" onclick="AddContainer()" id="AddContainerItem" value="+" />
+            <input type="button" onclick="RemoveContainer()" id="RemoveContainerItem" value="-" />
+            <i>Plastic containers, totes, luggage, or extra large boxes [>18in]</i>
+        </div>
+        <hr />
+        <div>
+            <select id="FragileItems">
+                <option>FRAGILE MISC</option>
+                <option>LARGE MIRROR</option>
+                <option>MONITOR/TV (+40in)</option>
+                <option>LARGE WALL ART</option>
+                <option>PLANTS</option>
+                <option>SMALL MIRROR</option>
+                <option>MONITOR/TV (-40in)</option>
+                <option>SMALL WALL ART</option>
+            </select>
+            <input type="text" id="WriteF" />
+            <input type="button" onclick="AddFragileItem()" id="AddFragileItem" value="ADD FRAGILE" />
+
+            <p id="FragileInventory"></p>
+        </div>
+        <hr />
+
+        <div>
+            <b>WRAP COUNT: </b>&nbsp;
+            <span id="WrapInventory">0</span>&nbsp;
+            <input type="button" onclick="AddWrapItem()" id="AddWrapItem" value="+" />
+            <input type="button" onclick="RemoveWrap()" id="RemoveWrapItem" value="-" />
+            <i>how many large and small items need to wrapped?</i>
+        </div>
+
+        <hr />
+        <div>
+            <select id="LargeItems">
+                <option>LARGE MISC</option>
+                <option>ARMCHAIR</option>
+                <option>BED BOX</option>
+                <option>BED FRAME</option>
+                <option>BED MATTRESS</option>
+                <option>BOOKCASE</option>
+                <option>CHINA CLOSET</option>
+                <option>CHST DRAW</option>
+                <option>COFFEE TABLE</option>
+                <option>DINING TABLE</option>
+                <option>DRESSER</option>
+                <option>ENT CENTER</option>
+                <option>FUTON</option>
+                <option>RECLINER</option>
+                <option>SOFA 2 SEAT</option>
+                <option>SOFA 3 SEAT</option>
+                <option>SOFA SEC 1ST PIECE</option>
+                <option>SOFA SEC 2ND PIECE</option>
+                <option>WARDROBE</option>
+            </select>
+            <input type="text" id="WriteL" />
+            <input type="button" onclick="AddLargeItem()" id="AddLargeItem" value="ADD LARGE" />
+            <form id="LargeInventory">
+            </form>
+
+        </div>
+        <hr />
+        <div>
+            <select id="SmallItems">
+                <option>SMALL MISC</option>
+                <option>BENCH</option>
+                <option>BOOKSHELF</option>
+                <option>CHAIR OR STOOL</option>
+                <option>COAT RACK</option>
+                <option>COMPUTER DESK</option>
+                <option>CONSOLE TABLE</option>
+                <option>END TABLE</option>
+                <option>FLOOR LAMP</option>
+                <option>MISC CABINETS</option>
+                <option>NIGHTSTAND</option>
+                <option>OTTOMAN</option>
+                <option>ROCKER</option>
+                <option>SERVER TABLE</option>
+                <option>TV STAND</option>
+                <option>WINE RACK</option>
+                <option>WORK DESK</option>
+            </select>
+            <input type="text" id="WriteS" />
+            <input type="button" onclick="AddSmallItem()" id="AddSmallItem" value="ADD SMALL" />
+            <form id="SmallInventory">
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+
+<script>
+    var BoxList = ["¥B"];
+    BoxList.pop();
+    var ContList = ["¥C"];
+    ContList.pop();
+    var WrapList = ["¥W"];
+    WrapList.pop();
+    var FragileList = ["¥F"];
+    var LargeList = ["¥L"];
+    var SmallList = ["¥S"];
+
+
+
+
+    //box list
+
+    function AddBoxItem() {
+        BoxList.push(1)
+
+        PopulateListB(BoxList);
+    }
+
+    function RemoveBox() {
+        BoxList.pop();
+        PopulateListB(BoxList);
+    }
+
+    function PopulateListB() {
+        LenB = BoxList.length
+
+        text = LenB;
+
+        document.getElementById("BoxInventory").innerHTML = text;
+
+    }
+
+    //container list
+
+    function AddContainer() {
+        ContList.push(1)
+
+        PopulateListC(ContList);
+    }
+
+    function RemoveContainer() {
+        ContList.pop();
+        PopulateListC(ContList);
+    }
+
+    function PopulateListC() {
+        LenC = ContList.length
+
+        text = LenC;
+
+        document.getElementById("ContainerInventory").innerHTML = text;
+    }
+
+    //fragile list
+
+    function AddFragileItem() {
+        if (!document.getElementById("WriteF").value) {
+            FragileList.push(document.getElementById("FragileItems").value)
+        }
+        else {
+            FragileList.push(document.getElementById("WriteF").value);
+        }
+
+        PopulateListF(FragileList);
+
+        document.getElementById("WriteF").value = "";
+    }
+
+    function RemoveFragile(index) {
+        FragileList.splice(index, 1);
+        PopulateListF(FragileList);
+    }
+
+    function PopulateListF(arr) {
+        FLen = arr.length;
+
+        text = "<ol>";
+        for (i = 1; i < FLen; i++) {
+            text += "<li><input type='button' onclick='RemoveFragile(" + i + ")' value='X' />" + arr[i] + "</li>";
+        }
+        text += "</ol>";
+
+        document.getElementById("FragileInventory").innerHTML = text;
+    }
+
+    //Wrap count
+
+    function AddWrapItem() {
+        WrapList.push(1)
+
+        PopulateListW(WrapList);
+    }
+
+    function RemoveWrap(index) {
+        WrapList.pop();
+        PopulateListW(WrapList);
+    }
+
+    function PopulateListW(arr) {
+        LenW = arr.length;
+
+        text = LenW;
+
+        document.getElementById("WrapInventory").innerHTML = text;
+    }
+
+    //large items
+
+    function AddLargeItem() {
+        if (!document.getElementById("WriteL").value) {
+            LargeList.push(document.getElementById("LargeItems").value);
+        }
+        else {
+            LargeList.push(document.getElementById("WriteL").value);
+        }
+
+        PopulateListL(LargeList);
+        document.getElementById("WriteL").value = "";
+    }
+
+    function RemoveLarge(index) {
+        LargeList.splice(index, 1);
+        PopulateListL(LargeList);
+    }
+
+    function PopulateListL(arr) {
+        LLen = arr.length;
+
+        text = "<ol>";
+        for (i = 1; i < LLen; i++) {
+            text += "<li><input type='button' onclick='RemoveLarge(" + i + ")' value='X' />" + arr[i] + "</li>";
+        }
+        text += "</ol>";
+
+        document.getElementById("LargeInventory").innerHTML = text;
+    }
+
+    //small items
+
+    function AddSmallItem() {
+        if (!document.getElementById("WriteS").value) {
+            SmallList.push(document.getElementById("SmallItems").value);
+        }
+        else {
+            SmallList.push(document.getElementById("WriteS").value);
+        }
+
+        PopulateListS(SmallList);
+        document.getElementById("WriteS").value = "";
+    }
+
+    function RemoveSmall(index) {
+        SmallList.splice(index, 1);
+        PopulateListS(SmallList);
+    }
+
+    function PopulateListS(arr) {
+        SLen = arr.length;
+
+        text = "<ol>";
+        for (i = 1; i < SLen; i++) {
+            text += "<li><input type='button' onclick='RemoveSmall(" + i + ")' value='X' />" + arr[i] + "</li>";
+        }
+        text += "</ol>";
+
+        document.getElementById("SmallInventory").innerHTML = text;
+    }
+
+    //calculate the load
+
+    function CalcLoad() {
+        //totals
+        var LoadMinutes = (LargeList.length * 16) + (SmallList.length * 8) + (WrapList.length * 10) + (FragileList.length * 16) + (ContList.length * 4) + (BoxList.length * 1);
+        var UnloadMinutes = (LoadMinutes * .5);
+
+        var Stairs = document.getElementById("tbStairCount").value;
+        //var AddlInsured = document.getElementById("tbAddlInsuredCount").value;
+
+        //Hourly;
+        if (document.getElementById("ckHourlyRate").checked) {
+            var TotalMinutes = (LoadMinutes + UnloadMinutes + 10) * (1 + (Stairs * .02));
+            //var TotalMinutes = (LoadMinutes + UnloadMinutes + 10);
+            var Hourly = "true";
+        }
+        else {
+            var TotalMinutes = (LoadMinutes + UnloadMinutes + 20) * (1 + (Stairs * .02));
+            //var TotalMinutes = (LoadMinutes + UnloadMinutes);
+            var Hourly = "false";
+        }
+
+        //var TotalMinutes = (LoadMinutes + UnloadMinutes + 15) + (document.getElementById("StairCount").value * 5);
+
+        var DrvrCount = document.getElementById("tbDrvrCount").value;
+        var CrewCount = document.getElementById("tbCrewCount").value;
+
+        var TeamCount = parseInt(DrvrCount) + parseInt(CrewCount);
+
+        var FinalLoadTime = TotalMinutes / parseInt(CrewCount);
+
+        if (Stairs > 3 && CrewCount < 2) {
+            FinalLoadTime = "***CALC ERROR. ADJUST CREW COUNT";
+        }
+
+        document.getElementById("TotalCount").innerHTML = FinalLoadTime;
+
+        //create the link
+        var FullString = LargeList.concat(SmallList, FragileList);
+        LenW = WrapList.length;
+        FullString.push("WRAP-" + LenW);
+        LenB = BoxList.length;
+        FullString.push("BOXS-" + LenB);
+        LenC = ContList.length;
+        FullString.push("CONT-" + LenC);
+
+        FullString.push("LOAD TIME:" + FinalLoadTime + "min");
+
+        var Items = FullString.join(" /");
+
+        var text = "<a href='FivCreate?zero=@ViewBag.zero&code=M&priority=9&remark=TeamCount:" + TeamCount + "/LoadTime:" + FinalLoadTime + "/Items:" + Items + "/Drvr:" + DrvrCount + "/Stairs:" + Stairs +"'>SEND TO 5/</a>";
+        //var text = "<a href='FivCreate?zero=@ViewBag.zero&code=I&priority=5&remark=" + Inventory + "'>CLICK HERE TO SEND TO 5/I</a>";
+
+        document.getElementById("LinkToPage").innerHTML = text;
+
+
+    }
+
+
+
+
+
+</script>
+

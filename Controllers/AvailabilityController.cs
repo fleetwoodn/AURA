@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AURA.Controllers
 {
+
     public class AvailabilityController : Controller
     {
 
@@ -34,7 +35,7 @@ namespace AURA.Controllers
 
             if (String.IsNullOrEmpty(DateString))
             {
-                DateString = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
+                DateString = DateTime.Now.AddDays(2).ToString("yyyy-MM-dd");
                 //ToString("yyyy-MM-dd");
             }
 

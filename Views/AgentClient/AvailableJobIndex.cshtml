@@ -1,0 +1,81 @@
+﻿@model AURA.ViewModels.AvailableJobListVM 
+
+@{
+    ViewData["Title"] = "AvailableJobIndex";
+}
+
+<h4>Available Job Index</h4>
+
+<div>
+    <a asp-action="Index">BACK TO MAIN AGENT PAGE</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+
+            </th>*@
+            <th>
+                <strong>JOB ID</strong>
+            </th>
+            <th>
+                <strong>DATE</strong>
+            </th>
+            <th>
+                <strong>TIME</strong>    
+            </th>
+            <th>
+                <strong>STATUS</strong>
+            </th>
+            <th>
+                <strong>ROLE</strong>
+            </th>
+            <th>
+                <strong>OFFERED LOAD</strong>
+            </th>
+            <th>
+                <strong>NOTES</strong>
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.JobList)
+        {
+        <tr>
+            @*<td>
+                @Html.HiddenFor(modelItem => item.EigId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Zero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrDate.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThrTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.EigAgen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EigRole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EigLoad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EigNote)
+            </td>
+
+            <td>
+                <a asp-controller="Post" asp-action="PostDetail" asp-route-zero="@item.Zero">Details</a>|
+                <a asp-action="AssignJob" asp-route-id="@item.EigId">Request Job</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AURA.Models.PostOne>
+
+@{
+    ViewData["Title"] = "AGTIndex";
+}
+
+<h1>AGTIndex</h1>
+
+<p>
+    <a asp-action="OneCreate">Create New</a>
+</p>
+<form asp-controller="AGT" asp-action="AGTIndex" method="get">
+    <p>
+        AGT ID/Stage/Party ID/Title : <input type="text" name="searchString" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<table class="table">
+    
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="AGTDetail" asp-route-zero="@item.OneZero">Details</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneStag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneAgen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OnePart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneTitl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneType)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

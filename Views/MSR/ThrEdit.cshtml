@@ -1,0 +1,56 @@
+﻿@model AURA.Models.PostThr
+
+@{
+    ViewData["Title"] = "ThrEdit";
+}
+
+
+
+<h4>EDI 3/</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ThrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ThrId" />
+            <div class="form-group">
+                <label asp-for="ThrZero" class="control-label"></label>
+                <input asp-for="ThrZero" class="form-control" readonly="readonly" />
+                <span asp-validation-for="ThrZero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrDigit" class="control-label"></label>
+                <input asp-for="ThrDigit" class="form-control" readonly="readonly" />
+                <span asp-validation-for="ThrDigit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrDate" class="control-label"></label>
+                <input asp-for="ThrDate" class="form-control" />
+                <span asp-validation-for="ThrDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrTime" class="control-label"></label>
+                <input asp-for="ThrTime" class="form-control" />
+                <span asp-validation-for="ThrTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrEndTime" class="control-label"></label>
+                <input asp-for="ThrEndTime" class="form-control" />
+                <span asp-validation-for="ThrEndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThrText" class="control-label"></label>
+                <input asp-for="ThrText" class="form-control" />
+                <span asp-validation-for="ThrText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="MSRDetail" asp-route-zero="@Model.ThrZero">Back to MSR</a>
+</div>
+

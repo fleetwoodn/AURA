@@ -54,7 +54,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,EntryDate,Text")] TermsConditions termsConditions)
+        public async Task<IActionResult> Create([Bind("ID,Title,Description,FullText,LastUpdate")] TermsConditions termsConditions)
         {
             if (ModelState.IsValid)
             {
@@ -64,9 +64,6 @@ namespace AURA.Controllers
             }
             return View(termsConditions);
         }
-
-        //create -- richtext editor
-        
 
         // GET: TermsConditions/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -89,7 +86,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,EntryDate,Text")] TermsConditions termsConditions)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Description,FullText,LastUpdate")] TermsConditions termsConditions)
         {
             if (id != termsConditions.ID)
             {

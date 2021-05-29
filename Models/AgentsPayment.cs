@@ -17,6 +17,15 @@ namespace AURA.Models
         [ForeignKey("Agents")]
         public int UserId { get; set; }
 
+        [Display(Name = "Aura Id")]
+        public string AuraId { get; set; }
+
+        //[Display(Name = "Tax Type")]
+        //public string TaxType { get; set; }
+
+        //[Display(Name = "Withholding Type")]
+        //public string WitholdingType { get; set; }
+
         [Display(Name = "Payment Type")]
         public string PaymentType { get; set; }
 

@@ -1,0 +1,97 @@
+﻿@model AURA.Models.PostFou
+
+@{
+    ViewData["Title"] = "FouCreate";
+}
+<head>
+    <style>
+        div.form-group {
+            margin-bottom: 0rem;
+        }
+    </style>
+</head>
+
+<h4>ADD 4/</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FouCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FouZero" class="control-label"></label>
+                <input asp-for="FouZero" class="form-control" value="@ViewBag.zero" readonly="readonly" />
+                <span asp-validation-for="FouZero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouDigit" class="control-label"></label>
+                <input asp-for="FouDigit" class="form-control" value="0" readonly="readonly" />
+                <span asp-validation-for="FouDigit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouName" class="control-label"></label>
+                <input asp-for="FouName" class="form-control" />
+                <span asp-validation-for="FouName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouPhon" class="control-label"></label>
+                <input asp-for="FouPhon" class="form-control" />
+                <span asp-validation-for="FouPhon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouEmai" class="control-label"></label>
+                <input asp-for="FouEmai" class="form-control" />
+                <span asp-validation-for="FouEmai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouAddr" class="control-label"></label>
+                <input asp-for="FouAddr" class="form-control" />
+                <span asp-validation-for="FouAddr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouPost" class="control-label"></label>
+                <input asp-for="FouPost" class="form-control" />
+                <span asp-validation-for="FouPost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouOrg" class="control-label"></label>
+                <input asp-for="FouOrg" class="form-control" />
+                <span asp-validation-for="FouOrg" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-bottom:1rem;">
+                <label asp-for="FouNote" class="control-label"></label>
+                <div>
+                    <input type="button" onclick="Pick()" id="CmdPick" value="PICK-" />
+                    <input type="button" onclick="Drop()" id="CmdDrop" value="DROP-" />
+                    <input type="button" onclick="ClearText()" id="CmdClearText" value="CLEAR TEXT" />
+                </div>
+                <input asp-for="FouNote" class="form-control" id="TbFouNote" />
+                <span asp-validation-for="FouNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="MSRDetail" asp-route-zero="@ViewBag.zero">BACK TO MSR</a>
+</div>
+
+<script>
+
+    function Pick() {
+        document.getElementById("TbFouNote").value = ""
+        document.getElementById("TbFouNote").value = "PICK-"
+    }
+
+    function Drop() {
+        document.getElementById("TbFouNote").value = ""
+        document.getElementById("TbFouNote").value = "DROP-"
+    }
+
+    function ClearText() {
+        document.getElementById("TbFouNote").value = ""
+    }
+
+</script>

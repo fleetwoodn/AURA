@@ -1,0 +1,79 @@
+﻿@model AURA.Models.PostFou
+
+@{
+    ViewData["Title"] = "FouEdit";
+}
+
+<head>
+    <style>
+        div.form-group {
+            margin-bottom: 0rem;
+        }
+    </style>
+</head>
+
+<h4>EDIT 4/</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FouEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FouId" />
+            <div class="form-group">
+                @*<label asp-for="FouZero" class="control-label"></label>
+                    <input asp-for="FouZero" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="FouZero" class="text-danger"></span>*@
+                <input type="hidden" asp-for="FouZero" />
+            </div>
+            <div class="form-group">
+                @*<label asp-for="FouDigit" class="control-label"></label>
+                    <input asp-for="FouDigit" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="FouDigit" class="text-danger"></span>*@
+                <input type="hidden" asp-for="FouDigit" />
+            </div>
+            <div class="form-group">
+                <label asp-for="FouName" class="control-label"></label>
+                <input asp-for="FouName" class="form-control" />
+                <span asp-validation-for="FouName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouPhon" class="control-label"></label>
+                <input asp-for="FouPhon" class="form-control" />
+                <span asp-validation-for="FouPhon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouEmai" class="control-label"></label>
+                <input asp-for="FouEmai" class="form-control" />
+                <span asp-validation-for="FouEmai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouAddr" class="control-label"></label>
+                <input asp-for="FouAddr" class="form-control" />
+                <span asp-validation-for="FouAddr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouPost" class="control-label"></label>
+                <input asp-for="FouPost" class="form-control" />
+                <span asp-validation-for="FouPost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouOrg" class="control-label"></label>
+                <input asp-for="FouOrg" class="form-control" />
+                <span asp-validation-for="FouOrg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FouNote" class="control-label"></label>
+                <input asp-for="FouNote" class="form-control" />
+                <span asp-validation-for="FouNote" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-bottom:1rem;">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="MSRDetail" asp-route-zero="@Model.FouZero">BACK TO MSR</a>
+</div>
+

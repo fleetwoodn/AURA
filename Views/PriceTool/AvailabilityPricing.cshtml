@@ -1,0 +1,206 @@
+﻿@model AURA.ViewModels.PriceToolAvailabilityVM
+@{
+    ViewData["Title"] = "AvailabilityPricing";
+}
+
+
+<header>
+    <h4>AvailabilityPricing</h4>
+</header>
+
+<body>
+    <div>
+        <form asp-controller="PriceTool" asp-action="AvailabilityPricing" method="get">
+            <div id="hiddeninputs">
+                <div><input type="text" name="zero" value="@ViewBag.zero" /></div>
+                <div><input type="number" name="TravelTime" value="@ViewBag.TravelTime" />|Travel Time</div>
+                <div><input type="number" name="TotalMiles" value="@ViewBag.TotalMiles" />|Total Miles</div>
+                <div><input type="text" name="NycTruck" value="@ViewBag.NycTruck" />|Nyc Truck</div>
+                <div><input type="text" name="InterState" value="@ViewBag.InterState" />|InterState</div>
+                <div><input type="text" name="Waypoints" value="@ViewBag.Waypoints" />|Waypoints</div>
+                <div><input type="number" name="TeamCount" value="@ViewBag.TeamCount" />|TeamCount</div>
+                <div><input type="number" name="LoadTime" value="@ViewBag.LoadTime" />|LoadTime</div>
+                <div><input type="text" name="Drvr" value="@ViewBag.Drvr" />|Drvr</div>
+                <div><input type="text" name="Hourly" value="@ViewBag.Hourly" />|Hourly</div>
+                <div><input type="number" name="Stairs" value="@ViewBag.Stairs" />|Stairs</div>
+                <div><input type="number" name="AddlInsured" value="@ViewBag.AddlInsured" />|Addl Insured</div>
+                <div><input type="text" name="Items" value="@ViewBag.Items" />|Items</div>
+                <div><input type="text" name="TotalTime" value="@ViewBag.TotalTime" />|Total Time</div>
+            </div>
+            <br />
+            <p>
+                Select Date: <input type="date" name="dateString" />
+                <input type="submit" value="Submit" />
+            </p>
+        </form>
+    </div>
+    <hr />
+    <div id="ServiceDateZ">
+        @*ServiceDateZ*@
+        <h4>@ViewBag.ServiceDateZ</h4>
+        <div>@ViewBag.BaseRateZ | @ViewBag.LaborRateZ | PM-@ViewBag.LaborRatePMZ | @ViewBag.TravelCost | @ViewBag.TotalAddlInsured</div>
+        Rate Codes: <strong>@ViewBag.RateCalcZ</strong>
+        <br />
+        <strong>AM Total Rate: @ViewBag.TotalRateZ</strong>|
+        <strong>PM Total Rate: @ViewBag.TotalRatePMZ</strong> 
+        <br />
+        <table>
+            @foreach (var item in Model.ThrZ)
+            {
+                <tr>
+                    <td>--</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrZero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrEndTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrText)
+                    </td>
+
+                </tr>
+            }
+        </table>
+
+    </div>
+    <hr />
+    <div id="ServiceDate0">
+        @*ServiceDate0*@
+        <h4>@ViewBag.ServiceDate0</h4>
+        <div>@ViewBag.BaseRate0 | @ViewBag.LaborRate0 | PM-@ViewBag.LaborRatePM0 | @ViewBag.TravelCost | @ViewBag.TotalAddlInsured</div>
+        Rate Codes: <strong>@ViewBag.RateCalc0</strong>
+                    <div id="buttons0">
+                        
+                        <form asp-controller="PriceTool" asp-action="PriceToolBook" method="post">
+                            <div id="BookInputs">
+                                <span><input type="hidden" name="zero" id="tbZero" value="@ViewBag.zero" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="PT" id="tbPT" value="@ViewBag.PT" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="PTP" id="tbPTP" value="@ViewBag.PTP0" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="PTW" id="tbPTW" value="@ViewBag.PTW" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="PTM" id="tbPTM" value="@ViewBag.items" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="ServiceDate" id="tbServiceDate" value="@ViewBag.ServiceDate0" /></span>
+                                <span><input type="hidden" name="ServiceTime" id="tbServiceTime" value="8" /></span>
+                                <span><input type="hidden" name="TotalTime" id="tbTotalTime" value="@ViewBag.TotalTime" /></span>
+
+                                <input type="submit" value="BOOK AM: @ViewBag.TotalRate0" id="btBook" />
+                            </div>
+                        </form>
+                        <form asp-controller="PriceTool" asp-action="PriceToolBook" method="post">
+                            <div id="BookInputs">
+                                <span><input type="hidden" name="zero" id="tbZero" value="@ViewBag.zero" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="PT" id="tbPT" value="@ViewBag.PT" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="PTP" id="tbPTP" value="@ViewBag.PTP0P" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="PTW" id="tbPTW" value="@ViewBag.PTW" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="PTM" id="tbPTM" value="@ViewBag.items" style="height:1px; width:1px" /></span>
+                                <span><input type="hidden" name="ServiceDate" id="tbServiceDate" value="@ViewBag.ServiceDate0" /></span>
+                                <span><input type="hidden" name="ServiceTime" id="tbServiceTime" value="14" /></span>
+                                <span><input type="hidden" name="TotalTime" id="tbTotalTime" value="@ViewBag.TotalTime" /></span>
+
+                                <input type="submit" value="BOOK PM: @ViewBag.TotalRatePM0" id="btBook" />
+                            </div>
+                        </form>
+                    </div>
+        <table>
+            @foreach (var item in Model.Thr0)
+            {
+                <tr>
+                    <td>--</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrZero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrEndTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrText)
+                    </td>
+
+                </tr>
+            }
+        </table>
+
+    </div>
+    <hr />
+    <div id="ServiceDate1">
+        @*ServiceDate1*@
+        <h4>@ViewBag.ServiceDate1</h4>
+        <div>@ViewBag.BaseRate1 | @ViewBag.LaborRate1 | PM-@ViewBag.LaborRatePM1 | @ViewBag.TravelCost | @ViewBag.TotalAddlInsured</div>
+        Rate Codes: <strong>@ViewBag.RateCalc1</strong>
+        <br />
+        <strong>AM Total Rate: @ViewBag.TotalRate1</strong>|
+        <strong>PM Total Rate: @ViewBag.TotalRatePM1</strong>
+        <br />
+        <table>
+            @foreach (var item in Model.Thr1)
+            {
+                <tr>
+                    <td>--</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrZero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrEndTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThrText)
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+    <hr />
+    <div>
+        <ul>
+            <li>RATE CODE EXPLANATION</li>
+            <li>a : date >= 25th</li>
+            <li>b : date <= 05th</li>
+            <li>c : date < 5 days</li>
+            <li>d : date < 3</li>
+            <li>e : date < 1</li>
+            <li>f : over 4 hr</li>
+            <li>g : over 3 hr</li>
+            <li>h : hourly</li>
+            <li>i : stairs <= 3</li>
+            <li>j : stairs > 3</li>
+            <li>k : interstate == true</li>
+            <li>l : Friday and Saturday</li>
+        </ul>
+    </div>
+</body>
+
+<script>
+
+    function Book() {
+
+        document.getElementById("tbPT").value = @ViewBag.PT;
+        document.getElementById("tbPTP").value = "F" + @ViewBag.TotalRate0 + " -B" + @ViewBag.BaseRate0 +" -L" + @ViewBag.LaborRate0 + " -T" + @ViewBag.TravelCost + " -I" + @ViewBag.TotalAddlInsured
+        document.getElementById("tbPTW").value = @ViewBag.PTW;
+        //document.getElementById("tbPTM").value = @ViewBag.PTM;
+
+        document.getElementById("tbPTP").style.height = "30px";
+        document.getElementById("tbPTP").style.width = "300px";
+        document.getElementById("btBook").style.visibility = "visible";
+
+    }
+
+</script>

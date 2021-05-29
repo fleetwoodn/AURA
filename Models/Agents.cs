@@ -25,6 +25,17 @@ namespace AURA.Models
         [Display(Name = "Nickname")]
         public string NickName { get; set; }
 
+        //stuff to add
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        public string EmailAddress { get; set; }
+
+        //end other stuff
+
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Birthdate")]
@@ -44,6 +55,26 @@ namespace AURA.Models
 
         [Display(Name = "AURA Role")]
         public string AuraRole { get; set; }
+
+        [Display(Name = "Tax Type")]
+        public string TaxType { get; set; }
+
+        [Display(Name = "Backup Witholding")]
+        public bool BackupWitholding { get; set; }
+
+        [Display(Name = "Payment Type")]
+        public string PaymentType { get; set; }
+
+        [Display(Name = "Payment Detail")]
+        public string PaymentDetail { get; set; }
+
+        [Required]
+        [Display(Name = "Street Address, City, and State")]
+        public string StreetAddress { get; set; }
+
+        [Required]
+        [Display(Name = "Postal Code")]
+        public string PostCode { get; set; }
 
     }
 }

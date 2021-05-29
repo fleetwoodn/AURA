@@ -20,9 +20,23 @@ namespace AURA.Controllers
         }
 
         // GET: Agents
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Agents.ToListAsync());
+            var agts = _context.Agents.OrderByDescending(p => p.AuraId).Take(100);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                agts = from m in _context.Agents
+                         select m;
+
+                agts = agts.Where(s => s.AuraId.Contains(searchString)
+                    || s.FullName.Contains(searchString)
+                    || s.PhoneNumber.Contains(searchString)
+                    );
+            }
+
+
+            return View(await agts.ToListAsync());
         }
 
         // GET: Agents/Details/5
@@ -54,7 +68,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,AuraId,FullName,NickName,BirthDate,TaxId,StartDate,EndDate,AuraRole")] Agents agents)
+        public async Task<IActionResult> Create([Bind("UserId,AuraId,FullName,NickName,PhoneNumber,EmailAddress,BirthDate,TaxId,StartDate,EndDate,AuraRole,TaxType,BackupWitholding,PaymentType,PaymentDetail,StreetAddress,PostCode")] Agents agents)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +100,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,AuraId,FullName,NickName,BirthDate,TaxId,StartDate,EndDate,AuraRole")] Agents agents)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,AuraId,FullName,NickName,PhoneNumber,EmailAddress,BirthDate,TaxId,StartDate,EndDate,AuraRole,TaxType,BackupWitholding,PaymentType,PaymentDetail,StreetAddress,PostCode")] Agents agents)
         {
             if (id != agents.UserId)
             {

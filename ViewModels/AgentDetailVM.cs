@@ -26,6 +26,14 @@ namespace AURA.ViewModels
 
         public string AuraRole { get; set; }
 
+        public string TaxType { get; set; }
+
+        public bool BackupWitholding { get; set; }
+
+        public string PaymentType { get; set; }
+
+        public string PaymentDetail { get; set; }
+
 
         public IEnumerable<AURA.Models.AgentsPhone> agentsPhones { get; set; }
         public IEnumerable<AURA.Models.AgentsEmail> agentsEmails { get; set; }

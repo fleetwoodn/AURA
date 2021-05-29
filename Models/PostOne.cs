@@ -40,6 +40,10 @@ namespace AURA.Models
 
         [StringLength(160)]
         [Display(Name = "Title")]
-        public string OneTitl { get; set; } 
+        public string OneTitl { get; set; }
+        
+        [Required]
+        [Display(Name = "Type")]
+        public string OneType { get; set; }
     }
 }

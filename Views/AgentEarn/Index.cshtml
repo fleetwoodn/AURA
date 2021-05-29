@@ -1,0 +1,76 @@
+﻿@model AURA.ViewModels.AvailableJobListVM
+
+@{
+    ViewData["Title"] = "Agent Earnings";
+}
+
+<h4>Agent Earnings</h4>
+<hr />
+<form asp-controller="AgentEarn" asp-action="Index" method="get">
+    <p>
+        WEEK STARTING : <input type="date" name="DateString" />
+        NAME IS : <input type="text" name="NameString" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+
+                </th>*@
+            <th>
+                <strong>JOB ID</strong>
+            </th>
+            <th>
+                <strong>DATE</strong>
+            </th>
+            <th>
+                <strong>AGENT</strong>
+            </th>
+            <th>
+                <strong>ROLE</strong>
+            </th>
+            <th>
+                <strong>LOAD</strong>
+            </th>
+            <th>
+                <strong>NOTES</strong>
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.JobList)
+        {
+            <tr>
+                @*<td>
+                        @Html.HiddenFor(modelItem => item.EigId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThrDate.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigAgen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigRole)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigLoad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EigNote)
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

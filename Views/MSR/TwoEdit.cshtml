@@ -1,0 +1,91 @@
+﻿@model AURA.Models.PostTwo
+
+@{
+    ViewData["Title"] = "TwoEdit";
+}
+
+<h1>TwoEdit</h1>
+
+<h4>PostTwo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="TwoEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TwoId" />
+            <div class="form-group">
+                <label asp-for="TwoZero" class="control-label"></label>
+                <input asp-for="TwoZero" class="form-control" readonly="readonly" />
+                <span asp-validation-for="TwoZero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoNumber" class="control-label"></label>
+                <input asp-for="TwoNumber" class="form-control" readonly="readonly"/>
+                <span asp-validation-for="TwoNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoDate" class="control-label"></label>
+                <input asp-for="TwoDate" class="form-control" />
+                <span asp-validation-for="TwoDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoStag" class="control-label"></label>
+                <input asp-for="TwoStag" class="form-control" />
+                <span asp-validation-for="TwoStag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoProd" class="control-label"></label>
+                <input asp-for="TwoProd" class="form-control" />
+                <span asp-validation-for="TwoProd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoDepCode" class="control-label"></label>
+                <input asp-for="TwoDepCode" class="form-control" />
+                <span asp-validation-for="TwoDepCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoArrCode" class="control-label"></label>
+                <input asp-for="TwoArrCode" class="form-control" />
+                <span asp-validation-for="TwoArrCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoDepTime" class="control-label"></label>
+                <input asp-for="TwoDepTime" class="form-control" />
+                <span asp-validation-for="TwoDepTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoArrTime" class="control-label"></label>
+                <input asp-for="TwoArrTime" class="form-control" />
+                <span asp-validation-for="TwoArrTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoElpdTime" class="control-label"></label>
+                <input asp-for="TwoElpdTime" class="form-control" />
+                <span asp-validation-for="TwoElpdTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CargoRequirement" class="control-label"></label>
+                <input asp-for="CargoRequirement" class="form-control" />
+                <span asp-validation-for="CargoRequirement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoStat" class="control-label"></label>
+                <input asp-for="TwoStat" class="form-control" />
+                <span asp-validation-for="TwoStat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoNote" class="control-label"></label>
+                <input asp-for="TwoNote" class="form-control" />
+                <span asp-validation-for="TwoNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

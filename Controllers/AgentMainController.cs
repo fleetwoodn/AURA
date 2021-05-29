@@ -17,14 +17,20 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AURA.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Sale")]
     public class AgentMainController : Controller
     {
+        //tes
+        private readonly ApplicationDbContext _context2;
+        //tes
+
         private readonly PostContext _context;
 
-        public AgentMainController(PostContext context)
+        public AgentMainController(PostContext context, ApplicationDbContext context2) //test context2
         {
             _context = context;
+
+            _context2 = context2; //test
         }
 
         public async Task<IActionResult> Index()
@@ -32,7 +38,7 @@ namespace AURA.Controllers
             return View(await _context.Agents.ToListAsync());
         }
 
-        public IActionResult AgentDetail(int? UserId = 1111)
+        public IActionResult AgentDetail(int? UserId)
         {
             if (UserId == null)
             {
@@ -65,6 +71,10 @@ namespace AURA.Controllers
                 StartDate = agents.StartDate,
                 EndDate = agents.EndDate,
                 AuraRole = agents.AuraRole,
+                TaxType = agents.TaxType,
+                BackupWitholding = agents.BackupWitholding,
+                PaymentType = agents.PaymentType,
+                PaymentDetail = agents.PaymentDetail,
 
                 agentsPhones = uPho,
                 agentsEmails = uEma,
@@ -80,6 +90,8 @@ namespace AURA.Controllers
 
         //****************agent
 
+
+
         // GET: Agents/Create
         public IActionResult CreateAgent(int? UserId)
         {
@@ -87,6 +99,7 @@ namespace AURA.Controllers
 
             return View();
         }
+
 
         // POST: Agents/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -867,6 +880,19 @@ namespace AURA.Controllers
         private bool AgentsPaymentExists(int id)
         {
             return _context.AgentsPayments.Any(e => e.Id == id);
+        }
+
+        //agent real roles section
+
+        
+
+        public IActionResult AgentIdList() //string auraId
+        {
+
+
+            var UserList = ""; 
+
+            return View();
         }
 
     }

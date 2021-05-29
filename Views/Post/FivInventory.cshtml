@@ -22,7 +22,7 @@
     <hr />
     <div>
         <div>
-            <b>ANY PLASTIC CONTAINER, TOTES, OR BOXES OVER 18IN</b>
+            <b>ANY PLASTIC CONTAINER, TOTES, SUITCASES, OR BOXES OVER 18IN</b>
         </div>
         <input type="button" onclick="AddContainer()" id="AddContainerItem" value="ADD CONTAINER" />
         <input type="button" onclick="RemoveContainer()" id="RemoveContainerItem" value="REMOVE CONTAINER" />
@@ -44,16 +44,18 @@
     <div>
         <select id="FragileItems">
             <option>FRAGILE MISC</option>
-            <option>FLOOR LAMP</option>
             <option>LARGE MIRROR</option>
             <option>LARGE MONITOR/TV (+40in)</option>
             <option>LARGE WALL ART</option>
+            <option>PLANTS</option>
             <option>SMALL MIRROR</option>
             <option>SMALL MONITOR/TV (-40in)</option>
             <option>SMALL WALL ART</option>
 
         </select>
+        <input type="text" id="WriteF" />
         <input type="button" onclick="AddFragileItem()" id="AddFragileItem" value="ADD FRAGILE" />
+
         <p id="FragileInventory"></p>
     </div>
 
@@ -62,37 +64,28 @@
         <select id="LargeItems">
             <option>LARGE MISC</option>
             <option>ARMCHAIR</option>
-            <option>ARMOIRE</option>
+            <option>BED BOX</option>
+            <option>BED FRAME</option>
+            <option>BED MATTRESS</option>
             <option>BOOKCASE</option>
             <option>CHINA CLOSET</option>
             <option>CHST DRAW</option>
+            <option>COFFEE TABLE</option>
             <option>DINING TABLE</option>
             <option>DRESSER</option>
             <option>ENT CENTER</option>
-            <option>F BOX</option>
-            <option>F FRAME</option>
-            <option>F MATTRESS</option>
             <option>FUTON</option>
-            <option>K BOX</option>
-            <option>K FRAME</option>
-            <option>K MATTRESS</option>
-            <option>O BOX</option>
-            <option>O FRAME</option>
-            <option>O MATT</option>
-            <option>Q BOX</option>
-            <option>Q FRAME</option>
-            <option>Q MATTRESS</option>
             <option>RECLINER</option>
             <option>SOFA 2 SEAT</option>
             <option>SOFA 3 SEAT</option>
             <option>SOFA SEC</option>
-            <option>T BOX</option>
-            <option>T FRAME</option>
-            <option>T MATTRESS</option>
+            <option>WARDROBE</option>
 
 
         </select>
+        <input type="text" id="WriteL" />
         <input type="button" onclick="AddLargeItem()" id="AddLargeItem" value="ADD LARGE" />
+
         @*<p id="LargeCount">MINUTES</p>*@
         <p id="LargeInventory"></p>
     </div>
@@ -102,24 +95,25 @@
             <option>SMALL MISC</option>
             <option>BENCH</option>
             <option>BOOKSHELF</option>
-            <option>CHAIR</option>
+            <option>CHAIR OR STOOL</option>
             <option>COAT RACK</option>
-            <option>COFFEE TABLE</option>
             <option>COMPUTER DESK</option>
             <option>CONSOLE TABLE</option>
             <option>END TABLE</option>
+            <option>FLOOR LAMP</option>
+            <option>MISC CABINETS</option>
             <option>NIGHTSTAND</option>
             <option>OTTOMAN</option>
             <option>ROCKER</option>
             <option>SERVER TABLE</option>
-            <option>SIDEBOARD</option>
-            <option>STOOL</option>
             <option>TV STAND</option>
             <option>WINE RACK</option>
             <option>WORK DESK</option>
 
         </select>
+        <input type="text" id="WriteS" />
         <input type="button" onclick="AddSmallItem()" id="AddSmallItem" value="ADD SMALL" />
+
         @*<p id="SmallCount">MINUTES</p>*@
         <p id="SmallInventory"></p>
     </div>
@@ -149,9 +143,19 @@
     //large items
 
     function AddLargeItem() {
-        LargeList.push(document.getElementById("LargeItems").value)
+       
+        if (!document.getElementById("WriteL").value) {
+
+            LargeList.push(document.getElementById("LargeItems").value);
+        }
+        else {
+            LargeList.push(document.getElementById("WriteL").value);
+        }
+        
 
         PopulateListL(LargeList);
+
+        document.getElementById("WriteL").value = "";
     }
 
     function RemoveLarge(index) {
@@ -172,7 +176,7 @@
 
         //totals
         var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
-        var UnloadMinutes = (LoadMinutes * .6);
+        var UnloadMinutes = (LoadMinutes * .5);
 
         var TotalMinutes = LoadMinutes + UnloadMinutes;
 
@@ -195,9 +199,19 @@
     //small items
 
     function AddSmallItem() {
-        SmallList.push(document.getElementById("SmallItems").value)
+    
+
+        if (!document.getElementById("WriteS").value) {
+
+            SmallList.push(document.getElementById("SmallItems").value);
+        }
+        else {
+            SmallList.push(document.getElementById("WriteS").value);
+        }
 
         PopulateListS(SmallList);
+
+        document.getElementById("WriteS").value = "";
     }
 
     function RemoveSmall(index) {
@@ -218,7 +232,7 @@
 
         //totals
         var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
-        var UnloadMinutes = (LoadMinutes * .6);
+        var UnloadMinutes = (LoadMinutes * .5);
 
         var TotalMinutes = LoadMinutes + UnloadMinutes;
 
@@ -260,7 +274,7 @@
 
         //totals
         var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
-        var UnloadMinutes = (LoadMinutes * .6);
+        var UnloadMinutes = (LoadMinutes * .5);
 
         var TotalMinutes = LoadMinutes + UnloadMinutes;
 
@@ -285,9 +299,22 @@
     //fragile list
 
     function AddFragileItem() {
-        FragileList.push(document.getElementById("FragileItems").value)
+        
+
+        
+
+        if (!document.getElementById("WriteF").value) {
+
+            FragileList.push(document.getElementById("FragileItems").value)
+        }
+        else {
+            FragileList.push(document.getElementById("WriteF").value);
+        }
+
 
         PopulateListF(FragileList);
+
+        document.getElementById("WriteF").value = "";
     }
 
     function RemoveFragile(index) {
@@ -308,7 +335,7 @@
 
         //totals
         var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
-        var UnloadMinutes = (LoadMinutes * .6);
+        var UnloadMinutes = (LoadMinutes * .5);
 
         var TotalMinutes = LoadMinutes + UnloadMinutes;
 
@@ -351,7 +378,7 @@
 
         //totals
         var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
-        var UnloadMinutes = (LoadMinutes * .6);
+        var UnloadMinutes = (LoadMinutes * .5);
 
         var TotalMinutes = LoadMinutes + UnloadMinutes;
 
@@ -394,7 +421,7 @@
 
         //totals
         var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
-        var UnloadMinutes = (LoadMinutes * .6);
+        var UnloadMinutes = (LoadMinutes * .5);
 
         var TotalMinutes = LoadMinutes + UnloadMinutes;
 
@@ -430,7 +457,7 @@
 
 
         var LoadMinutes = (LargeList.length * 8) + (SmallList.length * 4) + (WrapList.length * 5) + (FragileList.length * 8) + (ContList.length * 2) + (BoxList.length * .5);
-        var UnloadMinutes = (LoadMinutes * .6);
+        var UnloadMinutes = (LoadMinutes * .5);
 
         var TotalMinutes = LoadMinutes + UnloadMinutes;
 

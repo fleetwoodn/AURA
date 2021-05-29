@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "EsignMisc";
+}
+
+<h4>E-Sign Request</h4>
+
+
+    <div>
+        <p>
+            This e-signature request was sent to the following email address, @ViewBag.email . By digitally signing, you acknowledge
+            that you are the person represented here. The comments below are from a Ryne employee. If you disagree with the comments,
+            please do so in the specified text area below. You may also write anything you think is relevant to the issue at hand. 
+            Thank you.
+        </p>
+        <hr />
+        <p>
+            <strong>RYNE COMMENTS</strong>
+            @ViewBag.comments
+        </p>
+    </div>
+    <hr />
+    <div>
+        <label>Please share your location to continue</label>
+        <button onclick="GetLocation()">Get Location</button>
+        <br />
+        
+    </div>
+    <form asp-action="EsignMisc">
+        <div id="SignSection" style="visibility:hidden">
+            <label>DATE/TIME OF SIGNING</label>
+            <br />
+            <input type="text" name="sDateTime" value="@ViewBag.date" readonly="readonly" />
+            <br />
+            <label>@ViewBag.name</label>
+            <br />
+            <label>DIGITAL SIGNATURE [PLEASE TYPE YOUR NAME]</label>
+            <br />
+            <input type="text" name="Signature" />
+            <br />
+            <label>COMMENTS</label>
+            <br />
+            <textarea name="CustomerComments" cols="9" style="width:300px; height:200px"></textarea>
+            <hr />
+            <input type="submit" value="Submit" />
+            <input type="text" id="tbGeoLocation" name="GeoLocation" readonly="readonly" style="visibility:visible" />
+            <input type="text" name="zero" value="@ViewBag.zero" style="visibility:visible" />
+            <input type="text" name="EmailAddress" value="@ViewBag.email" style="visibility:visible" />
+        </div>
+    </form>
+
+
+<script>
+    function GetLocation() {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        
+    }
+
+    function showPosition(position) {
+        document.getElementById("tbGeoLocation").value = position.coords.latitude + "," + position.coords.longitude;
+        document.getElementById("SignSection").style.visibility = "visible";     
+    }
+
+
+</script>

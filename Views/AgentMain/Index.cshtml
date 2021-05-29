@@ -4,8 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<h3>Index</h3>
+<p>
+    <a asp-action="NewAgentSelf">New IC</a>
+</p>
 <p>
     <a asp-action="CreateAgent">Create New</a>
 </p>
@@ -39,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.AuraRole)
             </td>
             <td>
-                <a asp-action="AgentDetail" asp-route-id="@item.UserId">Details</a> |
+                <a asp-action="AgentDetail" asp-route-UserId="@item.UserId">Details</a> |
             </td>
         </tr>
 }

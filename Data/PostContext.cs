@@ -18,6 +18,7 @@ namespace AURA.Data
 
         public DbSet<PostZero> PostZeros { get; set; }
         public DbSet<PostOne> PostOnes { get; set; }
+        public DbSet<PostTwo> PostTwos { get; set; }
         public DbSet<PostThr> PostThrs { get; set; }
         public DbSet<PostFou> PostFous { get; set; }
         public DbSet<PostFiv> PostFivs { get; set; }
@@ -43,6 +44,14 @@ namespace AURA.Data
 
         //Other
         public DbSet<AURA.Models.TermsConditions> TermsConditions { get; set; }
+        public DbSet<AURA.Models.TariffList> TariffLists { get; set; }
+        public DbSet<AURA.Models.Manifest> Manifests { get; set; }
+
+        //Other
+        public DbSet<AURA.Models.MiscText> MiscText { get; set; }
+
+        //Other
+        //public DbSet<AURA.Models.PostTwo> PostTwo { get; set; }
 
         //test
         

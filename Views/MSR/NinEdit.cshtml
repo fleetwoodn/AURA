@@ -1,0 +1,51 @@
+﻿@model AURA.Models.PostNin
+
+@{
+    ViewData["Title"] = "NinEdit";
+}
+
+<h1>NinEdit</h1>
+
+<h4>PostNin</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NinEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NinId" />
+            <div class="form-group">
+                <label asp-for="NinZero" class="control-label"></label>
+                <input asp-for="NinZero" class="form-control" />
+                <span asp-validation-for="NinZero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NinDigit" class="control-label"></label>
+                <input asp-for="NinDigit" class="form-control" />
+                <span asp-validation-for="NinDigit" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="NinFile" class="control-label"></label>
+                <input asp-for="NinFile" class="form-control" />
+                <span asp-validation-for="NinFile" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="NinCapt" class="control-label"></label>
+                <input asp-for="NinCapt" class="form-control" />
+                <span asp-validation-for="NinCapt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NinNote" class="control-label"></label>
+                <input asp-for="NinNote" class="form-control" />
+                <span asp-validation-for="NinNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

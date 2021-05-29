@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AURA.Models.ProductList>
+
+@{
+    ViewData["Title"] = "SevProductList";
+}
+
+<h4>Select a product to add to Post, or add a custom product</h4>
+
+<p>
+    <a asp-action="SevCreate" asp-route-zero="@ViewBag.zero" asp-route-stage="@ViewBag.stage" asp-route-partyid="@ViewBag.partyid">CUSTOM ACCOUNTING LINE</a>|
+    <a asp-action="MSRDetail" asp-route-zero="@ViewBag.zero">BACK TO MSR</a>
+</p>
+
+<table class="table">
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FractionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ListPrice)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.EntryDate)
+                </td>*@
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @*<input type="number" id="tbQuantity" name="Quantity" />*@|
+                    <a asp-action="SevCreate" asp-route-zero="@ViewBag.zero" asp-route-stage="@ViewBag.stage" asp-route-partyid="@ViewBag.partyid"
+                         asp-route-ac1="1100" asp-route-ac2="@item.AccountNumber" asp-route-acf="@item.FractionId" asp-route-desc="@item.ProductDescription"
+                         asp-route-amount="@item.ListPrice" asp-route-hidden="FALSE">SELECT</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+
+
+
+    function UpdateLink () {
+
+        var text = "<a href='FivCreate?zero=@ViewBag.zero&code=I&priority=5&remark=" + Inventory + "'>CLICK HERE TO SEND TO 5/I</a>";
+    }
+
+</script>

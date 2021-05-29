@@ -29,6 +29,16 @@
                 <span asp-validation-for="NickName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="BirthDate" class="control-label"></label>
                 <input asp-for="BirthDate" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
@@ -52,6 +62,36 @@
                 <label asp-for="AuraRole" class="control-label"></label>
                 <input asp-for="AuraRole" class="form-control" />
                 <span asp-validation-for="AuraRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxType" class="control-label"></label>
+                <input asp-for="TaxType" class="form-control" />
+                <span asp-validation-for="TaxType" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BackupWitholding" /> @Html.DisplayNameFor(model => model.BackupWitholding)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentType" class="control-label"></label>
+                <input asp-for="PaymentType" class="form-control" />
+                <span asp-validation-for="PaymentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentDetail" class="control-label"></label>
+                <input asp-for="PaymentDetail" class="form-control" />
+                <span asp-validation-for="PaymentDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StreetAddress" class="control-label"></label>
+                <input asp-for="StreetAddress" class="form-control" />
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostCode" class="control-label"></label>
+                <input asp-for="PostCode" class="form-control" />
+                <span asp-validation-for="PostCode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

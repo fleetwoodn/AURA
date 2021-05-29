@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AURA.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Sale")]
     public class PostOnesController : Controller
     {
         private readonly PostContext _context;
@@ -55,7 +55,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitl")] PostOne postOne)
+        public async Task<IActionResult> Create([Bind("OneType,OneId,OneZero,OneStag,OneAgen,OnePart,OneTitl")] PostOne postOne)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace AURA.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OneId,OneZero,OneStag,OneAgen,OnePart,OneTitl")] PostOne postOne)
+        public async Task<IActionResult> Edit(int id, [Bind("OneType,OneId,OneZero,OneStag,OneAgen,OnePart,OneTitl")] PostOne postOne)
         {
             if (id != postOne.OneId)
             {
@@ -165,7 +165,7 @@ namespace AURA.Controllers
                 stringBuilder.AppendLine("0/,Stage,Lead Agent,Party ID,Title");
                 foreach (var author in postOnes)
                 {
-                    stringBuilder.AppendLine($"{author.OneZero},{ author.OneStag},{ author.OneAgen},{ author.OnePart},{ author.OneTitl}");
+                    stringBuilder.AppendLine($"{author.OneType},{author.OneZero},{ author.OneStag},{ author.OneAgen},{ author.OnePart},{ author.OneTitl}");
                 }
                 return File(Encoding.UTF8.GetBytes
                 (stringBuilder.ToString()), "text/csv", "PostOne.csv");

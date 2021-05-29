@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AURA.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Sale")]
     public class AdminController : Controller
     {
         private readonly UserManager<IdentityUser> UserManager;

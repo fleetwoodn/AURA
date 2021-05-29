@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AURA.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Sale")]
     public class PostNinsController : Controller
     {
         private readonly PostContext _context;

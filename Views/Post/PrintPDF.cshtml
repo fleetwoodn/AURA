@@ -2,7 +2,7 @@
 
 @{
     Layout = null;
-    ViewBag.Title = "PrintPDF";
+    ViewBag.Title = "Contract-"+ Model.OneZero +"/"+ DateTime.Now.ToString("yyMMddHHmm");
     
 }
 
@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>PrintPDF</title>
+    <title>@ViewBag.Title</title>
     <style>
         .p {
             display: block;
@@ -28,7 +28,7 @@
 
     </style>
 </head>
-<body style="max-width: 200mm;">
+<body style="max-width: 195mm;">
 
     <div style="float:left;">
         <img src="~/StaticImages/Ryne Logo.png" alt="image" />
@@ -62,7 +62,7 @@
         {
             @if (item.FouNote == null)
             {
-                
+
             }
             else if (item.FouNote.Split("-")[0] == "PICK")
             {
@@ -71,7 +71,7 @@
                     <span class="items" style="margin-left:0px">@Html.DisplayFor(modelItem => item.FouPost)</span>
                 </div>
             }
-            
+
         }
 
     </div>
@@ -81,7 +81,7 @@
         {
             @if (item.FouNote == null)
             {
-                
+
             }
             else if (item.FouNote.Split("-")[0] == "DROP")
             {
@@ -153,16 +153,18 @@
             <span class="items">@Html.DisplayFor(modelItem => item.FouPhon)</span>
             <span class="items">@Html.DisplayFor(modelItem => item.FouEmai)</span>
         </div>
-        <div>
+        <div style="float:left">
             <span class="items">@Html.DisplayFor(modelItem => item.FouAddr)</span>/
             <span class="items">@Html.DisplayFor(modelItem => item.FouPost)</span>
             <span class="items">@Html.DisplayFor(modelItem => item.FouOrg)</span>
             <span class="items">@Html.DisplayFor(modelItem => item.FouNote)</span>
         </div>
+        <div style="clear:both"></div>
+
     }
 
     @*list of sev*@
-    <hr style="clear:both"/>
+    <hr style="clear:both" />
     <div style="background-color:lightblue">
         <span style="background-color:lightblue"><b>BILLING</b></span>
     </div>
@@ -183,7 +185,9 @@
             @*<span>@Html.DisplayFor(modelItem => item.SevNote)</span><nbsp> </nbsp>*@
         </div>
         <div style="text-align:right;">@Html.DisplayFor(modelItem => item.SevAmou)</div>
+        <div style="clear:both"></div>
     }
+    <hr style="clear:both" />
     <div style="text-align:right;">
         <b>TOTAL BILLING: @ViewBag.bill</b>
     </div>
@@ -195,6 +199,7 @@
         <div style="float:left;">
             <span class="items">@Html.DisplayFor(modelItem => item.SixDate)</span>|
             <span class="items">@Html.DisplayFor(modelItem => item.SixType)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.SixNote)</span>
         </div>
         <div style="text-align:right;">@Html.DisplayFor(modelItem => item.SixAmou)</div>
     }
@@ -219,7 +224,7 @@
         <div>
 
             <span class="items">@Html.DisplayFor(modelItem => item.FivDigit)</span>.
-            <span class="items">@Html.DisplayFor(modelItem => item.FivPrio)</span>|
+            @*<span class="items">@Html.DisplayFor(modelItem => item.FivPrio)</span>|*@
             <span class="items">@Html.DisplayFor(modelItem => item.FivCode)</span>|
             <span class="items">@Html.DisplayFor(modelItem => item.FivText)</span>
         </div>
@@ -238,7 +243,8 @@
             <span class="items">@Html.DisplayFor(modelItem => item.EigDigit)</span>.
             <span class="items">@Html.DisplayFor(modelItem => item.EigAgen)</span>
             <span class="items">@Html.DisplayFor(modelItem => item.EigRole)</span>
-            <span class="items">@Html.DisplayFor(modelItem => item.EigLoad)</span>
+            <span class="items">@Html.DisplayFor(modelItem => item.EigCont)</span>
+            @*<span class="items">@Html.DisplayFor(modelItem => item.EigLoad)</span>*@
             <span class="items">@Html.DisplayFor(modelItem => item.EigNote)</span>
 
         </div>
@@ -291,7 +297,7 @@
         <p></p>
         <b>CANCELLATION POLICY</b>
         <p>
-            Client is subject to a full refund if they wish to cancel within 15 days of contracted date with written notice.
+            Client is subject to a full refund if they wish to cancel outside 15 days of contracted date with written notice.
         </p>
         <p>
             If Ryne Corp. cancels the job due to unforseen circumstances, full deposit will be refunded to the original form of

@@ -39,9 +39,24 @@
         <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
         <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>*@
                 @*| <a asp-action="SevBuilder" asp-route-id="@item.ProductId" asp-route-zero="@ViewBag.zero" asp-route-stage="@ViewBag.stage" asp-route-partyid="@ViewBag.partyid">SELECT</a>*@
-                | <a asp-action="SevCreate" asp-route-zero="@ViewBag.zero" asp-route-stage="@ViewBag.stage" asp-route-partyid="@ViewBag.partyid" asp-route-ac1="1100" asp-route-ac2="@item.AccountNumber" asp-route-acf="@item.FractionId" asp-route-desc="@item.ProductDescription" asp-route-amount="@item.ListPrice" asp-route-hidden="FALSE">SELECT</a>
+                | <a asp-action="SevCreate" asp-route-zero="@ViewBag.zero" asp-route-stage="@ViewBag.stage" asp-route-partyid="@ViewBag.partyid" 
+                     asp-route-ac1="1100" asp-route-ac2="@item.AccountNumber" asp-route-acf="@item.FractionId" asp-route-desc="@item.ProductDescription" 
+                     asp-route-amount="@item.ListPrice" asp-route-hidden="FALSE">SELECT</a>|
+                 
+
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<script>
+
+
+
+    function UpdateLink {
+
+        var text = "<a href='FivCreate?zero=@ViewBag.zero&code=I&priority=5&remark=" + Inventory + "'>CLICK HERE TO SEND TO 5/I</a>";
+    }
+
+</script>

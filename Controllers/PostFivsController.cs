@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AURA.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Sale")]
     public class PostFivsController : Controller
     {
         private readonly PostContext _context;

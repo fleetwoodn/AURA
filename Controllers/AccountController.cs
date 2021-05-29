@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AURA.Controllers
 {
-    //[Authorize]
+    //[Authorize(Roles = "Admin,User")]
     public class AccountController : Controller
     {
         private readonly PostContext _context;
@@ -28,6 +28,7 @@ namespace AURA.Controllers
             RoleManager = roleManager;
         }
 
+        [Authorize(Roles = "Admin,Sale")]
         public IActionResult Register()
         {
             RegisterViewModel newRegister = new RegisterViewModel();
@@ -45,6 +46,7 @@ namespace AURA.Controllers
             return View(newRegister);
         }
 
+        [Authorize(Roles = "Admin,Sale")]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
@@ -67,7 +69,7 @@ namespace AURA.Controllers
 
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, false);
+                    //await SignInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
                 foreach (var error in result.Errors)
@@ -179,6 +181,11 @@ namespace AURA.Controllers
             }
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ResetPasswordConfirmation(bool success, string message)
@@ -189,6 +196,14 @@ namespace AURA.Controllers
                 Message = message
             };
             return View("ResetPassword", viewModel);
+        }
+
+
+        public IActionResult UserList()
+        {
+            var list = UserManager.Users;
+
+            return View(list);
         }
     }
 }

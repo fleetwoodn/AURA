@@ -24,6 +24,7 @@
     </style>
 
 </head>
+<p>REMEMBER, NEVER USE COMMAS!</p>
 
 <h1>@Model.OneZero</h1>
 
@@ -63,6 +64,7 @@
         <span><a asp-action="ThrDelete" asp-route-id="@item.ThrId">VIEW</a></span><nbsp> </nbsp>|
         <span>@Html.DisplayFor(modelItem => item.ThrDigit)</span>.<nbsp> </nbsp>
         <span>@Html.DisplayFor(modelItem => item.ThrDate)</span><nbsp> </nbsp>|
+        <span>@Html.DisplayFor(modelItem => item.ThrTime)</span>
         <span>@Html.DisplayFor(modelItem => item.ThrText)</span>
     </p>
 
@@ -164,7 +166,11 @@
 <hr />
 <p>
     <span><b>AGENTS</b></span>
-    <a asp-action="EigCreate" asp-route-zero="@Model.OneZero">ADD 8/</a>
+    <a asp-action="EigCreate" asp-route-zero="@Model.OneZero">ADD 8/</a>|
+    <a asp-action="EigCreateFast" asp-route-zero="@Model.OneZero" asp-route-role="DRVR">ADD 8/DRVR</a>|
+    <a asp-action="EigCreateFast" asp-route-zero="@Model.OneZero" asp-route-role="CREW">ADD 8/CREW</a>
+</p>
+
 </p>
 
 @foreach (var item in Model.PostEigs)

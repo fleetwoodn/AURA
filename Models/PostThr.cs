@@ -34,12 +34,11 @@ namespace AURA.Models
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ThrDate { get; set; }
 
-        [Display(Name = "HourFrame")]
-        //[DataType(DataType.Time)]
-        //[DisplayFormat(DataFormatString = "{0:HH}", ApplyFormatInEditMode = true)]
-        //public DateTime ThrTime { get; set; }
+        [Display(Name = "Time Block")]
         public string ThrTime { get; set; }
 
+        [Display(Name = "End Time")]
+        public string ThrEndTime { get; set; }
 
         [Required]
         [RegularExpression(@"[a-zA-Z0-9""'\s-|\.\=\+\*\/\\]*$")]

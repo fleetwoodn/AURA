@@ -15,7 +15,7 @@ namespace AURA.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.10")
+                .HasAnnotation("ProductVersion", "3.1.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -32,8 +32,15 @@ namespace AURA.Migrations
                     b.Property<string>("AuraRole")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("BackupWitholding")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -46,10 +53,31 @@ namespace AURA.Migrations
                     b.Property<string>("NickName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PaymentDetail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("StreetAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TaxId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxType")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -112,6 +140,9 @@ namespace AURA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuraId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
@@ -320,6 +351,61 @@ namespace AURA.Migrations
                     b.ToTable("Journals");
                 });
 
+            modelBuilder.Entity("AURA.Models.Manifest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Assembly")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wrap")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zero")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Manifests");
+                });
+
+            modelBuilder.Entity("AURA.Models.MiscText", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("MiscText");
+                });
+
             modelBuilder.Entity("AURA.Models.PostEig", b =>
                 {
                     b.Property<int>("EigId")
@@ -329,8 +415,8 @@ namespace AURA.Migrations
 
                     b.Property<string>("EigAgen")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("EigCont")
                         .HasColumnType("nvarchar(max)");
@@ -492,6 +578,10 @@ namespace AURA.Migrations
                         .HasColumnType("nvarchar(160)")
                         .HasMaxLength(160);
 
+                    b.Property<string>("OneType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OneZero")
                         .HasColumnType("nvarchar(max)");
 
@@ -621,6 +711,9 @@ namespace AURA.Migrations
                     b.Property<int>("ThrDigit")
                         .HasColumnType("int");
 
+                    b.Property<string>("ThrEndTime")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ThrText")
                         .IsRequired()
                         .HasColumnType("nvarchar(160)")
@@ -635,6 +728,57 @@ namespace AURA.Migrations
                     b.HasKey("ThrId");
 
                     b.ToTable("PostThrs");
+                });
+
+            modelBuilder.Entity("AURA.Models.PostTwo", b =>
+                {
+                    b.Property<int>("TwoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CargoRequirement")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoArrCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoArrTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TwoDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TwoDepCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoDepTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoElpdTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoProd")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoStag")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoStat")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoZero")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TwoId");
+
+                    b.ToTable("PostTwos");
                 });
 
             modelBuilder.Entity("AURA.Models.PostZero", b =>
@@ -686,6 +830,30 @@ namespace AURA.Migrations
                     b.ToTable("ProductList");
                 });
 
+            modelBuilder.Entity("AURA.Models.TariffList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TariffLists");
+                });
+
             modelBuilder.Entity("AURA.Models.TermsConditions", b =>
                 {
                     b.Property<int>("ID")
@@ -693,13 +861,17 @@ namespace AURA.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("EntryDate")
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasMaxLength(10000);
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 

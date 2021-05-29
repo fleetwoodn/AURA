@@ -4,18 +4,44 @@
 @{
 }
 
-    <ul>
-        <li>
-            <a class="nav-link text-dark" asp-area="" asp-controller="ProductLists" asp-action="Index">Product List</a>
-        </li>
-        <li>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Agents" asp-action="Index">User System</a>
-        </li>
-        <li>
-            <a class="nav-link text-dark" asp-area="" asp-controller="TermsConditions" asp-action="Index">Terms & Conditions Text</a>
-        </li>
-        
-    </ul>
+
+<hr />
+<ul class="navbar-nav flex-grow-1">
+    
+    
+    <li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="PostIndex">Post System</a>
+    </li>
+    <li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin System</a>
+    </li>
+    <li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Availability" asp-action="Index">Availability</a>
+    </li>
+
+    @*<li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+        </li>*@
+</ul>
+<hr />
+<ul>
+    <li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="ProductLists" asp-action="Index">Product List</a>
+    </li>
+    <li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Agents" asp-action="Index">User System</a>
+    </li>
+    <li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="TermsConditions" asp-action="Index">Terms & Conditions Text</a>
+    </li>
+    <li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="AgentEarn" asp-action="Index">Agent Earnings</a>
+    </li>
+    <li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="TariffLists" asp-action="Index">Tariff List</a>
+    </li>
+
+</ul>
 <hr />
 <ul>
     <li>
